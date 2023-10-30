@@ -1,42 +1,132 @@
 import numpy as np
+
 API_KEY = '7fa6fe05da148'
 import datetime
 import os
+import re
+import nltk
 
 def get_data_path(state, sig, start_date, end_date):
-    assert type(start_date)==datetime.date
-    assert type(end_date)==datetime.date
+    assert type(start_date) == datetime.date
+    assert type(end_date) == datetime.date
     file_path = os.path.join("data", f"{state}-{sig}-from-{start_date}-to-{end_date}.pkl")
     return file_path
 
-SIGNALS = np.array(["smoothed_whesitancy_reason_sideeffects", 
-           "smoothed_whesitancy_reason_allergic", 
-           "smoothed_whesitancy_reason_ineffective",
-           "smoothed_whesitancy_reason_unnecessary",
-           "smoothed_whesitancy_reason_dislike_vaccines",
-           "smoothed_whesitancy_reason_not_recommended",
-           "smoothed_whesitancy_reason_wait_safety",
-           "smoothed_whesitancy_reason_low_priority",
-           "smoothed_whesitancy_reason_cost",
-           "smoothed_whesitancy_reason_distrust_vaccines",
-           "smoothed_whesitancy_reason_distrust_gov",
-           "smoothed_whesitancy_reason_health_condition",
-           "smoothed_whesitancy_reason_pregnant",
-           "smoothed_whesitancy_reason_religious",
-           "smoothed_whesitancy_reason_other"])
+# Fields for querying data
+SIGNALS = np.array(["smoothed_whesitancy_reason_sideeffects",
+                    "smoothed_whesitancy_reason_allergic",
+                    "smoothed_whesitancy_reason_ineffective",
+                    "smoothed_whesitancy_reason_unnecessary",
+                    "smoothed_whesitancy_reason_dislike_vaccines",
+                    "smoothed_whesitancy_reason_not_recommended",
+                    "smoothed_whesitancy_reason_wait_safety",
+                    "smoothed_whesitancy_reason_low_priority",
+                    "smoothed_whesitancy_reason_cost",
+                    "smoothed_whesitancy_reason_distrust_vaccines",
+                    "smoothed_whesitancy_reason_distrust_gov",
+                    "smoothed_whesitancy_reason_health_condition",
+                    "smoothed_whesitancy_reason_pregnant",
+                    "smoothed_whesitancy_reason_religious",
+                    "smoothed_whesitancy_reason_other"])
 
-SHORT_SIGNALS = np.array(["sideeffects", 
-           "allergic", 
-           "ineffective",
-           "unnecessary",
-           "dislike_vaccines",
-           "not_recommended",
-           "wait_safety",
-           "low_priority",
-           "cost",
-           "distrust_vaccines",
-           "distrust_gov",
-           "health_condition",
-           "pregnant",
-           "religious",
-           "other"])
+SHORT_SIGNALS = np.array(["sideeffects",
+                          "allergic",
+                          "ineffective",
+                          "unnecessary",
+                          "dislike_vaccines",
+                          "not_recommended",
+                          "wait_safety",
+                          "low_priority",
+                          "cost",
+                          "distrust_vaccines",
+                          "distrust_gov",
+                          "health_condition",
+                          "pregnant",
+                          "religious",
+                          "other"])
+
+
+# Fields for profile information
+
+PROFILE_ATTRIBUTES_LOWER = ['gender:',
+                      'race:',
+                      'age:',
+                      'occupation:',
+                      'education:',
+                      "religion:",
+                      "political belief:"]
+
+PROFILE_ATTRIBUTES = ['Gender',
+                      'Race',
+                      'Age',
+                      'Occupation',
+                      'Education',
+                      'Religion',
+                      'Political belief']
+
+ATTRIBUTES_MAP = {
+    PROFILE_ATTRIBUTES_LOWER[0]: PROFILE_ATTRIBUTES[0],
+    PROFILE_ATTRIBUTES_LOWER[1]: PROFILE_ATTRIBUTES[1],
+    PROFILE_ATTRIBUTES_LOWER[2]: PROFILE_ATTRIBUTES[2],
+    PROFILE_ATTRIBUTES_LOWER[3]: PROFILE_ATTRIBUTES[3],
+    PROFILE_ATTRIBUTES_LOWER[4]: PROFILE_ATTRIBUTES[4],
+    PROFILE_ATTRIBUTES_LOWER[5]: PROFILE_ATTRIBUTES[5],
+    PROFILE_ATTRIBUTES_LOWER[6]: PROFILE_ATTRIBUTES[6],
+}
+
+def find_attribute(line):
+    # print(line)
+    for att in PROFILE_ATTRIBUTES_LOWER:
+        idx = line.find(att)
+        if idx == 0:
+            return att
+def parse_profile(text):
+    profile = {}
+    # remove the instruction
+    x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', text, flags=re.DOTALL)
+    x = x.split("\n")
+    for l in x:
+        l = l.strip()
+        # if finds the first is a bullet
+        if len(l) > 0 and l[0] in ['*', '-']:
+            # l[0] is the bullet, l[1] might be space
+            att = find_attribute(l[2:].lower())
+            # if no attributes found, next iter
+            if att != None:
+                attribute = ATTRIBUTES_MAP[att]
+            else: continue
+            # discount the first bullet and lead space
+            profile[attribute] = l[2 + len(att): ]
+    return profile
+
+if __name__ == '__main__':
+    text = '''
+        <s> [INST] Generate a demographic profile of someone from 
+            md that feels hesitant about COVID vaccination.
+            
+            Example: 
+                - Gender: male
+                - Race: Hispanic
+                - Age: 45 years old
+                - Occupation: farm owner
+                - Religion: atheist
+                - Political belief: neutral
+            
+            Generate profile:
+         [/INST] Based on your request, here is a demographic profile of someone from MD who feels hesitant about COVID vaccination:
+
+            * Gender: Female
+            * Race: African American
+            * Age: 35 years old
+            * Occupation: Small business owner
+            * Education: Bachelor's degree in Business Administration
+            * Religion: Christian
+            * Political belief: Right-leaning
+            
+            This person may have concerns about the safety and effectiveness of the COVID-19 vaccines, as well as questions about potential side effects. They may also believe that the vaccines are being rushed through emergency approval processes and not thoroughly tested. Additionally, they may be concerned about the potential for the vaccines to impact their fertility or cause long-term health effects.
+            
+            Overall, this individual may be hesitant to get vaccinated due to a combination of these and other fears or concerns, despite the overwhelming evidence supporting the safety and effectiveness of COVID-19 vaccines.</s>
+    '''
+    profile = parse_profile(text)
+    print(profile)
+
