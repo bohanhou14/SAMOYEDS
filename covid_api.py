@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 import os
-from utils import API_KEY, SIGNALS, SHORT_SIGNALS
+from utils import API_KEY, SIGNALS, SHORT_SIGNALS, get_data_path
 from plot_utils import plot_bar_nstates, plot_bar_diff_nstates
 
 covidcast.use_api_key(API_KEY)
@@ -25,7 +25,7 @@ avg_ps = []
 for state in states:
     avg_p = []
     for sig in tqdm(SIGNALS):
-        file_path = os.path.join("data", f"{state}-{sig}-from-{start_day}-to-{end_day}.pkl")
+        file_path = get_data_path(state, sig, start_day, end_day)
         if not os.path.exists(file_path):
             df = covidcast.signal("fb-survey", sig, start_day, end_day, geo_type="state",
                             geo_values = state)
