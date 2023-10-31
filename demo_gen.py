@@ -1,7 +1,7 @@
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from utils import parse_profile
-from pandas import pd
+import pandas as pd
 
 device = "cuda" # the device to load the model onto
 

@@ -78,13 +78,13 @@ ATTRIBUTES_MAP = {
     PROFILE_ATTRIBUTES_LOWER[7]: PROFILE_ATTRIBUTES[7],
 }
 
-def find_attribute(line):
-    # print(line)
-    for att in PROFILE_ATTRIBUTES_LOWER:
-        idx = line.find(att)
-        if idx == 0:
-            return att
 def parse_profile(text):
+    def find_attribute(line):
+        # print(line)
+        for att in PROFILE_ATTRIBUTES_LOWER:
+            idx = line.find(att)
+            if idx == 0:
+                return att
     profile = {}
     # remove the instruction
     x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', text, flags=re.DOTALL)
@@ -104,6 +104,7 @@ def parse_profile(text):
             # discount the first bullet and lead space
             profile[attribute] = l[2 + len(att): ]
     return profile
+# def read_profile
 
 if __name__ == '__main__':
     text = '''
