@@ -37,16 +37,16 @@ encodeds = tokenizer.apply_chat_template(messages, return_tensors="pt")
 
 model_inputs = encodeds.to(device)
 profiles = []
-
-for p in [0.7, 1]:
-    for temp in [0.7, 1.0, 1.5, 2.0]:
-        for i in range(10):
+agent_num = 10
+for p in [0.7]:
+    for temp in [2.0]:
+        for i in range(agent_num):
             generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=p, temperature=temp, pad_token_id=tokenizer.eos_token_id)
             decoded = tokenizer.batch_decode(generated_ids)[0]
             profile = parse_profile(decoded)
             profiles.append(profile)
 
-        with open(f'profiles/profiles-top_p={p}-temp={temp}.pkl', 'wb') as f:
+        with open(f'profiles/profiles-agent_num={agent_num}-top_p={p}-temp={temp}.pkl', 'wb') as f:
             pickle.dump(profiles, f)
         df = pd.DataFrame(profiles)
         df.to_csv(f'profiles/profiles-top_p={p}-temp={temp}.tsv', sep='\t')
