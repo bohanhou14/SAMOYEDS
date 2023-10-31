@@ -89,9 +89,7 @@ def parse_profile(text):
     #
     profile = {}
     # remove the instruction
-    x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', text, flags=re.DOTALL)
-    x = x.replace("<s>", "")
-    x = x.replace("</s>", "")
+    x = clean_response(text)
     x = x.split("\n")
     for l in x:
         l = l.strip()
@@ -127,6 +125,15 @@ def read_profile(profile):
         - Religion: {religion}
     '''
     return str
+
+# clean the instructions in the response
+def clean_response(response):
+    x = response.strip()
+    x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', text, flags=re.DOTALL)
+    x = x.replace("<s>", "")
+    x = x.replace("</s>", "")
+    return x
+
 
 if __name__ == '__main__':
     text = '''

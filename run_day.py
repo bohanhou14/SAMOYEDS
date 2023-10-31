@@ -1,7 +1,7 @@
 import pickle
 from agent import Agent
 from engine import Engine
-from utils import read_profile
+from utils import clean_response
 
 with open("profiles/profiles-agent_num=10-top_p=0.7-temp=2.0.pkl", "rb") as f:
     # a list of dictionaries
@@ -21,8 +21,9 @@ messages = [
     }
 ]
 
-new_messages = simulation.generate(messages)
-print(new_messages)
+new_messages = simulation.generate(messages)[0]
+response = clean_response(new_messages)
+print(response)
 
 
 
