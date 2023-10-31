@@ -79,11 +79,10 @@ ATTRIBUTES_MAP = {
 
 def parse_profile(text):
     def find_attribute(line):
-        # print(line)
         for att in PROFILE_ATTRIBUTES_LOWER:
-            print(f"line: {line}, att: {att}")
+            # print(f"line: {line}, att: {att}")
             idx = line.find(att)
-            print(idx)
+            # print(idx)
             if idx != -1:
                 return att, idx
         return "", -1
