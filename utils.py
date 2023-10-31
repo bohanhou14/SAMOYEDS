@@ -88,6 +88,8 @@ def parse_profile(text):
     profile = {}
     # remove the instruction
     x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', text, flags=re.DOTALL)
+    x = x.replace("<s>", "")
+    x = x.replace("</s>", "")
     x = x.split("\n")
     for l in x:
         l = l.strip()
