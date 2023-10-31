@@ -32,6 +32,6 @@ encodeds = tokenizer.apply_chat_template(messages, return_tensors="pt")
 
 model_inputs = encodeds.to(device)
 
-generated_ids = model.generate(model_inputs, max_new_tokens=3000, do_sample=True)
+generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=0.7, temperature=0.7)
 decoded = tokenizer.batch_decode(generated_ids)
 print(decoded[0])
