@@ -118,8 +118,8 @@ def read_profile(profile):
         - Name: {name}
         - Gender: {gender}
         - Age: {age}
-        - Occupation: {oc}
         - Education: {ed}
+        - Occupation: {oc}
         - Political belief: {pb}
         - Religion: {religion}
     '''

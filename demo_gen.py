@@ -17,13 +17,14 @@ messages = [
             {state} that feels hesitant about COVID vaccination.
             
             Example: 
-                - name: Garcia Marquez
-                - gender: male
-                - race: Hispanic
-                - age: 45 years old
-                - occupation: farm owner
-                - religion: atheist
-                - political belief: neutral
+                - Name: Garcia Marquez
+                - Gender: male
+                - Race: Hispanic
+                - Education: High Schol
+                - Age: 45 years old
+                - Occupation: farm owner
+                - Religion: atheist
+                - Political belief: neutral
             
             Generate profile:
         '''
@@ -40,7 +41,7 @@ profiles = []
 for p in [0.7, 1]:
     for temp in [0.7, 1.0, 1.5, 2.0]:
         for i in range(10):
-            generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=p, temperature=temp)
+            generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=p, temperature=temp, pad_token_id=tokenizer.eos_token_id)
             decoded = tokenizer.batch_decode(generated_ids)[0]
             profile = parse_profile(decoded)
             profiles.append(profile)
