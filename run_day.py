@@ -21,7 +21,8 @@ messages = [
     }
 ]
 
-new_messages = simulation.generate(messages)[1]['content']
+# take the latest message
+new_messages = simulation.generate(messages)[-1]['content']
 print(new_messages)
 response = clean_response(new_messages)
 print(response)

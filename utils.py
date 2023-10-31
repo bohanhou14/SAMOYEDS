@@ -6,6 +6,15 @@ import os
 import re
 import nltk
 
+# General methods
+# clean the instructions in the response
+def clean_response(response):
+    x = response.strip()
+    x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', response, flags=re.DOTALL)
+    x = x.replace("<s>", "")
+    x = x.replace("</s>", "")
+    return x
+
 def get_data_path(state, sig, start_date, end_date):
     assert type(start_date) == datetime.date
     assert type(end_date) == datetime.date
@@ -46,8 +55,7 @@ SHORT_SIGNALS = np.array(["sideeffects",
                           "other"])
 
 
-# Fields for profile information
-
+# Fields and methods for profile information
 PROFILE_ATTRIBUTES_LOWER = ["name:",
                             "gender:",
                             "race:",
@@ -126,13 +134,36 @@ def read_profile(profile):
     '''
     return str
 
-# clean the instructions in the response
-def clean_response(response):
-    x = response.strip()
-    x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', response, flags=re.DOTALL)
-    x = x.replace("<s>", "")
-    x = x.replace("</s>", "")
-    return x
+
+# Fields and methods for attitudes
+ATTITUDES = [
+    "Yes, definitely",
+    "Yes, probably",
+    "No, probably",
+    "No, definitely"
+]
+
+# parse attitude based on response
+def parse_attitude(response):
+    x = clean_response(response)
+    for att in ATTITUDES:
+        idx = x.find(att)
+        if idx != -1:
+            return att, idx
+        # if here, idx == -1
+        # check if att did not get extractd because it is lower
+        idx = x.lower().find(att.lower())
+        if idx != -1:
+            return att, idx
+
+    # if here, then no attitude, must be something wrong
+    return "", -1
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
