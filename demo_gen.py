@@ -15,6 +15,7 @@ messages = [
             {state} that feels hesitant about COVID vaccination.
             
             Example: 
+                - name: Garcia Marquez
                 - gender: male
                 - race: Hispanic
                 - age: 45 years old

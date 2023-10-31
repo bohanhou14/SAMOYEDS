@@ -48,7 +48,9 @@ SHORT_SIGNALS = np.array(["sideeffects",
 
 # Fields for profile information
 
-PROFILE_ATTRIBUTES_LOWER = ['gender:',
+PROFILE_ATTRIBUTES_LOWER = \
+                    [ 'name:',
+                      'gender:',
                       'race:',
                       'age:',
                       'occupation:',
@@ -56,7 +58,8 @@ PROFILE_ATTRIBUTES_LOWER = ['gender:',
                       "religion:",
                       "political belief:"]
 
-PROFILE_ATTRIBUTES = ['Gender',
+PROFILE_ATTRIBUTES = ['Name',
+                    'Gender',
                       'Race',
                       'Age',
                       'Occupation',
@@ -72,6 +75,7 @@ ATTRIBUTES_MAP = {
     PROFILE_ATTRIBUTES_LOWER[4]: PROFILE_ATTRIBUTES[4],
     PROFILE_ATTRIBUTES_LOWER[5]: PROFILE_ATTRIBUTES[5],
     PROFILE_ATTRIBUTES_LOWER[6]: PROFILE_ATTRIBUTES[6],
+    PROFILE_ATTRIBUTES_LOWER[7]: PROFILE_ATTRIBUTES[7],
 }
 
 def find_attribute(line):
