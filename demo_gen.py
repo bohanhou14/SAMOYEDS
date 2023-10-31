@@ -36,7 +36,7 @@ model_inputs = encodeds.to(device)
 profiles = []
 for i in range(10):
     generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=0.7, temperature=0.7)
-    decoded = tokenizer.batch_decode(generated_ids)
+    decoded = tokenizer.batch_decode(generated_ids)[0]
     profile = parse_profile(decoded)
     profiles.append(profile)
 print(profiles)
