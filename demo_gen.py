@@ -9,12 +9,13 @@ device = "cuda" # the device to load the model onto
 model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1", device_map='auto').eval()
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
 state = 'Maryland'
+attitude = 'hesitant'
 
 messages = [
     {"role": "user",
      "content":
         f'''Generate a demographic profile of someone from 
-            {state} that feels hesitant about COVID vaccination.
+            {state} that feels {attitude} about COVID vaccination.
             
             Example: 
                 - Name: Garcia Marquez
@@ -44,7 +45,7 @@ for p in [0.7]:
             generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=p, temperature=temp, pad_token_id=tokenizer.eos_token_id)
             decoded = tokenizer.batch_decode(generated_ids)[0]
             profile = parse_profile(decoded)
-            if profile == None:
+            if profile == {}:
                 print(f"Extraction failed: {decoded}")
                 continue
             profiles.append(profile)
