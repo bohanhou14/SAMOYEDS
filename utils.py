@@ -48,18 +48,17 @@ SHORT_SIGNALS = np.array(["sideeffects",
 
 # Fields for profile information
 
-PROFILE_ATTRIBUTES_LOWER = \
-                    [ 'name:',
-                      'gender:',
-                      'race:',
-                      'age:',
-                      'occupation:',
-                      'education:',
-                      "religion:",
-                      "political belief:"]
+PROFILE_ATTRIBUTES_LOWER = ["name:",
+                            "gender:",
+                            "race:",
+                            "age:",
+                            "occupation:",
+                            "education:",
+                            "religion:",
+                            "political belief:"]
 
 PROFILE_ATTRIBUTES = ['Name',
-                    'Gender',
+                      'Gender',
                       'Race',
                       'Age',
                       'Occupation',
@@ -82,10 +81,13 @@ def parse_profile(text):
     def find_attribute(line):
         # print(line)
         for att in PROFILE_ATTRIBUTES_LOWER:
+            print(f"line: {line}, att: {att}")
             idx = line.find(att)
+            print(idx)
             if idx != -1:
                 return att, idx
-            return "", -1
+        return "", -1
+    #
     profile = {}
     # remove the instruction
     x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', text, flags=re.DOTALL)
@@ -106,7 +108,7 @@ def parse_profile(text):
             # discount the first bullet and lead space
             profile[attribute] = l[idx + len(att): ]
     return profile
-
+#
 # read a profile and return a string describing the profile
 def read_profile(profile):
     gender = profile['Gender']
@@ -157,4 +159,5 @@ if __name__ == '__main__':
     '''
     profile = parse_profile(text)
     print(profile)
+
 
