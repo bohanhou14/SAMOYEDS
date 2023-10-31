@@ -35,11 +35,19 @@ encodeds = tokenizer.apply_chat_template(messages, return_tensors="pt")
 
 model_inputs = encodeds.to(device)
 profiles = []
-for i in range(10):
-    generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=0.7, temperature=0.7)
-    decoded = tokenizer.batch_decode(generated_ids)[0]
-    profile = parse_profile(decoded)
-    profiles.append(profile)
+
+for p in [0.7, 1]:
+    for temp in [0.7, 1, 1.5, 2]:
+        for i in range(10):
+            generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=p, temperature=temp)
+            decoded = tokenizer.batch_decode(generated_ids)[0]
+            profile = parse_profile(decoded)
+            profiles.append(profile)
+
+        df = pd.DataFrame(profiles)
+        df.to_csv(f'profiles/profiles-top_p={p}-temp={temp}.tsv', sep='\t')
+
+
 
 # gender = [p['Gender'] for p in profiles]
 # name = [p['Name'] for p in profiles]
@@ -49,5 +57,4 @@ for i in range(10):
 # oc = [p['Occupation'] for p in profiles]
 # ed = [p['Education'] for p in profiles]
 
-df = pd.DataFrame(profiles)
-df.to_csv('profiles/profiles.tsv', sep='\t')
+
