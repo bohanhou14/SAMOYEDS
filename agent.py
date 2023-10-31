@@ -33,16 +33,22 @@ class Agent:
         prompt = '''
             Considering what you learned and your demographics,
             if a vaccine to prevent COVID-19 were offered to you today, would you choose to get vaccinated?
-            
+                
             Choose from:
             - Yes, definitely
             - Yes, probably
             - No, probably
             - No, definitely
             
+            Example:
+                Your attitude: No, probably
+        
             Your attitude: 
         '''
         return prompt
-
+    def feed_tweets(self, tweets):
+        prompt = f'''
+            You read the following tweets: {tweets}
+        '''
 
 
