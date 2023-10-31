@@ -45,7 +45,7 @@ for p in [0.7]:
             generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=p, temperature=temp, pad_token_id=tokenizer.eos_token_id)
             decoded = tokenizer.batch_decode(generated_ids)[0]
             profile = parse_profile(decoded)
-            if profile == {}:
+            if 'Gender' not in profile.keys():
                 print(f"Extraction failed: {decoded}")
                 continue
             profiles.append(profile)
