@@ -37,12 +37,12 @@ class Agent:
             
             Choose from:
             - Yes, definitely
-            - Yes, probably,
-            - No, probably,
+            - Yes, probably
+            - No, probably
             - No, definitely
             
             Example: 
-                Attitude: Yes, definitely
+                Attitude: Yes, definitely.
         '''
 
 

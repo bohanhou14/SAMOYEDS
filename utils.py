@@ -85,6 +85,7 @@ def parse_profile(text):
             idx = line.find(att)
             if idx != -1:
                 return att, idx
+            return "", -1
     profile = {}
     # remove the instruction
     x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', text, flags=re.DOTALL)
@@ -99,7 +100,7 @@ def parse_profile(text):
             # there are also instances where there are no bullets
             att, idx = find_attribute(l.lower())
             # if no attributes found, next iter
-            if att != None:
+            if att != "":
                 attribute = ATTRIBUTES_MAP[att]
             else: continue
             # discount the first bullet and lead space
