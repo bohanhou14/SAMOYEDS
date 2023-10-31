@@ -1,11 +1,12 @@
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from utils import parse_profile
 
 device = "cuda" # the device to load the model onto
 
 model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1", device_map='auto').eval()
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
-state = 'md'
+state = 'Maryland'
 
 messages = [
     {"role": "user",
@@ -31,7 +32,10 @@ messages = [
 encodeds = tokenizer.apply_chat_template(messages, return_tensors="pt")
 
 model_inputs = encodeds.to(device)
-
-generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=0.7, temperature=0.7)
-decoded = tokenizer.batch_decode(generated_ids)
-print(decoded[0])
+profiles = []
+for i in range(10):
+    generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=0.7, temperature=0.7)
+    decoded = tokenizer.batch_decode(generated_ids)
+    profile = parse_profile(decoded)
+    profiles.append(profile)
+print(profiles)
