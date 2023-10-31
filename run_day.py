@@ -21,7 +21,7 @@ messages = [
     }
 ]
 
-new_messages = simulation.generate(messages)[0]
+new_messages = simulation.generate(messages)[0]['content']
 response = clean_response(new_messages)
 print(response)
 
