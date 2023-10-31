@@ -104,7 +104,26 @@ def parse_profile(text):
             # discount the first bullet and lead space
             profile[attribute] = l[2 + len(att): ]
     return profile
-# def read_profile
+
+# read a profile and return a string describing the profile
+def read_profile(profile):
+    gender = profile['Gender']
+    name = profile['Name']
+    religion = profile['Religion']
+    pb = profile['Political belief']
+    age = profile['Age']
+    oc = profile['Occupation']
+    ed = profile['Education']
+    str = f'''
+        - Name: {name}
+        - Gender: {gender}
+        - Age: {age}
+        - Occupation: {oc}
+        - Education: {ed}
+        - Political belief: {pb}
+        - Religion: {religion}
+    '''
+    return str
 
 if __name__ == '__main__':
     text = '''

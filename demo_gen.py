@@ -49,5 +49,5 @@ for i in range(10):
 # oc = [p['Occupation'] for p in profiles]
 # ed = [p['Education'] for p in profiles]
 
-df = pd.Dataframe(profiles)
+df = pd.DataFrame(profiles)
 df.to_csv('profiles/profiles.tsv', sep='\t')
