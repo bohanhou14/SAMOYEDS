@@ -2,6 +2,7 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from utils import parse_profile
 import pandas as pd
+import pickle
 
 device = "cuda" # the device to load the model onto
 
@@ -37,13 +38,15 @@ model_inputs = encodeds.to(device)
 profiles = []
 
 for p in [0.7, 1]:
-    for temp in [0.7, 1, 1.5, 2]:
+    for temp in [0.7, 1.0, 1.5, 2.0]:
         for i in range(10):
             generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=p, temperature=temp)
             decoded = tokenizer.batch_decode(generated_ids)[0]
             profile = parse_profile(decoded)
             profiles.append(profile)
 
+        with open(f'profiles/profiles-top_p={p}-temp={temp}.pkl', 'wb') as f:
+            pickle.dump(profiles, f)
         df = pd.DataFrame(profiles)
         df.to_csv(f'profiles/profiles-top_p={p}-temp={temp}.tsv', sep='\t')
 
