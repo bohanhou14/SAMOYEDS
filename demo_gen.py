@@ -1,6 +1,7 @@
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from utils import parse_profile
+from pandas import pd
 
 device = "cuda" # the device to load the model onto
 
@@ -39,4 +40,14 @@ for i in range(10):
     decoded = tokenizer.batch_decode(generated_ids)[0]
     profile = parse_profile(decoded)
     profiles.append(profile)
-print(profiles)
+
+# gender = [p['Gender'] for p in profiles]
+# name = [p['Name'] for p in profiles]
+# religion = [p['Religion'] for p in profiles]
+# pb = [p['Political belief'] for p in profiles]
+# age = [p['Age'] for p in profiles]
+# oc = [p['Occupation'] for p in profiles]
+# ed = [p['Education'] for p in profiles]
+
+df = pd.Dataframe(profiles)
+df.to_csv('profiles/profiles.tsv', sep='\t')
