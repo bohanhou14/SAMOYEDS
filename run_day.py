@@ -5,7 +5,7 @@ from utils import read_profile
 
 with open("profiles/profiles-agent_num=10-top_p=0.7-temp=2.0.pkl", "rb") as f:
     # a list of dictionaries
-    profiles = pickle.load(f)
+    profiles = list(pickle.load(f))
 
 profile = profiles[0]
 agent = Agent.init_from_profile(profile)
