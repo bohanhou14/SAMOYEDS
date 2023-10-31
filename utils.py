@@ -129,7 +129,7 @@ def read_profile(profile):
 # clean the instructions in the response
 def clean_response(response):
     x = response.strip()
-    x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', text, flags=re.DOTALL)
+    x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', response, flags=re.DOTALL)
     x = x.replace("<s>", "")
     x = x.replace("</s>", "")
     return x
