@@ -1,14 +1,5 @@
 
 class Agent:
-    def __init__(self, profile: dict):
-        self.name = profile['Name']
-        self.gender = profile['Gender']
-        self.age = profile['Age']
-        self.occupation = profile['Occupation']
-        self.education = profile['Education']
-        self.pb = profile['Political belief']
-        self.religion = profile['Religion']
-
     def __init__(self, name, gender, age, occupation, education, pb, religion):
         self.name = name
         self.gender = gender
@@ -17,6 +8,14 @@ class Agent:
         self.education = education
         self.pb = pb
         self.religion = religion
+    def init_from_profile(self, profile: dict):
+        self.name = profile['Name']
+        self.gender = profile['Gender']
+        self.age = profile['Age']
+        self.occupation = profile['Occupation']
+        self.education = profile['Education']
+        self.pb = profile['Political belief']
+        self.religion = profile['Religion']
 
     def get_profile_str(self):
         profile_str = f'''
