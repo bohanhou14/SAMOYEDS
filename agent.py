@@ -30,4 +30,20 @@ class Agent:
         '''
         return profile_str
 
+    def express_attitude(self):
+        prompt = '''
+            Considering what you learned and your demographics,
+            if a vaccine to prevent COVID-19 were offered to you today, would you choose to get vaccinated?
+            
+            Choose from:
+            - Yes, definitely
+            - Yes, probably,
+            - No, probably,
+            - No, definitely
+            
+            Example: 
+                Attitude: Yes, definitely
+        '''
+
+
 
