@@ -1,5 +1,5 @@
 
-from utils import ATTITUDES
+
 class Agent:
     def __init__(self, profile):
         self.name = profile['Name']
@@ -30,26 +30,7 @@ class Agent:
         '''
         return profile_str
 
-    def solicit_attitude(self):
-        prompt = f'''
-            Considering what you learned and your demographics,
-            if a vaccine to prevent COVID-19 were offered to you today, would you choose to get vaccinated?
-                
-            Choose from:
-            - {ATTITUDES[0]}
-            - {ATTITUDES[1]}
-            - {ATTITUDES[2]}
-            - {ATTITUDES[3]}
-            
-            Example:
-                Your attitude: No, probably
-        
-            Your attitude: 
-        '''
-        return prompt
-    def feed_tweets(self, tweets):
-        prompt = f'''
-            You read the following tweets: {tweets}
-        '''
+
+
 
 

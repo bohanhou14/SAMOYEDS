@@ -23,9 +23,9 @@ class Engine:
         generated_ids = self.model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=self.top_p, temperature=self.temperature,
                        pad_token_id=self.tokenizer.eos_token_id)
         decoded = self.tokenizer.batch_decode(generated_ids)[0]
-        new_message = {'role':'assistant', 'content': clean_response(decoded)}
-        messages.append(new_message)
-        return messages
+        return decoded
 
     def run(self):
         return
+    # def update_attitudes(self):
+    #
