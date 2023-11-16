@@ -2,9 +2,11 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from utils import parse_profile
 import pandas as pd
+from engine import Engine
 import pickle
 
-device = "cuda" # the device to load the model onto
+engine = Engine(1)
+
 
 model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1", device_map='auto').eval()
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")

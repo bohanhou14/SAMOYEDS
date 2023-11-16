@@ -8,6 +8,7 @@ class Engine:
             self.agents = agents
 
         self.max_num_agents = max_num_agents
+        self.conversations = []
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.top_p = 0.7
         self.temperature = 1.5

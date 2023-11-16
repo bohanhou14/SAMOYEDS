@@ -1,5 +1,6 @@
 from agent import Agent
 from utils import ATTITUDES, parse_attitude, clean_response
+
 class Conversation:
     def __init__(self, profile):
         self.messages = []
@@ -35,8 +36,6 @@ class Conversation:
         # update attitude
         self.converse(engine)
         self.agent.attitude = parse_attitude(self.get_response())
-
-        #
 
     def get_response(self):
         return self.messages[-1]['content']
