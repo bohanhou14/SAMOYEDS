@@ -20,32 +20,22 @@ agent_2 = Agent(profile=profile_2)
 profile_str_2 = agent_0.get_profile_str()
 
 
-messages_0 = [
-    {
-        "role": "user",
-        "content": f'''Pretend you are a person with following characteristics: \n{profile_str_0}\n
-                    '''
-        # agent_0.solicit_attitude()
-    }
-]
+messages_0 = f'''
+<s>[INST] Pretend you are a person with following characteristics: \n{profile_str_0}\n [/INST]
+What is your attitude towards getting COVID vaccination? Choose from yes definitely</s> 
+'''
 
-messages_1 = [
-    {
-        "role": "user",
-        "content": f'''Pretend you are a person with following characteristics: \n{profile_str_1}\n
-                    '''
-        # agent_1.solicit_attitude()
-    }
-]
 
-messages_2 = [
-    {
-        "role": "user",
-        "content": f'''Pretend you are a person with following characteristics: \n{profile_str_2}\n               
-                    '''
-        # agent_2.solicit_attitude()
-    }
-]
+
+messages_1 = f'''
+<s>[INST] Pretend you are a person with following characteristics: \n{profile_str_1}\n [/INST]
+What is your attitude towards getting COVID vaccination? Choose from yes definitely</s> 
+'''
+
+messages_2 = f'''
+<s>[INST] Pretend you are a person with following characteristics: \n{profile_str_2}\n [/INST]
+What is your attitude towards getting COVID vaccination? Choose from yes definitely</s> 
+'''
 
 
 pipe = pipeline("mistralai/Mistral-7B-v0.1")
