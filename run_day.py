@@ -20,9 +20,8 @@ agent_2 = Agent(profile=profile_2)
 profile_str_2 = agent_0.get_profile_str()
 
 
-messages_0 = f'''[INST] Pretend you are a person with following characteristics: \n{profile_str_0}\n
-What is your attitude towards getting COVID vaccination? Choose from definitely yes, probably yes, probably no, definitely no. [/INST]
-'''
+messages_0 = f'''<s>[INST] Pretend you are a person with following characteristics: \n{profile_str_0}\n
+What is your attitude towards getting COVID vaccination? Choose from definitely yes, probably yes, probably no, definitely no. [/INST]'''
 
 
 
