@@ -1,5 +1,6 @@
 import pickle
 from agent import Agent
+from vllm import LLM
 from engine import Engine
 from utils import clean_response, parse_attitude
 from mii import pipeline
@@ -23,8 +24,6 @@ profile_str_2 = agent_0.get_profile_str()
 messages_0 = f'''<s>[INST] Pretend you are a person with following characteristics: {profile_str_0}\n
 What is your attitude towards getting COVID vaccination? Choose from definitely yes, probably yes, probably no, definitely no. [/INST]'''
 
-
-
 messages_1 = f'''<s>[INST] Pretend you are a person with following characteristics: {profile_str_1}\n 
 What is your attitude towards getting COVID vaccination? Choose from definitely yes, probably yes, probably no, definitely no. [/INST]'''
 
@@ -34,10 +33,13 @@ What is your attitude towards getting COVID vaccination?
 Choose from definitely yes, probably yes, probably no, definitely no. </s> 
 '''
 
+llm = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=1)
+output = llm.generate(messages_0)
+print(output)
 
-pipe = pipeline("mistralai/Mistral-7B-v0.1")
-output = pipe([messages_0, messages_1, messages_2], max_new_tokens=20)
-print(output.generated_texts)
+# pipe = pipeline("mistralai/Mistral-7B-v0.1")
+# output = pipe([messages_0, messages_1, messages_2], max_new_tokens=20)
+# print(output.generated_texts)
 
 
 
