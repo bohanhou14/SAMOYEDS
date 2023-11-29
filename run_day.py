@@ -1,6 +1,8 @@
 import pickle
 from agent import Agent
-from vllm import LLM
+from vllm import LLM, SamplingParams
+import os
+import multiprocessing as mp
 from engine import Engine
 from utils import clean_response, parse_attitude
 from mii import pipeline
@@ -42,7 +44,21 @@ print(output)
 # print(output.generated_texts)
 
 
+def worker(worker_idx):
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(worker_idx)
+    prompts = [
+        messages_0,
+        messages_1,
+        messages_2
+    ]
+    sampling_params = SamplingParams(temperature=1.5, top_p=0.7)
+    llm = LLM(model="mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=2)
+    outputs = llm.generate(prompts, sampling_params)
 
+
+if __name__ == "__main__":
+    with mp.Pool(4) as pool:
+        pool.map(worker, range(4))
 
 
 
