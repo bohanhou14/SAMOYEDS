@@ -42,7 +42,7 @@ Choose from definitely yes, probably yes, probably no, definitely no. </s>
 
 
 pipe = pipeline("mistralai/Mistral-7B-v0.1")
-output = pipe([messages_0, messages_1, messages_2], max_new_tokens=128)
+output = pipe([messages_0, messages_1, messages_2], max_new_tokens=20)
 print(output.generated_texts)
 
 
