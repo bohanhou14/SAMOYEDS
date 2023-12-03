@@ -25,19 +25,19 @@ profile_str_2 = agent_0.get_profile_str()
 
 messages_0 = f'''<s>[INST] Pretend you are a person with following characteristics: {profile_str_0}\n
 What is your attitude towards getting COVID vaccination? Choose from definitely yes, probably yes, probably no, definitely no. [/INST]'''
-
-messages_1 = f'''<s>[INST] Pretend you are a person with following characteristics: {profile_str_1}\n 
-What is your attitude towards getting COVID vaccination? Choose from definitely yes, probably yes, probably no, definitely no. [/INST]'''
-
-messages_2 = f'''
-<s>[INST] Pretend you are a person with following characteristics: \n{profile_str_2}\n [/INST]
-What is your attitude towards getting COVID vaccination? 
-Choose from definitely yes, probably yes, probably no, definitely no. </s> 
-'''
-
-llm = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=1)
-output = llm.generate(messages_0)
-print(output)
+#
+# messages_1 = f'''<s>[INST] Pretend you are a person with following characteristics: {profile_str_1}\n
+# What is your attitude towards getting COVID vaccination? Choose from definitely yes, probably yes, probably no, definitely no. [/INST]'''
+#
+# messages_2 = f'''
+# <s>[INST] Pretend you are a person with following characteristics: \n{profile_str_2}\n [/INST]
+# What is your attitude towards getting COVID vaccination?
+# Choose from definitely yes, probably yes, probably no, definitely no. </s>
+# '''
+#
+# llm = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=1)
+# output = llm.generate(messages_0)
+# print(output)
 
 
 

@@ -19,8 +19,11 @@ class Engine:
 
     # ready to parallel run this
     def generate(self, messages):
+        if type(messages) != list:
+            messages = list(messages)
         encodeds = self.tokenizer.apply_chat_template(messages, return_tensors="pt")
         model_inputs = encodeds.to(self.device)
+        print(model_inputs)
         generated_ids = self.model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=self.top_p, temperature=self.temperature,
                        pad_token_id=self.tokenizer.eos_token_id)
         decoded = self.tokenizer.batch_decode(generated_ids)[0]
