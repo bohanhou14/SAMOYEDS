@@ -4,8 +4,8 @@
 #SBATCH --error=logs/sim_run-%A_%a.err
 #SBATCH --output=logs/sim_run-%A_%a.out
 #SBATCH --nodes=1
-#SBATCH --partition=llm_h
+#SBATCH --partition=OpenDialogLab_S1
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:8
+#SBATCH --gres=gpu:2
 
 python -m run_day.py

@@ -35,7 +35,7 @@ What is your attitude towards getting COVID vaccination?
 Choose from definitely yes, probably yes, probably no, definitely no. </s> 
 '''
 
-llm = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=4)
+llm = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=2)
 output = llm.generate(messages_0)
 print(output)
 
