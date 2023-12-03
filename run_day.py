@@ -39,8 +39,8 @@ What is your attitude towards getting COVID vaccination? Choose from definitely 
 # output = llm.generate(messages_0)
 # print(output)
 
-
-
+simulation = Engine(1)
+simulation.generate(messages_0)
 
 
 # pipe = pipeline("mistralai/Mistral-7B-v0.1")
@@ -70,7 +70,7 @@ What is your attitude towards getting COVID vaccination? Choose from definitely 
 
 
 
-# simulation = Engine(3)
+simulation = Engine(3)
 
 
 
