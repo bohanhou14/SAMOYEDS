@@ -137,10 +137,10 @@ def read_profile(profile):
 
 # Fields and methods for attitudes
 ATTITUDES = [
-    "Yes, definitely",
-    "Yes, probably",
-    "No, probably",
-    "No, definitely"
+    "definitely yes",
+    "probably yes",
+    "probably no",
+    "definitely no"
 ]
 
 # parse attitude based on response
