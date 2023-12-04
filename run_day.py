@@ -3,10 +3,8 @@ from agent import Agent
 from vllm import LLM, SamplingParams
 import os
 from collections import Counter
-import multiprocessing as mp
 from engine import Engine
 from utils import clean_response, parse_attitude
-from mii import pipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 with open("profiles/profiles-agent_num=10-top_p=0.7-temp=2.0.pkl", "rb") as f:
