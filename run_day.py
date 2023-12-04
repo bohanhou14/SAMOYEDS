@@ -130,10 +130,10 @@ for i in range(30):
 print(Counter(attitudes_0))
 print(Counter(attitudes_1))
 
-with open("res_0.pkl", "wb") as f:
-    pickle.dump(res_0_s, f)
-with open("res_1.pkl", "wb") as f:
-    pickle.dump(res_1_s, f)
+# with open("res_0.pkl", "wb") as f:
+#     pickle.dump(res_0_s, f)
+# with open("res_1.pkl", "wb") as f:
+#     pickle.dump(res_1_s, f)
 
 
 

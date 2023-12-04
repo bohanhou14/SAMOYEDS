@@ -9,6 +9,7 @@ class Agent:
         self.education = profile['Education']
         self.pb = profile['Political belief']
         self.religion = profile['Religion']
+        self.attitude = "unknown"
     def custom_init(self, name, gender, age, occupation, education, pb, religion):
         self.name = name
         self.gender = gender
