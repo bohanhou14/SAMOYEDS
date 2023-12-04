@@ -1,6 +1,6 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
-from utils import clean_response, parse_attitude
+from utils import clean_response, parse_attitude, compile_tweets
 from collections import Counter
 from vllm import LLM, SamplingParams
 from tqdm import trange
@@ -40,16 +40,20 @@ class Engine:
         res = output[0].outputs[0].text
         return res
     
-    def batch_generate(self, messages_list):
-        if type(messages_list) != list:
+    def batch_generate(self, messages_list=None):
+        if messages_list != None and type(messages_list) != list:
             raise TypeError("Invalid format")
         def convert(msg):
             return self.tokenizer.apply_chat_template(msg, tokenize=False)
+        if messages_list == None:
+            if self.messages_list == None:
+                raise RuntimeError("Messages_list not initialized yet")
+            messages_list = self.messages_list
         model_inputs = [convert(msg) for msg in messages_list]
         output = self.model.generate(model_inputs, self.sampling_params)
         responses = [output[i].outputs[0].text for i in range(len(messages_list))]
         return responses
-    
+
     def init_agents(self, max_iter = 30):
         def init_impersonation(profile_str):
             return [{"role": "user",
@@ -111,8 +115,20 @@ class Engine:
                 {"role": "assistant", "content": f"Your answer: {self.agents[k].attitude}"}
             )
     
-    def feed_tweets(self, tweets):
-        return
+    def feed_tweets(self, tweets: list, k=5):
+        k = min(k, len(tweets))
+        if type(tweets) == list:
+            tweets = compile_tweets(tweets)
+        prompt = {
+            "role": "user",
+            "content": f"You read following tweets about COVID:\n {tweets}\n What have you learned? Summarize {k} lessons you have learned: "
+        }
+        for k in range(self.num_agents):
+            self.messages_list[k].append(prompt)
+        responses = self.batch_generate(self.messages_list)
+        cleaned = [clean_response(r) for r in responses]
+        print(cleaned)
+        return cleaned
     # TO-DO
     def validate_message(messages):
         return True

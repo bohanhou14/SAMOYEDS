@@ -15,6 +15,12 @@ def clean_response(response):
     x = x.replace("</s>", "")
     return x
 
+def compile_tweets(tweets: list):
+    res_str = ""
+    for i in range(len(tweets)):
+        res_str += f"{i+1}: {tweets[i]}\n"
+    return res_str
+
 def get_data_path(state, sig, start_date, end_date):
     assert type(start_date) == datetime.date
     assert type(end_date) == datetime.date
