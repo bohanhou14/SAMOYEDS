@@ -65,7 +65,7 @@ if __name__=='__main__':
             continue
         profiles.append(profile)
 
-    save_name = f"profiles/profiles-state-{state}-attitude-{attitude}-agent_num={agent_num}-top_p={p}-temp={temp}"
+    save_name = f"profiles/profiles-state-{state}=attitude={attitude}-agent_num={agent_num}-top_p={p}-temp={temp}"
     with open(f'{save_name}.pkl', 'wb') as f:
         pickle.dump(profiles, f)
     df = pd.DataFrame(profiles)
