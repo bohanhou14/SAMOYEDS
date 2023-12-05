@@ -6,7 +6,7 @@ import pandas as pd
 from engine import Engine
 import pickle
 
-tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
+tokenizer = AutoTokenizer.from_pretrained("/mnt/petrelfs/share_data/llm_data/mistral_7b/mistral-7B-v0.1/")
 state = 'Maryland'
 attitude = 'hesitant'
 
