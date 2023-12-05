@@ -47,7 +47,7 @@ sampling_params = SamplingParams(
 profiles = []
 agent_num = 500
 for i in range(agent_num):
-    res = model.generate(model_inputs)
+    res = model.generate(model_inputs, sampling_params)
     profile = parse_profile(res[0].outputs[0].text)
     if 'Gender' not in profile.keys():
         print(f"Extraction failed: {res}")
