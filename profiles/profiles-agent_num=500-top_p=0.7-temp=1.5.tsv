@@ -1,0 +1,499 @@
+	Name	Gender	Race	Education	Age	Occupation	Religion	Political belief
+0	 Samantha Johnson	 female	 White	 Bachelor's degree	 38 years old	 sales representative	 Christian	 Conservative
+1	 Samantha Johnson	 Female	 White	 Bachelor's degree	 35 years old	 Nurse	 Christian	 Conservative
+2	 Sarah Martin	 female	 African American	 Bachelor's Degree in Education	 27 years old	 Special Education Teacher	 Christian	 Republican
+3	 Emilia Davis	 Female	 White	 Bachelor's degree in Education	 35 years old	 kindergarten teacher	 Southern Baptist	 Conservative
+4	 Sarah Williams	 female	 White	 College	 34 years old	 software engineer	 Christian	 moderate Republican
+5	 Sarah Williams	 female	 White	 Associate's Degree	 28 years old	 marketing specialist	 Christian	 conservative
+6	 Samantha Green	 female	 African American	 Bachelor's degree in Nursing	 35 years old	 Nurse	 Christian	 Conservative
+7	 Sarah Johnson	 Female	 White	 Some College	 25 years old	 Server at a local restaurant	 Christianity	 Conspiracy Theorist
+8	 Kim Johnson	 female	 African American	 2-year college degree	 27 years old	 restaurant worker	 Baptist	 Liberal
+9	 Samantha Kim	 female	 Asian	 Bachelor's degree in Nursing	 35 years old	 Hospital nurse	 Christian	 Conservative
+10	  Laura Johnson	 Female	 White	 College	 38 years old	 Customer service representative	 Catholic	 Democratic
+11	 Catherine Wong	 Female	 Asian	 college graduate	 32 years old	 retail worker	 Buddhist	 liberal
+12	 Samantha Lewis	 female	 white	 bachelor's degree in nursing	 29 years old	 nurse	 baptist	 conservative
+13	 Linda Johnson	 female	 Black	 Bachelor's degree	 28 years old	 financial analyst	 Catholic	 Democratic
+14	 Sarah Lee	 female	 Asian	 Associate's Degree	 35 years old	 retail employee	 Christian	 Independent
+15	 Maya Davis	 Female	 African American	 Some College	 29 years old	 Marketing professional	 Christian	 Liberal
+16	 Michelle Williams	 Female	 White	 College	 28 years old	 stay-at-home mom	 Catholic	 Conservative
+17	 Emma Smith	 female	 White	 Bachelor's degree	 38 years old	 teacher	 evangelical Christian	 conservative
+18	 Amelia Gomez	 Female	 Hispanic	 college educated	 28 years old	 homemaker	 catholic	 Democratic.
+19	 Kimberly Turner	 Female	 Black	 Bachelor's degree in business administration	 35 years old	 stay-at-home parent	 Baptist	 liberal
+20	 Susan Taylor	 Female	 White	 College graduate	 38 years old	 nurse	 Catholic	 conservative
+21								
+22								
+23	 Lauren Martin	 Female	 White	 Bachelor's Degree in Business	 35 years old	 Small business owner	 Catholic	 Moderate Republican
+24	 Samantha Johnson	 female	 Black	 Bachelor's degree	 35 years old	 student	 Christian	 Republican
+25	 Michelle Johnson	 Female	 African American	 Bachelor's degree in Psychology	 38 years old	 Marketing professional	 Baptist	 Democrat
+26	 Samantha Turner	 female	 White	 Associate's Degree	 35 years old	 yoga instructor	 Christian	 conservative
+27	 Rachel Smith	 female	 African American	 Some college education	 27 years old	 Entrepreneur	 Christian	 Independent
+28	 Taylor Mitchell	 female	 White	 Bachelor's degree	 27 years old	 Non-profit worker	 Catholic	 Democrat
+29	 Natalie Lee	 female	 Asian	 Bachelor's Degree	 35 years old	 small business owner	 Buddhist	 Democratic
+30	 Jasmine Williams	 female	 African American	 college graduate	 25 years old	 marketing professional	 Baptist	 Democrat
+31	 Sarah Johnson	 female	 white	 College graduate	 28 years old	 marketing professional	 Christian	 Conservative
+32	 Maya Ali	 Female	 White	 Bachelor's degree in Psychology	 29 years old	 Stay-at-home mom	 Non-religious	 Republican
+33	 Susan Johnson	 female	 White	 College	 32 years old	 Stay-at-home parent	 Baptist	 Conservative
+34	 Melissa Taylor	 female	 White	 Bachelor's Degree in Chemistry	 29 years old	 teacher	 Christianity	 Conservative
+35	 Samantha Lee	 Female	 Asian	 Bachelor's degree	 25 years old	 Small business owner	 Buddhist	 Liberal
+36	 Katherine Scott	 Female	 White	 Bachelor's degree in Environmental Science	 27 years old	 Environmental consultant	 Christian	 Conservative
+37	 Linda Rodriguez	 Female	 Hispanic	 Bachelor's degree in Social Work	 35 years old	 small business owner	 Baptist	 Democrat
+38	 Margaret Oliver	 Female	 White	 Bachelor's degree in Business Administration	 52 years old	 Marketing Manager	 Baptist	 Moderate Republican
+39	 Ashley Taylor	 Female	 White	 Some college	 25 years old	 Medical assistant	 Christian	 Independent
+40	 Sophie Williams	 female	 White	 Bachelor's degree	 30 years old	 small business owner	 Catholic	 moderate Republican
+41	 Mark Johnson	 male	 White	 College degree	 35 years old	 graphic designer	 Catholic	 Liberal.
+42	 Ava Lee	 female	 Asian American	 college graduate	 32 years old	 data analyst	 Buddhist	 moderate Democrat
+43	 Margaret Thomas	 Female	 African American	 College	 32 years old	 Teacher	 Baptist	 Independent
+44	 Elizabeth Green	 Female	 White	 Bachelor's degree in Biology	 32 years old	 Stay-at-home mom	 Christian	 Republican
+45	 Michael Brown	 male	 White	 Bachelor's Degree	 38 years old	 software engineer	 Christian	 Republican
+46	 Sophia Lee	 Female	 Asian	 College	 30 years old	 stay-at-home mom	 Buddhist	 moderate democrat
+47	 Jennifer Smith	 Female	 White	 Bachelor's degree	 38 years old	 self-employed	 Baptist	 Independent
+48	 Ellen Swift	 Female	 White	 College	 27 years old	 Work-at-home parent	 Catholic	 Libertarian
+49	 Mia Harper	 female	 White	 college	 29 years old	 Small business owner	 Christian	 Republican
+50	 James Brown	 male	 White	 College degree	 35 years old	 small business owner	 Baptist	 moderate Republican
+51	 Joni Mitchell	 female	 White	 College	 52 years old	 Business owner	 Christianity	 Republican
+52	 John Adams	 Male	 White	 High School	 65 years old	 Self-employed (construction)	 Catholic	 Republican
+53	 Sarah Johnson	 Female	 White	 Bachelor's degree	 35 years old	 stay-at-home parent	 Mormon	 moderate Republican
+54	 Mariamu - 32	 Female	 Black	 Bachelor's Degree in Biology	 32 years old	 Sales Associate	 Christian	 Democratic
+55	 Marissa Pierce	 female	 White	 Some College	 28 years old	 Salesperson	 Catholic	 Republican
+56	 Samantha Williams	 female	 White	 Bachelor's degree	 35 years old	 homemaker	 Catholic	 moderate
+57	 Kelly Chen	 female	 Asian	 Bachelor's degree	 30 years old	 Business analyst	 Taoist	 Democrat
+58	 Emma Jenkins	 Female	 Black	 Bachelor's Degree in Business Administration	 28 years old	 Small business owner	 Catholic	 Conservative
+59	 Karen Barnes	 Female	 White	 Bachelor's Degree in Nursing	 32 years old	 Nurse	 Christian	 Right-leaning
+60	 Maya Thompson	 female	 African American	 Bachelor's degree	 27 years old	 hairstylist	 baptist	 conservative
+61	 Emma Chen	 Female	 Asian	 College	 30 years old	 Business Owner	 Christianity	 Democrat
+62	 Sarah Thomas	 female	 white	 bachelor's degree in biology	 28 years old	 research assistant	 evangelical Christian	 moderate Republican
+63	 Sarah Smith	 female	 white	 Bachelor's degree in Nursing	 34 years old	 freelance graphic designer	 Christian	 Republican
+64	 Ava Reed	 Female	 White	 Bachelor's degree	 32 years old	 Graphic designer	 Christian	 Republican
+65	 Sarah Williams	 Female	 African American	 College Degree	 35 years old	 Entrepreneur	 Christian	 Conservative
+66	 Melissa Peterson	 Female	 White	 College	 35 years old	 stay-at-home mom	 Baptist	 conservative
+67	 Julia Rodriguez	 Female	 Hispanic	 Graduated from community college with an associates degree in health sciences	 31 years old	 housekeeper	 Catholic	 Democratic
+68	 Emily Smith	 female	 White	 college	 28 years old	 Small business owner	 Catholic	 Conservative
+69	 Emily Chen	 female	 Asian	 Bachelor's degree	 35 years old	 Marketing Manager	 Christian	 Liberal
+70	 Anna Park	 Female	 Asian	 College	 32 years old	 nurse	 Christian	 Republican
+71	 Sarah Chen	 Female	 Asian	 Bachelor's degree	 35 years old	 Software Engineer	 Buddhist	 Democratic
+72	 Rachel Smith	 female	 White	 College-educated	 38 years old	 freelance graphic designer	 Methodist	 moderate
+73	 Emily Siu	 female	 Asian	 Bachelor's degree	 31 years old	 retail worker	 Buddhist	 moderate Republican
+74	 Dr. Ahmed Ali	 Male	 Middle Eastern	 PhD in Pharmacology	 50 years old	 Medical researcher	 Sunni Muslim	 Moderate Democrat
+75	 Rachel Williams	 Female	 African American	 Bachelors Degree	 34 years old	 Small business owner	 Christianity	 Republican
+76	 Sarah Jones	 Female	 Black	 Some College	 38 years old	 Administrative Assistant	 Baptist	 Democratic
+77	 Jessica Huang	 female	 Asian	 Bachelor's degree	 27 years old	 nurse	 Buddhist	 liberal
+78	 Samuel Lee	 Male	 White	 Bachelor's Degree	 34 years old	 Small business owner	 Christian	 Independent
+79	 Sarah Nelson	 Female	 White	 High School Diploma	 35 years old	 stay-at-home mom	 Evangelical Christian	 Republican
+80	 Sara Smith	 Female	 Black	 Some College	 27 years old	 single mother and stay-at-home parent	 Baptist	 Moderate Republican
+81	 Claire Adams	 Female	 White	 Bachelor's Degree	 35 years old	 Salesperson	 Christian	 Conservative
+82	 Samantha Davis	 Female	 White	 College graduate	 32 years old	 Business owner	 Non-religious	 Independent
+83	 Rachel Lee	 female	 Asian	 College	 32 years old	 small business owner	 Christian	 Republican
+84	 Taylor Thompson	 Female	 White	 College degree in healthcare administration	 35 years old	 nurse	 Evangelical Christian	 conservative
+85	 Lauren Miles	 female	 White	 Bachelor's degree	 25 years old	 bartender	 Catholic	 Conservative
+86	 Anne Smith	 Female	 White	 Bachelor's Degree in Business Administration	 32 years old	 stay-at-home mom	 Christian	 Republican
+87	 Michelle Allen	 female	 African American	 Bachelor's degree	 28 years old	 Restaurant server	 Christian	 Democrat
+88	 Madison Smith	 female	 white	 some college education	 25 years old	 student	 Christian	 slightly right-leaning
+89	 Katie Johnson	 female	 Black	 College degree	 28 years old	 Salesperson	 Christianity	 Republican
+90	 Andrew Brown	 male	 African American	 Bachelor's degree in Business Administration	 50 years old	 Construction manager	 Baptist	 Independent
+91	 Olivia Lee	 Female	 Asian	 Some college education	 35 years old	 Marketing Manager	 Taoist	 Democratic
+92	 Sarah Johnson	 female	 white	 some college	 29 years old	 office manager	 Christian	 Republican
+93	 Sarah Johnson	 female	 Black	 some college	 29 years old	 stay-at-home mom	 Christian	 right-leaning
+94	 Claire Porter	 female	 white	 college education	 35 years old	 software engineer	 Presbyterian	 conservative
+95	 Rachel Kim	 Female	 Asian	 Bachelor's degree in Psychology	 35 years old	 Stay-at-home mom	 Buddhist	 Liberal
+96	 Maria Hernandez	 Female	 Hispanic	 College	 28 years old	 Service industry worker	 Catholic	 Conservative
+97	 Samuel Johnson	 Male	 White	 Some College	 58 years old	 Tangent based start-up executive	 Baptist	 Republican
+98	 Asha Patel	 Female	 Asian	 Bachelor's Degree in Business Administration	 28 years old	 Graphic Designer	 Hindu	 Libertarian
+99	 Michael Smith	 male	 African American	 Associate's degree	 27 years old	 data analyst	 Christian	 conservative
+100	 Maya Patel	 Female	 Asian	 Bachelor's degree in computer science	 35 years old	 software developer	 Hindu	 conservative
+101	 Olivia Scott	 female	 White	 Bachelor's degree in nursing	 35 years old	 Certified Nurse Assistant	 Christian	 Moderate Republican
+102	 Maya Lee	 Female	 Asian	 Bachelor's degree in Nursing	 35 years old	 Registered Nurse	 Baptist	 Conservative
+103	 Sarah Johnson	 Female	 White	 Bachelor's degree	 32 years old	 small business owner	 Christian	 Democrat
+104	 Rachel Johnson	 Female	 White	 Bachelor's degree in Marketing	 35 years old	 stay-at-home mom	 Christian	 Conservative
+105	 Emily Johnson	 female	 white	 Bachelor's Degree in Business Administration	 35 years old	 small business owner	 Christian	 moderate Republican
+106	 Taylor Allen	 female	 White	 College	 31 years old	 Graphic designer	 Christian	 Conservative
+107	 Grace Adego	 female	 Black	 college-educated	 28 years old	 nurse	 christian	 democrat
+108	 Samantha Lee	 Female	 Asian	 college graduate	 29 years old	 healthcare worker	 Christian	 conservative
+109	 Rebecca Smith	 female	 White	 Some college	 28 years old	 part-time cashier at a retail store	 Evangelical Christian	 conservative
+110	 Sarah Lee	 female	 Asian	 some college education	 28 years old	 stay-at-home mom	 Buddhist	 liberal
+111	 Emily Johnson	 Female	 African American	 Bachelor's degree in Education	 35 years old	 Elementary school teacher	 Christian	 Democrat
+112	 Emily Lee	 Female	 Asian	 Bachelor's Degree in Nursing	 35 years old	 Emergency Nurse	 Christianity	 Moderate Republican
+113	 Linda Lee	 Female	 White	 College graduate	 53 years old	 small business owner	 Christian	 Independent
+114	 Sarah Smith	 female	 African American	 Bachelor's Degree in Education	 32 years old	 Elementary School Teacher	 Baptist	 Conservative
+115	 Sarah Johnson	 Female	 White	 Bachelor's degree in Nursing	 29 years old	 School nurse	 Catholic	 Republican
+116	 Emma Lee	 female	 Asian	 College Graduate	 32 years old	 part-time worker	 Unnamed Buddhist sect	 Dem Democrat
+117	 Olivia Moore	 Female	 White	 College-educated	 28 years old	 Medical Sales Professional	 Christian	 Independent
+118	 Lauren Fisher	 female	 White	 Bachelor's Degree in Computer Science	 27 years old	 Software Engineer	 Catholic	 Republican
+119	 Jessica Lee	 Female	 Asian	 Bachelor's degree in Chemistry	 32 years old	 N/A	 Buddhist	 Democrat
+120	 Maya Chen	 female	 Asian	 Graduate Degree	 28 years old	 Marketing Professional	 Buddhist	 Conservative
+121	 Jane Doe	 Female	 White	 Bachelor's degree in nursing	 35 years old	 nurse	 Christian	 liberal
+122	 Ava Smith	 Female	 Black	 Bachelor's degree in Nursing	 32 years old	 Licensed Practical Nurse (LPN)	 Baptist	 Democrat
+123	 Sofia Hernandez	 female	 Hispanic	 Bachelor's degree	 32 years old	 homebaker	 Christian	 conservative
+124	 Samantha Moore	 female	 white	 Bachelor's degree in Education	 28 years old	 teacher	 Catholic	 conservative
+125	 Jessica Lee	 female	 Asian	 Bachelor's degree	 28 years old	 Retail sales associate	 Buddhist	 liberal
+126	 Ashley Kim	 Female	 Asian	 College	 35 years old	 Small business owner	 Catholic	 Democratic
+127	 Emily Park	 female	 White	 Some College	 28 years old	 stay-at-home mom	 Evangelical Christian	 Conservative
+128	 Sarah Lee	 Female	 Asian	 Bachelor's degree	 38 years old	 part-time retail sales associate	 Catholic	 Democratic
+129	 Samantha Thompson	 female	 white	 college degree	 32 years old	 business owner	 Methodist	 moderate Republican
+130	 Sarah Lee	 Female	 Asian	 College	 29 years old	 Healthcare worker	 Catholic	 Conservative
+131	 Jackson Scott	 Male	 White	 College	 27 years old	 Recreation therapist	 Christian	 Independent
+132	 William Young	 male	 African American	 bachelor's degree in marketing	 28 years old	 independent contractor	 Christian	 conservative
+133	 James Thomas	 Male	 Black	 College	 28 years old	 Restaurant worker	 Christian	 Democrat
+134	 Sharon Johnson	 female	 White	 College degree	 28 years old	 marketing specialist	 Christianity	 conservative
+135	 Sarah Davis	 Female	 White	 Bachelor's degree in Business Administration	 34 years old	 Small business owner	 Baptist	 Republican
+136	 Jennifer Lee	 Female	 Asian	 Bachelor's degree in psychology	 27 years old	 Marketing professional	 Buddhist	 Democrat
+137	 Danielle Bailey	 Female	 White	 Bachelor's degree in biology	 38 years old	 pharmacist	 Catholic	 Republican
+138	 Abigail Johnson	 Female	 White	 Bachelor's degree in Nursing	 50 years old	 Home Health Nurse	 Christian	 Republican
+139	 Taylor Johnson	 female	 White	 Some college	 35 years old	 Stay-at-home parent	 Christian	 Conservative
+140	 Catherine Thompson	 female	 White	 College degree	 58 years old	 small business owner	 Baptist	 Republican
+141	 Ava Kensington	 female	 White	 College	 25 years old	 Freelance artist	 Christian	 conservative
+142	 Thomas Jones	 male	 Black	 Some College	 28 years old	 computer technician	 Protestant	 conservative
+143	 Johnson	 male	 white	 college	 27 years old	 factory worker	 Catholic	 Republican
+144	 Amelia Taylor	 female	 African American	 Bachelor's degree	 52 years old	 Marketing manager	 Baptist	 Republican
+145	 Michelle Lee	 Female	 Asian	 Some College	 35 years old	 small business owner	 Catholic	 Republican
+146	 Jennifer Lee	 female	 White	 College graduate	 32 years old	 Salesperson	 Non-denominational	 Conservative
+147	 Laura Johnson	 female	 white	 Bachelor's degree in Marketing	 29 years old	 marketing manager	 Baptist	 Democrat
+148	 Jane Smith	 Female	 White	 High School	 50 years old	 house cleaner	 Baptist	 Libertarian
+149	 Margaret Jackson	 female	 White	 bachelor's degree	 32 years old	 small business owner	 Protestant	 conservative
+150	 John Brown	 male	 White	 Bachelor's degree in Biology	 35 years old	 Small business owner	 Evangelical Christian	 Right-leaning
+151	 Anna Mitchell	 female	 African American	 undergraduate degree in education	 28 years old	 teacher	 Baptist	 liberal
+152	 Jane Lee	 female	 Asian	 Bachelor's degree	 35 years old	 small business owner	 Buddhist	 Republican
+153	 Rachel Kline	 female	 white	 some college	 29 years old	 warehouse worker	 protestant	 moderate Republican
+154	 Kelly Reynolds	 Female	 White	 College	 27 years old	 Retail worker	 Christian	 Moderate
+155	 Kelsey Davis	 female	 Black	 college degree in biology	 27 years old	 customer service representative	 Christian	 Republican
+156	 Emily Green	 Female	 White	 College	 29 years old	 Stay-at-home mom	 Christian	 Conservative
+157	 Maya Anderson	 female	 African American	 Associate's Degree in Nursing	 35 years old	 Certified Nursing Assistant	 Christian	 Democrat
+158	 Madison Lee	 female	 Black	 Bachelor's degree	 30 years old	 Small business owner	 Christian	 Democratic
+159	 Sarah Johnson	 Female	 Black	 High School Diploma	 32 years old	 Salon owner	 Protestant Christian	 Democrat
+160	 Clara Lee	 Female	 White	 Bachelor's Degree in Nursing	 35 years old	 Working at a community college in administration	 Episcopalian	 Moderate Democrat
+161	 Susan Johnson	 female	 White	 Bachelor's degree in Nursing	 35 years old	 Occupational Therapist	 Christian	 Conservative
+162	 Sarah Lee	 Female	 Asian	 College	 35 years old	 Marketing Professional	 Protestant	 Conservative
+163	 Emily Smith	 female	 White	 Associate's degree	 32 years old	 small business owner	 evangelical Christian	 conservative
+164								
+165	 Margaret Green	 female	 White	 High School	 37 years old	 retail store worker	 Christian	 Conservative
+166	 Angela Thomas	 female	 Black	 College	 38 years old	 sales associate	 Catholic	 Republican
+167	 Maria Johnson	 female	 African American	 Bachelor's Degree	 50 years old	 Software Engineer	 Baptist	 conservative
+168	 Linda Williams	 Linda Williams is a 52-year-old white female who works as a nurse practitioner in Maryland. She has a Bachelor's degree in Business Administration and is a conservative Baptist. While Linda has worked on the frontlines during the COVID-19 pandemic, she has not yet decided to get vaccinated. She feels hesitant about getting vaccinated due to concerns about potential side effects and the growing mistrust of the pharmaceutical industry. Additionally, she worries about the rushed development of the vaccine and lack of transparency in the testing and validation process. Despite her uncertainty, she recognizes the importance of protecting her patients and plans to continue working in the medical field, even if she decides to forgo getting vaccinated herself.	 White	 Bachelor's degree in Business Administration	 52 years old	 Nurse practitioner	 Baptist	 Conservative
+169	 Sarah Lee	 Female	 Asian	 Bachelor's degree in business	 32 years old	 small business owner	 Buddhist	 Republican
+170	 Samantha Lewis	 female	 Black	 College	 32 years old	 daycare worker	 Baptist	 liberal
+171	 Lily Evans	 female	 white	 Bachelor's degree in Business Administration	 38 years old	 small business owner	 evangelical Christian	 conservative
+172	 Sarah Lee	 female	 Asian	 College graduate	 32 years old	 small business owner	 Buddhist	 liberal
+173	 Sarah Miller	 Female	 White	 Bachelor's degree in Business Administration	 34 years old	 Sales associate	 Christian	 Moderate Republican
+174	 Jordan Williams	 female	 African American	 Associate's degree in business administration	 29 years old	 sales associate	 Christian	 moderate
+175	 Anne Lee	 Female	 Asian	 College	 35 years old	 Teacher	 Catholic	 Republican
+176	 Jennifer Lee	 female	 Asian	 Bachelor's Degree in Business Administration	 35 years old	 Marketing professional	 Methodist	 Conservative
+177	 Sarah Williams	 Female	 White	 Bachelor's degree in Psychology	 35 years old	 Small business owner	 Methodist	 Conservative
+178	 Kathy Smith	 female	 white	 Bachelor's degree	 50 years old	 nurse	 Christian	 conservative
+179	 Sarah Johnson	 female	 African American	 Bachelor's Degree in Psychology	 35 years old	 Stay-at-home parent	 Pentecostal	 Conservative
+180	 John Anderson	 male	 white	 bachelor's degree	 50 years old	 business owner	 baptist	 moderate Republican
+181	 Kim Hernandez	 female	 Hispanic	 some college	 30 years old	 retail sales associate	 Catholic	 leaning conservative
+182	 Jennifer Lee	 female	 Asian	 Bachelor's Degree in Biology	 35 years old	 Small Business Owner	 Baptist	 Republican
+183	 Sarah Young	 female	 White	 Associate's Degree	 35 years old	 nurse	 Christian	 conservative
+184	 Emma Young	 Female	 White	 Associate's Degree	 29 years old	 food delivery driver	 Baptist	 conservative
+185	 Sarah Johnson	 female	 White	 College	 25 years old	 Teacher	 Catholic	 Liberal
+186	 Ava Park	 Female	 Asian	 Some college education	 28 years old	 Part-time stay-at-home parent	 Christian	 Liberal
+187	 Jane Doe	 Female	 White	 College	 52 years old	 nurse	 Baptist	 Conservative
+188	 Kennedy Jenkins	 female	 white	 college	 28 years old	 sales associate	 Christian	 conservative
+189	 Sarah Chen	 female	 Asian	 Bachelor's degree in Business Administration	 28 years old	 Teacher	 Buddhist	 liberal
+190	 Emily Turner	 female	 White	 Bachelor's degree in psychology	 35 years old	 stay-at-home mom	 Catholic	 Conservative
+191	 Claire Brown	 female	 African American	 High School	 32 years old	 stay-at-home mom	 Christian	 moderate Democrat
+192	 Michael Rodriguez	 Male	 Latino/Hispanic	 GED	 55 years old	 Construction worker	 Catholic	 Democratic
+193	 Sarah Green	 Female	 Black	 College-educated	 30 years old	 Marketing Manager	 Methodist	 Independent
+194	 Olivia Martin	 Female	 White	 Bachelor's degree	 32 years old	 Marketing specialist	 Catholic	 Republican
+195	 Cassandra Adams	 Female	 White	 College	 35 years old	 Marketing Manager	 Christian	 Republican
+196	 Samuel Jones	 Male	 White	 Bachelor's Degree	 34 years old	 Construction worker	 Christian	 Conservative
+197	 Ava Clark	 Female	 White	 High School	 38 years old	 Sales associate	 Christian	 Democratic
+198	 Sophia Johnson	 Female	 Black	 Some college education	 28 years old	 Daycare worker	 None (non-religious)	 Liberal (leaning)
+199	 Sarah Johnson	 Female	 White	 Some college education	 35 years old	 Realtor	 Southern Baptist	 Republican
+200	 Susan Brown	 Female	 White	 Bachelor's Degree in Psychology	 27 years old	 Teacher	 Baptist	 Conservative
+201	 Samantha Williams	 Female	 White	 College	 35 years old	 marketing professional	 Christian	 moderate Republican
+202	 Natalie Johnson	 Female	 White	 Bachelor's Degree in Business Administration	 27 years old	 Small Business Owner	 Evangelical Christian	 Lean Republican
+203	 Emily Johnson	 female	 White	 High School	 35 years old	 administrative assistant	 Southern Baptist	 conservative
+204	 Alex Lee	 female	 Asian	 Bachelor's degree in Nursing	 32 years old	 Hospital nurse	 Catholic	 Democrat
+205	 Rebecca Thompson	 female	 Black	 Graduated from community college	 32 years old	 part-time hair stylist	 Christian	 Independent
+206	 Ashley Walker	 Female	 African American	 Bachelor's degree in nursing	 32 years old	 school nurse	 Christian	 liberal
+207	 Emily Collins	 Female	 Caucasian	 college graduate	 35 years old	 Small business owner	 Christian	 moderate Republican
+208	 Taylor Brown	 female	 White	 College	 35 years old	 Small business owner	 Baptist	 Moderate Republican
+209	 Charlotte Bailey	 Female	 African American	 College	 30 years old	 daycare worker	 Baptist	 Democratic
+210	 Sarah Johnson	 female	 Black	 college graduate	 28 years old	 administrative assistant	 Christian	 liberal
+211	 Victoria Chen	 female	 Asian	 Bachelor's Degree	 25 years old	 student (independent)	 Buddhist	 progressive
+212	 Lydia Adams	 Female	 White	 Bachelor's degree in Biology	 58 years old	 Software Engineer	 Catholic	 Conservative
+213	 Mia Smith	 Female	 Black	 Bachelor's degree in Business Administration	 27 years old	 Sales Manager	 Christian	 Conservative
+214	 Johnson Smith	 female	 White	 College	 30 years old	 accountant	 Christian	 conservative
+215	 Jennifer Smith	 Female	 White	 Bachelor's Degree in Business Administration	 38 years old	 Marketing Manager	 Christian	 Republican
+216	 Rachel Lee	 Female	 Asian	 Bachelor's degree	 35 years old	 Tidying Professional	 None	 Liberal
+217	 Samantha Jones	 female	 African American	 College	 28 years old	 nursing student	 Christian	 conservative
+218	 Jennifer Lee	 Female	 Asian	 College-educated	 35 years old	 Small business owner	 Christian	 Right-leaning
+219	 Emily Davis	 female	 African American	 Bachelor's degree	 32 years old	 receptionist	 Christian	 Republican
+220	 Hannah Kim	 female	 Asian	 Bachelor's Degree	 32 years old	 software engineer	 Christian	 Republican
+221	 Lily Williams	 Female	 Black	 Graduated from college with a degree in education	 32 years old	 Teacher	 Catholic	 Democratic
+222	 Jennifer Lee	 female	 Asian	 college-educated	 27 years old	 business owner	 Buddhist	 liberal
+223	 Johnson Collins	 female	 African American	 Bachelor's degree	 35 years old	 customer service representative	 Seventh-Day Adventist	 lean towards Democratic
+224	 Jordan Williams	 Female	 African American	 College educated	 32 years old	 Stay-at-home parent	 Catholic	 Democrat
+225	 Jordan Kim	 Female	 White	 Bachelor's degree in Biology	 29 years old	 yoga instructor	 Christian	 Independent
+226	 Jennifer Lee	 female	 Asian	 Bachelor's degree in Biology	 27 years old	 Marketing professional	 Christian	 Democrat
+227	 Emily Davidson	 female	 white	 college	 30 years old	 hair stylist	 Catholic	 conservative
+228	 John Smith	 Male	 African American	 Bachelor's degree in Science	 27 years old	 Customer service representative	 Baptist	 Democrat
+229	 Emily Lewis	 Female	 White	 Bachelor's Degree in Science	 25 years old	 Scientist	 Catholic	 Democratic
+230	 Emily Green	 female	 white	 College degree	 32 years old	 small business owner	 Methodist	 libertarian
+231	 Maria Hernandez	 Female	 Hispanic	 Some College	 32 years old	 Home Health Aide	 Catholic	 Democrat
+232	 Rebecca Johnson	 Female	 White	 Some College	 25 years old	 Household Aide	 Christian	 Independent
+233	 Ava Grant	 Female	 African American	 Bachelor's degree in psychology	 29 years old	 salesperson	 Christian	 Liberal
+234	 Samantha White	 Female	 Black	 College graduate	 35 years old	 Small business owner	 Christian	 Conservative
+235	 Anthony Miller	 male	 white	 some college	 32 years old	 IT consultant	 Christianity	 Republican
+236	 Elizabeth Johnson	 Female	 White	 College	 35 years old	 freelance writer	 Catholic	 Moderate Republican
+237	 William Johnson	 Male	 White	 College Graduate	 35 years old	 Self-employed business owner	 Catholic	 Conservative
+238	 Olivia Rodriguez	 female	 Black	 Associate's degree	 30 years old	small business owner	 evangelical christian	 conservative
+239	 Michael Lee	 male	 Asian	 Bachelor's degree	 30 years old	 Software Engineer	 Buddhist	 Liberal
+240	 Kathryn Harper	 Female	 White	 Bachelor's Degree	 28 years old	 student (future nurse)	 Christian	 conservative
+241	 Victoria Johnson	 female	 African American	 High School	 29 years old	 baker	 Baptist	 moderate Republican
+242	 Jessica Rodriguez	 female	 Hispanic	 some college	 35 years old	 custodian	 Catholic	 Democratic
+243	 Emily Green	 Female	 Caucasian	 College	 35 years old	 College professor	 Baptist	 Republican
+244	 Sarah Williams	 Female	 White	 College	 30 years old	 stay-at-home mom	 Christian	 Conservative
+245	 Olivia Brown	 female	 white	 college graduate	 25 years old	 student	 Christian	 conservative
+246	 Emily Scott	 Female	 White	 Bachelor's Degree in Biology	 32 years old	 Office Administrator	 Christianity	 Conservative
+247	 Samantha Davis	 Female	 White	 College Graduate	 35 years old	 HR Manager	 Christianity	 Republican
+248	 Kelly Thompson	 female	 white	 Bachelor's degree	 35 years old	 stay-at-home parent	 Christian	 conservative
+249	 Jane Smith	 female	 white	 college	 27 years old	 retail employee	 evangelical Christian	 Republican
+250	 Cassandra Carter	 Female	 White	 college-educated	 28 years old	 stay-at-home mom	 Christian	 moderate Republican
+251	 Linda Williams	 female	 Black	 some college	 28 years old	 retail worker	 Baptist	 conservative
+252	 Emily Smith	 female	 African American	 Bachelor's degree in Education	 38 years old	 teacher	 Christian	 Democrat
+253	 Angela Adams	 female	 African American	 Bachelor's degree	 35 years old	 nurse	 Baptist	 Democratic
+254	 Elizabeth Chen	 Female	 Asian	 College degree in science	 30 years old	 Research scientist	 Taoist	 Democratic
+255	 Sarah Jackson	 Female	 White	 Bachelor's degree in psychology	 27 years old	 Mental health counselor	 Catholic	 Conservative
+256	 Sarah Watts	 female	 white	 college	 30 years old	 pharmacist	 Catholic	 liberal
+257	 Lauren Kohle	 female	 white	 Bachelor's Degree in Journalism	 32 years old	 Freelance writer	 Catholic	 Democrat
+258	 Isabel Rodriguez	 Female	 Hispanic	 Some College	 38 years old	 Salesperson	 Catholic	 Democratic
+259	 Jane Doe	 female	 White	 Bachelor's degree	 55 years old	 healthcare worker	 Catholic	 conservative
+260	 Susan Johnson	 Female	 White	 Associate's degree in Education	 52 years old	 Substitute Teacher	 Christian	 Republican
+261	 John Adams	 male	 white	 College degree	 50 years old	 small business owner	 Catholic	 conservative
+262	 Emily Johnson	 female	 African American	 College graduate	 38 years old	 Social media influencer	 Baptist	 Democrat
+263	 Sophia Kim	 Female	 Asian	 Bachelor's degree in Biology	 35 years old	 Elementary School Teacher	 Buddhist	 Liberal
+264	 Kim Martin	 female	 white	 College	 25 years old	 bartender	 Christian	 moderate
+265	 Sarah Brown	 Female	 Black	 Some College	 35 years old	 Sales associate	 Christian	 Democrat
+266	 Daniel Adams	 male	 White	 College	 29 years old	 Marketing professional	 Protestant Christian	 Republican
+267	 Samantha Johnson	 Female	 White	 Bachelor's Degree in Chemistry	 28 years old	 IT analyst	 Christian	 Conservative
+268	 Sarah Thompson	 Female	 White	 Some College	 35 years old	 Stay-at-home mom	 Protestant	 Moderate Republican
+269	 Sarah Kim	 Female	 Asian	 Bachelor's Degree in Nursing	 28 years old	 Nurse	 Buddhist	 Liberal
+270	 Elizabeth Smith	 female	 White	 Bachelor's Degree in Business Administration	 38 years old	 Small business owner	 Christian	 Conservative
+271	 Amelia Johnson	 Female	 White	 Bachelor's degree	 29 years old	 Teacher	 Christian	 Moderate
+272	 Sarah Johnson	 female	 white	 college	 28 years old	 nurse	 Christian	 conservative
+273	 Sarah Smith	 female	 White	 College degree	 28 years old	 Small business owner	 Christian	 conservative
+274	 Susan Park	 female	 Asian	 Bachelor's degree in Education	 32 years old	 Special Education teacher	 Buddhist	 Democrat
+275	 Emma Ting	 Female	 Asian	 Bachelor's degree in Biology	 29 years old	 Marketing professional	 Christian	 Conservative
+276	 Anna Lee Jackson	 Female	 African American	 College	 32 years old	 Marketing Manager	 Pentecostal	 Democrat
+277	 Morgan Price	 Female	 Black	 College	 31 years old	 Sales Representative	 Christian	 Moderate Republican
+278	 Emily Chen	 female	 Asian	 college	 27 years old	 accountant	 Buddhist	 Democrat
+279	 Samuel Adams	 male	 African American	 College Degree	 27 years old	 Accountant	 Christian	 Democrat
+280	 Williams	 female	 Black	 Some college	 28 years old	 Receptionist	 Baptist	 Democratic
+281	 Amelia Davis	 Female	 African American	 Some college	 34 years old	 Business owner	 Christian	 Moderate Republican
+282	 Emily Davis	 female	 white	 College degree in healthcare administration	 35 years old	 RN assistant	 Christianity	 liberal.
+283	 Emma Rodriguez	 Female	 Hispanic	 College	 35 years old	 House cleaner	 Catholic	 Independent
+284	 Cassandra Nelson	 Female	 White	 College	 25 years old	 Teacher	 Evangelical	 Conservative
+285	 Jessica Adams	 Female	 White	 Bachelor's Degree	 35 years old	 Small Business Owner	 Christian	 Conservative
+286	 Kendra Adams	 female	 white	 college	 27 years old	 marketing professional	 Catholic	 conservative
+287	 Rachel Peterson	 Female	 White	 Bachelor's Degree in Nursing	 35 years old	 Hospital Nurse	 Christianity	 Liberal
+288	 Morgan Chen	 female	 Asian	 college	 28 years old	 college student	 Buddhist	 Democrat
+289	 Lauren Johnson	 female	 Black	 Bachelor's Degree in Nursing	 29 years old	 nurse	 Christian	 moderate
+290	 William James	 male	 African American	 Some college education	 57 years old	 self-employed contractor	 Catholic	 conservative
+291	 Rachel Kim	 female	 Asian	 Bachelor's degree in Education	 35 years old	 Elementary school teacher	 Christian	 Democrat
+292	 Sarah Kim	 Female	 Asian	 Some college education	 27 years old	 Sales representative	 Catholic	 Liberal
+293	 Johnson Smith	 Male	 White	 Bachelor's degree in Business Administration	 35 years old	 Entrepreneur	 Protestant	 Conservative
+294	 Johnson Smith	 female	 white	 Bachelor's degree	 50 years old	 nurse	 Christianity	 conservative
+295	 Elizabeth Thomas	 Female	 White	 College Graduate	 35 years old	 Teacher	 Baptist	 Republican
+296	 Jane Smith	 Female	 African American	 Bachelor's Degree	 35 years old	 hospital nurse	 Baptist	 Conservative
+297	 Elizabeth Johnson	 female	 African American	 Some College	 52 years old	 Retired Nursing Assistant	 Christian	 Republican
+298	 Julia Smith	 female	 White	 Bachelor's Degree	 28 years old	 Graphic Designer	 Christianity	 conservative
+299	 Samantha Smith	 Female	 White	 College Degree	 35 years old	 Small business owner	 Christian	 Right-leaning
+300	 Linda Kim	 Female	 Asian	 Bachelor's Degree in Business Administration	 35 years old	 Small Business Owner	 Buddhist	 Democrat
+301	 Patricia Garcia	 female	 Hispanic	 college-educated	 35 years old	 small business owner	 Catholic	 liberal
+302	 Olivia Johnson	 female	 White	 High School	 26 years old	 warehouse worker	 Baptist	 Conservative
+303	 Michael Luevano	 male	 Hispanic	 Bachelor's degree	 35 years old	 small business owner	 Catholic	 Republican
+304	 Anne Williams	 female	 white	 college-educated	 34 years old	 stay-at-home mom	 Christian	 conservative
+305	 Emma Collins	 female	 White	 college degree	 32 years old	 marketing professional	 religious	 conservative
+306	 Kim Evans	 Female	 White	 Bachelor's Degree	 37 years old	 Receptionist	 Non-Religious	 Republican
+307	 Thomas Ewan	 male	 Black	 high school dropout	 55 years old	 unemployed	 Baptist	 conservative
+308	 Sarah Smith	 female	 White	 College	 28 years old	 Sales associate	 Baptist	 Republican
+309	 Jennifer Lee	 Female	 White	 Bachelor's degree	 32 years old	 Teacher	 Christian	 Republican
+310	 Michael Martin	 Male	 White	 Some college	 32 years old	 self-employed	 Christian	 conservative
+311	 Laura Smith	 Female	 African American	 college graduate	 32 years old	 sales associate	 Baptist	 Republican
+312	 Lisa Johnson	 female	 White	 College Graduate	 52 years old	 Construction worker	 Protestant	 Conservative
+313	 Lily Lee	 Female	 Asian	 Graduated from the University of Maryland with a Bachelor's degree in Marketing	 35 years old	 Small business owner	 Buddhist	 Independent
+314	 Maya Patel	 Female	 Asian	 Bachelor's degree in Biology	 29 years old	 Research Scientist	 Hindu	 Democratic
+315	 Kimberly Johnson	 Female	 African American	 Bachelor's Degree	 37 years old	 homemaker	 Christian	 Republican
+316	 Anna Ramirez	 female	 Hispanic	 College degree in business administration	 38 years old	 hair salon owner	 Catholic	 moderate Republican
+317	 Samantha Brown	 female	 White	 Bachelor's degree	 32 years old	 Sales manager	 Christian	 Democrat
+318	 Emily Davis	 female	 White	 College Graduate	 28 years old	 nurse	 Christian	 liberal
+319	 Michelle Johnson	 female	 African American	 college educated	 35 years old	 social media manager	 Christian	 Democrat
+320	 Mei Park	 Female	 Asian	 Bachelor's degree in psychology	 35 years old	 small business owner	 Buddhist	 moderate Republican
+321	 Patricia Williams	 female	 African American	 Some college education	 29 years old	 waitress	 Muslim	 democratic
+322	 Sarah Collins	 female	 African American	 Bachelor's degree in Psychology	 28 years old	 Marketing professional	 Christian	 Republican
+323	 John Smith	 Male	 White	 Bachelor's degree	 27 years old	 Carpenter	 None	 Libertarian
+324	 James Davis	 male	 White	 Bachelor's degree	 32 years old	 small business owner	 Christian	 conservative
+325	 Karen Johnson	 Female	 White	 College education	 55 years old	 Business owner	 Christian	 Republican
+326	 Jennifer Williams	 Female	 Black	 Bachelor's degree	 27 years old	 licensed clinical social worker	 Protestant	 Democrat
+327	 John Smith	 male	 White	 Some college education	 52 years old	 mechanics	 Pentecostal	 conservative
+328	 Rebecca Reynolds	 Female	 White	 Bachelor's Degree in Nursing	 37 years old	 Certified Nurse	 Evangelical Christian	 Moderate Republican
+329	 Anthony Clarke	 male	 African American	 Bachelor's degree in Business Administration	 35 years old	 Accountant	 Christian	 Democrat
+330	 Jessica Davis	 Female	 White	 Bachelor's degree in Business Administration	 32 years old	 Small business owner	 Christian	 Conservative
+331	 Sarah Johnson	 Female	 White	 Bachelor's Degree	 38 years old	 Accountant	 Non-denominational	 Conservative
+332	 Andrea Smith	 Female	 White	 College Degree	 28 years old	 Marketing Manager	 Baptist	 Moderate Republican
+333	 Lisa Johnson	 female	 white	 Bachelor's degree in psychology	 32 years old	 Office clerk	 Baptist	 Republican
+334	 Kelsey Scott	 Female	 White	 Bachelor's degree in Nursing	 35 years old	 Nurse	 Christian	 Independent
+335	 Mary Baker	 Female	 White	 Bachelor's degree in Biology	 28 years old	 Small business owner	 Christian	 Republican
+336	 Margaret Wilson	 Female	 African American	 Bachelor's degree	 28 years old	 computer programmer	 Christian	 Republican
+337	 Emily Thompson	 Female	 White	 Bachelor's degree	 27 years old	 receptionist	 Methodist	 moderate
+338	 Melissa Smith	 female	 White	 Bachelor's degree	 32 years old	 Stay-at-home mom	 Baptist	 Conservative
+339	 Sarah Jenkins	 Female	 White	 Bachelor's Degree	 28 years old	 Small Business Owner	 Christian	 Conservative
+340	 Kim Baker	 female	 White	 some college	 29 years old	 waitress	 non-religious	 conservative
+341	 Melanie Carter	 Female	 African American	 Bachelor's degree in Business Administration	 35 years old	 Business Owner	 Baptist	 Democrat
+342	 Sarah Chen	 Female	 Asian	 Some college	 28 years old	Student	 Christian	 Liberal
+343	 Elizabeth White	 Female	 White	 Some College	 32 years old	 sales associate	 Baptist	 Republican
+344	 Sharon Hesmondhalgh	 Female	 White	 Bachelor's Degree in Science	 40 years old	 Professor of Biology	 Christian	 Liberal
+345	 Samantha Lee	 female	 Asian	 Bachelor's degree	 30 years old	 stay-at-home parent	 Taoist	 Democratic
+346	 Elizabeth Smith	 Female	 White	 College-educated	 28 years old	 stay-at-home parent	 Christian	 Republican
+347	 Megan Brown	 Female	 White	 College	 32 years old	 Digital Marketing Specialist	 Baptist	 Republican
+348	 Samantha Taylor	 female	 Black	 Bachelor's degree	 28 years old	 hospitality worker	 Christian	 conservative
+349	 Sarah Thomas	 female	 Black	 college graduate	 35 years old	 chef	 Christianity	 Republican
+350	 Mary Green	 Female	 White	 College	 28 years old	 Business Owner	 Christian	 Republican
+351	 Elizabeth Chen	 female	 Asian	 Bachelor's Degree	 25 years old	 freelance graphic designer	 Buddhist	 liberal
+352	 Amy Patel	 Female	 White	 Some College	 32 years old	 Manager at a Small Business	 Hindu	 Democratic
+353	 Andrew Turner	 Male	 White	 Some college	 27 years old	 Construction worker	 Evangelical Christian	 Republican
+354	 Karen Johnson	 female	 White	 college	 50 years old	 healthcare worker	 Baptist	 conservative
+355	 Emma Lee	 female	 Asian	 Bachelor's Degree in Biology	 30 years old	 Small business owner	 Catholic	 Independent
+356	 Emily Wilson	 female	 white	 some college	 35 years old	 small business owner	 Protestant	 moderate
+357								
+358	 Jenna Watkins	 female	 African American	 Bachelor's Degree in Business Administration	 30 years old	 Sales Representative	 Christian	 Democrat
+359	 Madison Brown	 Female	 White	 College degree	 32 years old	 small business owner	 Christian	 moderate
+360	 Sarah Patel	 Female	 Asian	 Bachelor's degree in Business Administration	 35 years old	 software engineer	 Hindu	 moderate Republican
+361	 Maya Lee	 female	 Asian	 College	 35 years old	 customer service representative	 Taoist	 moderate
+362	 Smith Michael	 male	 African American	 Bachelors degree	 38 years old	 IT specialist	 Christian	 Moderate Republican
+363	 Emily Davis	 female	 White	 College	 28 years old	 marketing executive	 Baptist	 conservative
+364	 Rachel Smith	 Female	 White	 Some College	 38 years old	 Security Guard	 Christian	 Conservative
+365	 Ashley Young	 Female	 White	 High School	 27 years old	 bartender	 Christianity	 Liberal
+366	 Samantha Collins	 Female	 White	 Bachelor's degree in Business Administration	 32 years old	 small business owner	 Christian	 Conservative
+367	 Rebecca Chen	 Female	 Asian	 Bachelor's degree in Psychology	 32 years old	 Customer service representative	 Buddhist	 Conservative
+368	 Jordan Kimball	 female	 Asian	 Bachelor's Degree	 27 years old	 restaurant server	 none specified	 moderate
+369	 Jamie Rodriguez	 Female	 Hispanic	 Some college	 25 years old	 Teacher	 Catholic	 Democrat
+370	 Sarah Kim	 Female	 Asian	 College	 28 years old	 retail employee	 Buddhist	 liberal
+371	 Sarah Lewis	 female	 African American	 college	 35 years old	 business owner	 Baptist	 Democrat
+372	 Oliver Stout	 Male	 White	 Bachelor's degree in Business Administration	 28 years old	 Small business owner	 Christianity	 Independent
+373	 Charlotte Williams	 Female	 White	 Bachelor's degree in Psychology	 32 years old	 Graphic designer	 Baptist	 Republican
+374	 Emily Davis	 Female	 Caucasian	 Bachelor's Degree	 27 years old	 Graphic Designer	 Methodist	 moderate conservative
+375	 Amelia Adams	 Female	 Black	 Bachelor's degree in business administration	 28 years old	 Small business owner	 Pentecostal	 Conservative
+376	 Maria Rodriguez	 Female	 Hispanic	 College Graduate	 28 years old	 small business owner	 Catholic	 Independent
+377	 Emily Chen	 female	 Asian	 Bachelor's Degree in Chemistry	 31 years old	 Pharmacist	 Taoist	 moderate Republican
+378	 Jane Smith	 Female	 White	 Some College	 38 years old	 stay-at-home mom	 Catholic	 conservative
+379	 Morgan Andrews	 Female	 White	 Bachelor's Degree in Nursing	 35 years old	 nurse	 Methodist	 Conservative
+380	 Sarah Williams	 Female	 African American	 Bachelor's degree in Business Administration	 35 years old	 Hairdresser	 Christian	 Republican
+381	 Sarah Johnson	 Female	 White	 Bachelor's degree	 30 years old	 Nurse	 Christian	 Democrat
+382	 Jacqueline Johnson	 female	 Black	 High School Diploma	 35 years old	 nurse assistant	 evangelical christian	 republican
+383	 Rose Kennedy	 Female	 White	 Bachelor's degree in Marketing	 32 years old	 Small business owner	 Catholic	 Conservative
+384	 Oliver Hill	 male	 White	 Bachelor's degree	 35 years old	 small business owner	 Christian	 conservative
+385	 Sarah Williams	 Female	 White	 College	 32 years old	 Store Manager	 Christian	 Republican
+386	 Taylor Longley	 Female	 White	 Bachelor's degree in Biology	 28 years old	 Interior Designer	 Catholic	 Democrat
+387	 Emily Chen	 female	 Asian	 Bachelor's Degree	 25 years old	 small business owner	 Buddhist	 moderate democrat
+388	 Sarah Kim	 female	 Asian	 college	 32 years old	 small business owner	 Methodist	 moderate Republican
+389	 Ava Johnson	 Female	 African American	 Some college	 35 years old	 House cleaner	 Christian	 Democratic
+390	 Maya Patel	 Female	 Black	 Bachelor's degree in Nursing	 32 years old	 Nurse	 Hindu	 Independent
+391	 Samantha Lee	 Female	 Asian	 Bachelor's degree in biology	 31 years old	 small business owner	 Christian	 Democrat
+392	 Lauren Smith	 Female	 White	 Bachelor's degree in Business Administration	 32 years old	 Small business owner	 Baptist	 Conservative
+393	 Samantha Taylor	 Female	 White	 College degree in Business Administration	 34 years old	 Small business owner	 Christian	 Conservative
+394	 Lisa Jones	 female	 White	 College (Degree in Business Administration)	 35 years old	 Nurse	 Roman Catholic	 conservative
+395	 Maria Hernandez	 Female	 Hispanic	 High School	 38 years old	 Customer service representative	 Catholic	 Democrat
+396	 Catherine Scott	 Female	 Black	 High School	 32 years old	 Graphic Designer	 Seventh-day Adventist	 Libertarian
+397	 Daniel Kim	 male	 Asian	 Bachelor's Degree	 25 years old	 Graphic Designer	 Christian	 Libertarian
+398	 Sarah Lee	 Female	 Asian	 Bachelor's Degree in Psychology	 32 years old	 Small Business Owner	 Buddhist	 Liberal
+399	 Renee Thompson	 female	 white	 Bachelor's degree	 28 years old	 stay-at-home mom	 Christian	 Republican
+400	 Emma Smith	 Female	 African American	 Bachelor's Degree in Biology	 32 years old	 Chef	 Christian	 Leans to the right
+401	 Michelle Williams	 female	 African American	 some college	 28 years old	 nurse	 Baptist	 Democratic
+402	 John Miller	 male	 White	 College	 28 years old	 Construction worker	 Christian	 Libertarian
+403	 Samuel Lee	 male	 Asian	 college graduate	 30 years old	 Small business owner	 Baptist	 Republican
+404	 Dr. Naomi Nobile	 Female	 Black	 Bachelor's Degree in Nursing	 55 years old	 Emergency Nurse	 Christian	 Republican
+405	 Samuel Bainbridge	 Male	 White	 Bachelor's Degree in Business Administration	 34 years old	 Small Business Owner	 Baptist	 Moderate Republican
+406	 Rebecca Chen	 female	 Asian	 College	 28 years old	 Technical Writer	 Buddhist	 Liberal
+407	 Sarah Taylor	 Female	 White	 College	 35 years old	 Small business owner	 Christian	 Conservative
+408	 Samantha Johnson	 female	 African American	 some college	 25 years old	 stay-at-home parent	 Christianity	 conservative
+409	 Elizabeth Jones	 Female	 White	 College education	 25 years old	 Office worker	 Christian	 Libertarian
+410	 Michael Brown	 Male	 White	 Some College	 38 years old	 Small Business Owner	 Christian	 Right-wing Conservative
+411	 Sarah Chen	 Female	 Asian	 Bachelor's degree in Business Administration	 32 years old	 Small business owner	 Taoist	 Republican
+412	 Sarah Johnson	 Female	 White	 College Degree	 25 years old	 Health Care Worker	 Christian	 Republican
+413	 Linda Lewis	 female	 white	 Bachelor's degree in nursing	 62 years old	 retired nurse	 Protestant	 moderate republican
+414	 Ava Smith	 Female	 Black	 Bachelor's degree in Business Administration	 35 years old	 Small business owner	 Christian	 Conservative
+415								
+416	 Michelle Johnson	 female	 White	 Bachelor's Degree	 29 years old	 teacher	 Baptist	 Republican
+417	 Olivia Chen	 Female	 Asian	 Bachelor's degree in Biology	 32 years old	 Teacher	 Buddhist	 Democratic
+418	 Samantha Smith	 Female	 White	 Bachelor's Degree	 27 years old	 Office worker	 Baptist	 Liberal. Samantha Smith is a 27-year-old white woman living in Maryland who has expresses hesitancy about getting the COVID-19 vaccine. Although she has a bachelor's degree, she currently works in an office setting and her occupation is not medical. She describes herself as a devout Baptist, but her politics leans more liberal. She is not currently actively politically involved, but says she would research the vaccine more before making a decision. Samantha is concerned about potential side effects of the vaccine, but also believes that COVID-19 is a serious pandemic that warrants caution and safety measures.
+419	 Emily Davis	 Female	 White	 College	 29 years old	 Hairdresser	 Methodist	 Republican
+420	 Michelle Johnson	 Female	 Black	 Bachelor's degree in nursing	 38 years old	 licensed practical nurse	 Baptist	 Democrat
+421	 Jessica Smith	 female	 Black	 college-educated	 32 years old	 daycare provider	 Methodist	 moderate
+422	 Emily Davis	 Female	 White	 College	 28 years old	 Sales representative	 Christian	 Democrat
+423	 Maria Rodriguez	 Female	 Hispanic	 Some college	 35 years old	 Stay-at-home parent	 Catholic	 Democrat
+424	 Taylor Johnson	 female	 White	 High School Diploma	 35 years old	 Business Owner	 Baptist	 Republican
+425	 Sarah Williams	 Female	 White	 Bachelor's degree	 28 years old	 small business owner	 Evangelical Christian	 conservative
+426	 Olivia Miller	 female	 White	 College graduate	 32 years old	 Sales representative	 Christian	 Democratic
+427	 Jana Smith	 female	 White	 Bachelor's degree	 32 years old	 Small business owner	 Baptist	 Republican
+428	 Samantha Smith	 female	 White	 Bachelor's degree	 35 years old	 teacher	 Catholic	 Democratic.
+429	 Sarah Adams	 Female	 Caucasian	 College Graduate	 28 years old	 Healthcare Worker	 Christian	 Right-wing leaning.
+430	 Elizabeth Hernandez	 Female	 White (Hispanic origin)	 College graduate	 32 years old	 Work-from-home mother and freelance graphic designer	 Catholic	 Republican
+431	 Kathy Lee	 Female	 White	 College	 28 years old	 Hairdresser	 Protestant	 Moderate
+432	 Emily Johnson	 Female	 White	 College	 28 years old	 Office worker	 Christian	 Libertarian
+433	 Jamie Baker	 female	 White	 College	 32 years old	 small business owner	 Christianity	 Independent
+434	 Emily Lee	 Female	 Asian	 College	 30 years old	 freelance graphic designer	 Buddhist	 Democrat
+435	 Sarah Wong	 Female	 Asian American	 Bachelor's degree	 32 years old	 Social media manager	 Confucianist	 Independent
+436	 John Doe	 Male	 African American	 Some College	 50 years old	 Truck Driver	 Christian	 Right-leaning
+437	 Olivia Nelson	 Female	 White	 Some College	 32 years old	 Nurse	 Baptist	 Republican
+438	 Elizabeth Green	 Female	 White	 Bachelor's degree in business administration	 32 years old	 small business owner	 Evangelical Christian	 Republican
+439	 Samantha Thomas	 female	 White	 Bachelor's degree	 35 years old	 Graphic designer	 Baptist	 Democratic
+440	 Laura Johnson	 female	 White	 Bachelor's degree in Education	 38 years old	 Stay-at-home parent	 Christian	 moderate
+441	 John Smith	 male	 African American	 Bachelor's degree	 32 years old	 construction worker	 Christian	 Republican
+442	 Sarah	 Female	 African American	 Bachelor's degree in Nursing	 27 years old	 nursing student	 Methodist	 Democrat
+443	 Victoria Johnson	 Female	 White	 Bachelor's degree in marketing	 27 years old	 small business owner	 evangelical Christian	 conservative
+444	 Asha Patel	 female	 Asian	 Bachelor's degree in Marketing	 28 years old	 Marketing Coordinator	 Hindu	 Democratic
+445	 Jessica Thomas	 female	 White	 Some College	 35 years old	 office worker	 Christian	 Republican
+446	 Julia Rodriguez	 Female	 Hispanic	 Although she has completed her high school education, Julai RosaI	 28 years old	 food services worker	 Catholic	 Republican
+447	 Lily Kim	 female	 Asian	 college education	 26 years old	 software engineer	 Buddhist	 Republican
+448	 Samantha Johnson	 female	 white	 Bachelor's degree	 38 years old	 stay-at-home parent	 Catholic	 Republican
+449	 Emily Williams	 Female	 White	 Bachelor's degree in business administration	 32 years old	 Small business owner	 Non-denominational Christian	 Conservative
+450	 Danielle Miller	 female	 white	 Bachelor's degree in Psychology	 32 years old	 student and part-time cashier	 Catholic	 moderate democrat
+451	 Sarah Lee	 female	 Asian	 Bachelor's degree in Biology	 32 years old	 Research Scientist	 Christian	 Libertarian
+452	 Angela Thomas	 Female	 African American	 Bachelor's Degree	 35 years old	 Small business owner	 Baptist	 Democrat
+453	 Olivia Clarke	 female	 White	 Some college education	 28 years old	 Event planner	 Christian	 Right-leaning
+454	 Sarah Smith	 Female	 White	 College	 27 years old	 Sales representative	 Christianity	 Republican
+455	 Elena Patel	 Female	 South Asian	 College graduate	 27 years old	 Student at a local university	 Hindu	 Liberal
+456	 Emily Lee	 Female	 Asian	 Bachelor's Degree in Education	 29 years old	 teacher	 Buddhist	 liberal
+457	 Michael Lee	 Male	 White	 Bachelor's degree in business administration	 37 years old	 Software developer	 Baptist	 Republican
+458	 Sarah Williams	 Female	 White	 Bachelor's degree	 32 years old	 Small business owner	 Christian	 Republican
+459	 Josephine Johnson	 female	 African American	 Bachelor's Degree in Psychology	 35 years old	 Sales representative	 Baptist	 moderate Republican
+460	 Karen Thompson	 Female	 White	 Bachelor's Degree in Biology	 29 years old	 Nurse Assistant	 Catholic	 Democratic
+461	 Emily Chen	 Female	 Asian	 Bachelor's degree in Engineering	 27 years old	 Software engineer	 Christianity	 Republican
+462	 Emily Smith	 Female	 White	 Bachelor's Degree	 27 years old	 graphic designer	 Christian	 Republican
+463	 Elizabeth Turner	 Female	 White	 Bachelor's Degree	 32 years old	 Sales Associate	 Baptist	 Democrat
+464	 Kim Allen	 Female	 African American	 Bachelors degree in Business Administration	 32 years old	 Sales representative	 Christian	 Conservative
+465	 Elizabeth Lee	 Female	 Asian	 Bachelor's degree	 30 years old	 Small business owner	 Buddhist	 Democratic
+466	 Sarah Kim	 Female	 Asian	 Bachelor's degree	 28 years old	 Business analyst	 Buddhist	 Democrat
+467	 Sarah Young	 female	 White	 College	 30 years old	 Marketing professional	 Christian	 Conservative
+468	 James Taylor	 male	 white	 Bachelor's degree	 55 years old	 small business owner	 Christian	 Republican
+469	 Jessica Johnson	 Female	 Black	 High School	 29 years old	 Tubercle Nugget Dry Brusher	 Catholic	 Democrat
+470	 John Doe	 Male	 White	 College graduate	 28 years old	 Freelance writer	 Methodist	 Democrat
+471	 Ava Collins	 female	 White	 Bachelor's degree	 34 years old	 stay-at-home mom	 Christian	 Democratic
+472	 Emily Lee	 Female	 Asian	 College	 35 years old	 Customer service representative	 Christianity	 Republican
+473	 Emily Johnson	 Female	 Black	 Some college education	 30 years old	 Small business owner	 Baptist	 Moderate Republican
+474	 Amelia Rodriguez	 female	 Hispanic	 college graduate	 27 years old	 teaching assistant	 Roman Catholic	 moderate Republican
+475	 William Smith	 male	 Black	 College	 25 years old	 customer service representative	 Protestant	 Conservative
+476	 Sarah Chen	 female	 Asian	 Some college	 35 years old	 small business owner	 Buddhist	 Democrat
+477	 Susan Lee	 Female	 Asian	 Bachelor's degree in nursing	 32 years old	 Nurse	 Buddhist	 Republican
+478	 Elizabeth Johnson	 Female	 White	 College	 35 years old	 Hairdresser	 Evangelical	 Moderate Republican
+479	 Victoria Smith	 Female	 White	 Bachelor's degree	 32 years old	 Stay-at-home mom	 Evangelical Christian	 Conservative
+480	 Elizabeth Taylor	 female	 White	 College	 55 years old	 Small business owner	 Baptist	 Conservative
+481	 Ava Wade	 female	 African American	 Bachelor's degree in nursing	 30 years old	 Emergency room nurse	 Baptist	 Democrat
+482	 Samantha Johnson	 Female	 White	 College graduate	 32 years old	 Sales associate	 Baptist	 Independent
+483	 Sarah Johnson	 Female	 White	 Some College	 28 years old	 Marketing Manager	 Christian	 Independent
+484	 Angel Davis	 female	 Black	 Bachelors in Psychology	 27 years old	 Caregiver	 Baptist	 Democrat
+485	 Sandra Johnson	 Female	 White	 Bachelor's Degree	 27 years old	 Marketing Manager	 Protestant	 Republican
+486	 Emily Smith	 Female	 White	 Bachelor's degree in Business Administration	 28 years old	 Marketing Manager	 Non-denominational Christian	 Conservative
+487	 Sarah Green	 female	 Black	 college graduate	 35 years old	 nurse	 Christian	 conservative
+488	 Ava Smith	 female	 African American	 Bachelor's degree	 27 years old	 personal trainer	 Christian	 conservative
+489	 Adil Shah	 Male	 South Asian	 Bachelor's Degree in Computer Science	 28 years old	 IT Analyst	 Muslim	 Conservative
+490	 Amanda Johnson	 Female	 White	 College	 30 years old	 retail worker	 Christian	 conservative
+491	 Sarah Smith	 female	 White	 College	 28 years old	 bookstore owner	 Christianity	 conservative
+492	 Olivia Rodriguez	 Female	 White	 Bachelor's Degree in Psychology	 27 years old	 Social worker	 Roman Catholic	 Republican
+493	 Sarah Johnson	 Female	 White	 Although she has a college degree, education level is not correlated with being hesitant about COVID vaccination.	 She is 35 years old, a prime age for COVID-19 virus transmission.	 Her job may involve working around others and prolonged travel, possibly making her more likely to contract the virus.	 As a Methodist, she may have concerns about religious objections to the vaccine.	 Although she is a Democrat, political beliefs do not always translate into attitudes towards vaccination.
+494	 Karen Johnson	 female	 white	 college-educated	 27 years old	 small business owner	 evangelical Christian	 moderate Republican
+495	 Emily Williams	 Female	 White	 Bachelor's Degree in Psychology	 28 years old	 Recreation therapist	 Baptist	 Libertarian
+496	 Mary Johnson	 Female	 African American	 High School dropout	 35 years old	 fast-food worker	 Baptist	 Democrat
+497	 Mariama Ali	 female	 Black	 Some college	 52 years old	 homemaker	 Islamic	 liberal
