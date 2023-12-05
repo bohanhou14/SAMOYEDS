@@ -23,7 +23,7 @@ if __name__=='__main__':
     args = parse_args()
     tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
     state = args.state
-    attitude = '"probably no or definitely no"'
+    attitude = args.attitude
     messages = [
         {"role": "user",
          "content":

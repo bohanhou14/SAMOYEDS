@@ -1,6 +1,6 @@
 import pickle
 from collections import Counter
-import matplotlib.pyplot as plt
+
 pkl_name = "profiles/profiles-agent_num=500-top_p=0.7-temp=1.5.pkl"
 with open(pkl_name, "rb") as f:
     profiles = pickle.load(f)
