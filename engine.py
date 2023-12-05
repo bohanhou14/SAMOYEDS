@@ -4,7 +4,9 @@ from utils import clean_response, parse_attitude, compile_tweets
 from collections import Counter
 from vllm import LLM, SamplingParams
 from tqdm import trange
+import os
 import numpy as np
+import pickle
 class Engine:
     def __init__(
         self, 
@@ -20,8 +22,7 @@ class Engine:
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.sampling_params = SamplingParams(
             top_p = 0.7,
-            temperature = 1.5,
-            max_tokens = 80
+            temperature = 1.5
         )
         # keep track of all the conversations, shape=(num_agents X (dynamic) num_conversation_turns)
         # more turns there is, the longer messages_list will become
@@ -34,13 +35,12 @@ class Engine:
     # ready to parallel run this
     def generate(self, messages):
         validate_message(messages)
-        encodeds = self.tokenizer.apply_chat_template(messages, return_tensors="pt")
-        model_inputs = encodeds
+        model_inputs = self.tokenizer.apply_chat_template(messages, tokenize =False)
         output = self.model.generate(model_inputs, self.sampling_params)
         res = output[0].outputs[0].text
         return res
     
-    def batch_generate(self, messages_list=None):
+    def batch_generate(self, messages_list=None, max_tokens = 80):
         if messages_list != None and type(messages_list) != list:
             raise TypeError("Invalid format")
         def convert(msg):
@@ -50,11 +50,20 @@ class Engine:
                 raise RuntimeError("Messages_list not initialized yet")
             messages_list = self.messages_list
         model_inputs = [convert(msg) for msg in messages_list]
-        output = self.model.generate(model_inputs, self.sampling_params)
+        sampling_params = self.sampling_params
+        sampling_params.max_tokens = max_tokens
+        output = self.model.generate(model_inputs, sampling_params)
         responses = [output[i].outputs[0].text for i in range(len(messages_list))]
         return responses
 
-    def init_agents(self, max_iter = 30):
+    def init_agents(self, max_iter = 30, cache_path = None, save_dir=f"./cache/default"):
+        if cache_path != None:
+            if os.path.exists(cache_dir):
+                with open(cache_path, "rb") as f:
+                    self.messages_list = pickle.load(f)
+                return
+            else:
+                raise RuntimeError("Cache dir not exist")
         def init_impersonation(profile_str):
             return [{"role": "user",
                     "content":
@@ -106,15 +115,17 @@ class Engine:
             att = all_attitudes[j]
             counter = Counter(att)
             # take the most frequent attitude
-            self.agents[j].attitude = counter[counter.keys()[0]]
-            print(counter)
+            self.agents[j].attitude = counter.most_common(1)[0][0]
         
         # update the message lists
         for k in range(self.num_agents):
             self.messages_list[k].append(
                 {"role": "assistant", "content": f"Your answer: {self.agents[k].attitude}"}
             )
-    
+        if save_dir != None:
+            with open(os.path.join(save_dir, f"num-agents={self.num_agents}-agent_attitudes.pkl"), "wb") as f:
+                pickle.dump(self.messages_list, f)
+
     def feed_tweets(self, tweets: list, k=5):
         k = min(k, len(tweets))
         if type(tweets) == list:
@@ -125,9 +136,8 @@ class Engine:
         }
         for k in range(self.num_agents):
             self.messages_list[k].append(prompt)
-        responses = self.batch_generate(self.messages_list)
+        responses = self.batch_generate(self.messages_list, max_tokens = 500)
         cleaned = [clean_response(r) for r in responses]
-        print(cleaned)
         return cleaned
     # TO-DO
     def validate_message(messages):

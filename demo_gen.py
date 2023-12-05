@@ -23,7 +23,7 @@ messages = [
                 - Name: Garcia Marquez
                 - Gender: male
                 - Race: Hispanic
-                - Education: High Schol
+                - Education: High School
                 - Age: 45 years old
                 - Occupation: farm owner
                 - Religion: atheist
@@ -36,19 +36,23 @@ messages = [
 #    {"role": "user", "content": "Do you have mayonnaise recipes?"}
 ]
 
-encodeds = tokenizer.apply_chat_template(messages, return_tensors="pt")
+encodeds = tokenizer.apply_chat_template(messages, tokenize = False)
 
-model_inputs = encodeds.to(device)
+model = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=1)
+sampling_params = SamplingParams(
+    top_p = top_p,
+    temperature = temp,
+    max_tokens = 512
+)
 profiles = []
-agent_num = 10
+agent_num = 500
 for p in [0.7]:
     for temp in [2.0]:
         for i in range(agent_num):
-            generated_ids = model.generate(model_inputs, max_new_tokens=512, do_sample=True, top_p=p, temperature=temp, pad_token_id=tokenizer.eos_token_id)
-            decoded = tokenizer.batch_decode(generated_ids)[0]
-            profile = parse_profile(decoded)
+            res = model.generate(model_inputs)
+            profile = parse_profile(res[0].outputs[0].text)
             if 'Gender' not in profile.keys():
-                print(f"Extraction failed: {decoded}")
+                print(f"Extraction failed: {res}")
                 continue
             profiles.append(profile)
 
