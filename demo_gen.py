@@ -2,19 +2,20 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from utils import parse_profile
 from vllm import LLM, SamplingParams
-import pandas as pd
+from tqdm import trange
 from engine import Engine
+import pandas as pd
 import pickle
 
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
-state = 'Maryland'
-attitude = 'hesitant'
+state = 'United States'
+attitude = '"probably no or definitely no"'
 
 messages = [
     {"role": "user",
      "content":
         f'''Generate a demographic profile of someone from 
-            {state} that feels {attitude} about COVID vaccination.
+            {state} that will say {attitude} to COVID vaccination.
             
             Example: 
                 - Name: Garcia Marquez
@@ -47,14 +48,15 @@ for i in range(agent_num):
     res = model.generate(model_inputs, sampling_params)
     profile = parse_profile(res[0].outputs[0].text)
     if 'Gender' not in profile.keys():
-        print(f"Extraction failed: {res}")
+        print(f"Extraction failed: {res[0].outputs[0].text}")
         continue
     profiles.append(profile)
 
-with open(f'profiles/profiles-agent_num={agent_num}-top_p={p}-temp={temp}.pkl', 'wb') as f:
+save_name = f"profiles/profiles-state-{state}-attitude-{attitude}-agent_num={agent_num}-top_p={p}-temp={temp}"
+with open(f'{save_name}.pkl', 'wb') as f:
     pickle.dump(profiles, f)
 df = pd.DataFrame(profiles)
-df.to_csv(f'profiles/profiles-agent_num={agent_num}-top_p={p}-temp={temp}.tsv', sep='\t')
+df.to_csv(f'{save_name}.tsv', sep='\t')
 
 
 
