@@ -32,12 +32,9 @@ messages = [
 #    {"role": "assistant", "content": "Well, I'm quite partial to a good squeeze of fresh lemon juice. It adds just the right amount of zesty flavour to whatever I'm cooking up in the kitchen!"},
 #    {"role": "user", "content": "Do you have mayonnaise recipes?"}
 ]
-
-encodeds = tokenizer.apply_chat_template(messages, tokenize = False)
-model_inputs = encodeds
-
+model_inputs = tokenizer.apply_chat_template(messages, tokenize = False)
 p = 0.7
-temp = 2.0
+temp = 1.5
 model = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=1)
 sampling_params = SamplingParams(
     top_p = p,
@@ -57,7 +54,7 @@ for i in range(agent_num):
 with open(f'profiles/profiles-agent_num={agent_num}-top_p={p}-temp={temp}.pkl', 'wb') as f:
     pickle.dump(profiles, f)
 df = pd.DataFrame(profiles)
-df.to_csv(f'profiles/profiles-top_p={p}-temp={temp}.tsv', sep='\t')
+df.to_csv(f'profiles/profiles-agent_num={agent_num}-top_p={p}-temp={temp}.tsv', sep='\t')
 
 
 
