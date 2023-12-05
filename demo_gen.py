@@ -1,6 +1,7 @@
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from utils import parse_profile
+from vllm import LLM, SamplingParams
 import pandas as pd
 from engine import Engine
 import pickle
@@ -35,28 +36,28 @@ messages = [
 encodeds = tokenizer.apply_chat_template(messages, tokenize = False)
 model_inputs = encodeds
 
+p = 0.7
+temp = 2.0
 model = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=1)
 sampling_params = SamplingParams(
-    top_p = top_p,
+    top_p = p,
     temperature = temp,
     max_tokens = 512
 )
 profiles = []
 agent_num = 500
-for p in [0.7]:
-    for temp in [2.0]:
-        for i in range(agent_num):
-            res = model.generate(model_inputs)
-            profile = parse_profile(res[0].outputs[0].text)
-            if 'Gender' not in profile.keys():
-                print(f"Extraction failed: {res}")
-                continue
-            profiles.append(profile)
+for i in range(agent_num):
+    res = model.generate(model_inputs)
+    profile = parse_profile(res[0].outputs[0].text)
+    if 'Gender' not in profile.keys():
+        print(f"Extraction failed: {res}")
+        continue
+    profiles.append(profile)
 
-        with open(f'profiles/profiles-agent_num={agent_num}-top_p={p}-temp={temp}.pkl', 'wb') as f:
-            pickle.dump(profiles, f)
-        df = pd.DataFrame(profiles)
-        df.to_csv(f'profiles/profiles-top_p={p}-temp={temp}.tsv', sep='\t')
+with open(f'profiles/profiles-agent_num={agent_num}-top_p={p}-temp={temp}.pkl', 'wb') as f:
+    pickle.dump(profiles, f)
+df = pd.DataFrame(profiles)
+df.to_csv(f'profiles/profiles-top_p={p}-temp={temp}.tsv', sep='\t')
 
 
 
