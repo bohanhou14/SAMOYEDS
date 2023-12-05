@@ -38,7 +38,7 @@ model_inputs = encodeds
 
 p = 0.7
 temp = 2.0
-model = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=1)
+model = LLM("/mnt/petrelfs/share_data/llm_data/mistral_7b/mistral-7B-v0.1/", tensor_parallel_size=1)
 sampling_params = SamplingParams(
     top_p = p,
     temperature = temp,
