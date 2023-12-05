@@ -7,5 +7,5 @@
 #SBATCH --partition=llm_h
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:4
-
+proxy_on
 python -m demo_gen.py
