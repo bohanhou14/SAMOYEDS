@@ -5,10 +5,6 @@ import pandas as pd
 from engine import Engine
 import pickle
 
-engine = Engine(1)
-
-
-model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1", device_map='auto').eval()
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
 state = 'Maryland'
 attitude = 'hesitant'
@@ -37,6 +33,7 @@ messages = [
 ]
 
 encodeds = tokenizer.apply_chat_template(messages, tokenize = False)
+model_inputs = encodeds
 
 model = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=1)
 sampling_params = SamplingParams(
