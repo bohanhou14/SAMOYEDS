@@ -2,6 +2,7 @@
 
 #SBATCH -J sim-run
 #SBATCH --output=logs/sim_run.out
+#SBATCH --error=logs/sim_run.err
 #SBATCH --nodes=1
 #SBATCH --partition=llm_h
 #SBATCH --ntasks-per-node=1
