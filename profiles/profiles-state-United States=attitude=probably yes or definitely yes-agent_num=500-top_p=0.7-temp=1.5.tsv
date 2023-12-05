@@ -1,0 +1,500 @@
+	Name	Gender	Race	Education	Age	Occupation	Religion	Political belief
+0	 Kim Evans	 Female	 Asian	 Bachelor's degree	 27 years old	 Software Engineer	 Buddhist	 Democrat
+1	 Michael Lee	 Male	 Asian	 Master's degree in Bioengineering	 35 years old	 biomedical engineer	 Buddhist	 Moderate Democrat
+2	 James Williams	 Male	 Black	 Bachelor's degree	 62 years old	 Retired executive	 Protestant	 Liberal
+3	 Ava Johnson	 Female	 White	 Bachelor's degree in Business Administration	 32 years old	 Marketing Executive	 Non-denominational	 Democrat
+4	 Abigail Lee	 Female	 Asian	 Bachelor's degree in Psychology	 32 years old	 Clinical Psychologist	 Buddhist	 Democratic
+5	 Taylor Davis	 female	 Asian American	 Bachelor's degree in computer science	 30 years old	 software developer	 Christian	 liberal
+6	 Johnson	 Female	 White	 Bachelor's Degree	 35 years old	 Software Engineer	 Christian	 Democratic
+7	 Anna Davis	 Female	 White	 Bachelor's Degree	 32 years old	 Doctor	 Methodist	 Democrat
+8	 Emily Jones	 Female	 White	 College	 35 years old	 Software Engineer	 Christian	 Moderate Democrat
+9	 Smith	 female	 Black	 College	 55 years old	 Executive	 Muslim	 Democratic
+10	 Emily Smith	 Female	 White	 Bachelor's degree	 28 years old	 Small business owner	 Anglican	 Liberal
+11	 Maya Rodriguez	 Female	 White	 College	 30 years old	 Marketing Executive	 Catholic	 Moderate Democrat
+12	 Elizabeth Lee	 Female	 Asian	 Bachelor's degree in nursing	 35 years old	 nurse	 Buddhist	 liberal
+13	 Elizabeth Smith	 female	 White	 Bachelor's degree	 55 years old	 IT manager	 Christian	 Democratic
+14	 Taylor Lee	 female	 white	 Bachelor's degree	 35 years old	 Salesperson	 Baptist	 moderate
+15	 Michelle Kim	 female	 Asian	 Bachelor's degree in Biology	 30 years old	 Marketing professional	 Buddhist	 Democratic
+16	 Alexa Williams	 female	 White	 Bachelor's degree	 34 years old	 software engineer	 Catholic	 liberal
+17	 Olivia Johnson	 Female	 Black	 College	 25 years old	 Marketing Manager	 None	 Democrat
+18	 Kate Taylor	 female	 White	 College	 35 years old	 Software Engineer	 Agnostic	 Democrat
+19	 Kim Johnson	 Female	 Black or African American	 Bachelor's degree	 55 years old	 Nurse	 Christian	 Democrat
+20	 Kennedy Park	 Female	 Black	 College Graduate	 35 years old	 Marketing Manager	 Presbyterian	 Democratic
+21	 Emily Smith	 Female	 Caucasian	 Bachelor's degree in Biology	 32 years old	 Scientist	 Presbyterian	 Democratic
+22	 Jacqueline Smith	 Female	 Black	 Bachelor's degree in Nursing	 38 years old	 nurse	 Christian	 Democratic
+23	 Maria Lopez	 female	 Latina	 College graduate	 35 years old	 marketing professional	 Catholic	 liberal
+24	 Johnson Smith	 Female	 African American	 Bachelor's degree in Biology	 35 years old	 Scientist	 Christian	 Liberal
+25	 Samantha Johnson	 female	 African American	 Bachelor's degree in Biology	 32 years old	 Science teacher	 Christian	 liberal
+26	 Alice Williams	 female	 African American	 Bachelor's Degree in Psychology	 29 years old	 Marketing Manager	 Protestant	 liberal
+27	 Emily Jones	 female	 White	 Bachelor's degree in Science	 35 years old	 nurse	 Christian	 Democrat
+28	 Smith	 Female	 White	 Bachelor's degree in Biology	 35 years old	 Computer Scientist	 Methodist	 Moderate
+29	 Jones	 female	 White	 Bachelor's Degree	 35 years old	 Lawyer	 Christian	 Democratic
+30	 Smith	 female	 African American	 College	 55 years old	 teacher	 Christianity	 Democratic
+31	 Jones	 female	 White	 Bachelor's degree	 52 years old	 nurse	 Catholic	 liberal
+32	 Elizabeth Johnson	 female	 white	 college	 52 years old	 education administrator	 Buddhist	 liberal
+33	 Sarah Kim	 female	 Asian	 Bachelor's degree	 35 years old	 software engineer	 Buddhist	 liberal
+34	 Harper Parks	 Female	 Caucasian	 Bachelor's degree in nursing	 29 years old	 Registered Nurse	 Christian	 liberal
+35	 Johnson	 Female	 White	 College graduate	 55 years old	 Professor	 Catholic	 Democrat
+36	 Taylor Rodriguez	 female	 Asian	 Bachelor's Degree in Nursing	 27 years old	 Registered Nurse	 Buddhist	 Democrat
+37	 Kim	 Female	 Asian	 Bachelor's Degree	 28 years old	 software engineer	 Christianity	 Democrat
+38	 Johnson Smith	 Female	 White	 Bachelor's degree	 27 years old	 Marketing manager	 Christianity	 Moderate Democrat
+39	 Baker, Daniel	 male	 white	 Bachelor's degree in Education	 35 years old	 elementary school teacher	 Catholic	 democrat
+40	 Julia Patel	 Female	 White	 Bachelor's degree	 35 years old	 Marketing professional	 Baptist	 Democrat
+41	 Maya Patel	 female	 South Asian	 Bachelor's degree	 35 years old	 physician	 Hindu	 liberal
+42	 Sarah Smith	 female	 white	 college graduate	 35 years old	 healthcare professional	 non-religious	 liberal
+43	 Maya Thomas	 Female	 African American	 Bachelor's Degree in Chemistry	 32 years old	 chemist	 Anglican	 Democratic
+44	 Lance Smith	 male	 white	 college	 58 years old	 manager at a healthcare clinic	 non-denominational	 democrat
+45	 Smith	 female	 White	 Bachelor's degree	 32 years old	 marketing professional	 Catholic	 Democrat
+46	 Emily Davis	 Female	 White	 Bachelor's Degree	 28 years old	 Nurse	 Catholic	 Liberal
+47	 Thomas Williams	 Male	 White	 Bachelor's Degree in Biology	 32 years old	 Clinical Researcher	 Christian	 Liberal
+48	 Ellie Thomas	 female	 white	 College graduate	 30 years old	 marketing professional	 non-religious	 moderate Democrat
+49	 Smithsonia Brown	 Female	 African American	 Bachelor's degree in nursing	 52 years old	 Nurse	 Methodist	 Democratic
+50	 Hannah Kim	 female	 Asian	 Master's degree	 32 years old	 accountant	 Christian	 moderate Democrat
+51	 Maria Rodriguez	 female	 Hispanic	 Bachelor's degree	 40 years old	 Dentist	 Pentecostal	 Republican
+52	 Mia Rodriguez	 female	 Hispanic	 college	 25 years old	 education professional	 Catholic	 liberal
+53	 Jackson Lee	 Female	 White	 Bachelor's degree in Psychology	 34 years old	 Human Resources Manager	 Agnostic	 Democrat
+54	 Lisa Adams	 female	 White	 Bachelor's degree	 35 years old	 data analyst	 None specified	 moderate
+55	 Michelle Lee	 Female	 Asian	 Master's Degree	 32 years old	 Graphic Designer	 Buddhist	 Liberal
+56	 Maria Hernandez	 female	 Latina	 college graduate	 35 years old	 nurse	 Catholic	 Democrat
+57	 Kimberly Smith	 female	 White	 Bachelor's Degree in Nursing	 55 years old	 Nurse	 Christian	 Democratic
+58	 Abigail Williams	 Female	 White	 Bachelor's Degree	 55 years old	 Educator	 Christian	 Moderate Republican
+59	 Emma Adams	 Female	 White	 College graduate	 32 years old	 Marketing professional	 Baptist	 Democrat
+60	 Allison Taylor	 female	 White	 Bachelor's degree	 28 years old	 Small business owner	 Christian	 Liberal
+61	 Johnson Smith	 Female	 White	 Bachelor's Degree	 35 years old	 Scientist	 Christian	 Liberal
+62	 Sarah Kim	 female	 Asian	 college graduate	 28 years old	 HR manager	 Buddhist	 liberal
+63	 Sarah Lee	 Female	 Asian	 Master's degree in Public Health	 35 years old	 Professor of Epidemiology	 Buddhist	 Democrat
+64	 Johnson Smith	 Female	 White	 Bachelor's Degree	 52 years old	 Schoolteacher	 Catholic	 Democratic
+65	 Smith	 Female	 Caucasian	 Bachelor's degree in science	 28 years old	 research scientist	 Baptist	 Democratic
+66	 Olivia Patel	 Female	 Asian	 Bachelor's degree in Biology	 32 years old	 Research Scientist	 Buddhist	 Moderate
+67	 Lisa Chen	 Female	 Asian	 College graduate	 25 years old	 Marketing professional	 Buddhist	 Liberal
+68	 Jackson Williams	 male	 White	 Bachelor's Degree	 55 years old	 Software Engineer	 Methodist	 Democrat
+69	 Emma Green	 Female	 White	 College degree in Business Administration	 28 years old	 Marketing manager at a technology company	 Catholic	 Democratic
+70	 Taylor Chen	 Female	 Asian	 Bachelor's degree	 35 years old	 Software engineer	 Christianity	 Democrat
+71	 Jennifer Park	 female	 Asian	 Bachelor's Degree in Health Science	 35 years old	 Nurse	 Buddhist	 Democrat
+72	 Smith	 female	 African American	 Bachelor's degree	 52 years old	 healthcare worker	 Christian	 Democrat
+73	 Lukas Miller	 male	 Caucasian	 Bachelor's degree in Biology	 32 years old	 Research Scientist	 Catholic	 Democrat
+74	 Taylor Lee	 Female	 White	 Bachelor's Degree	 28 years old	 Graphic Designer	 Unsure	 Liberal
+75	 Samantha Jones	 female	 African American	 college graduate	 34 years old	 Nurse	 Christian	 Democratic
+76	 Johnson	 female	 White	 Bachelor's degree	 35 years old	 Medical professional	 Catholic	 Democratic
+77	 Anna Thompson	 Female	 White	 Bachelor's Degree in Business Administration	 52 years old	 Software Engineer	 Christianity	 Moderate
+78	 Ana Martinez	 female	 Hispanic	 Bachelor's degree	 25 years old	 marketing manager	 Catholic	 democrat
+79	 Taylor Smith	 female	 White	 Bachelor's degree	 35 years old	 marketing professional	 Christian	 liberal
+80	 Davis King	 female	 White	 Bachelor's degree	 35 years old	 software engineer	 Catholic	 democrat
+81	 Williams Johnson	 Female	 African American	 Bachelor's degree	 25 years old	 Sales associate	 Christian	 Democrat
+82	 Grace Chen	 female	 Asian	 Bachelor's Degree in Computer Science	 29 years old	 Software Engineer	 Non-Religious	 Democratic
+83	 Emily Brown	 Female	 White	 Bachelor's degree	 35 years old	 Software Engineer	 Christian	 Moderate Democrat
+84	 Emma Smith	 female	 white	 Master's degree	 35 years old	 attorney	 Christian	 Democrat
+85	 Jenna Lee	 Female	 Asian	 College degree	 32 years old	 Software Engineer	 Buddhist	 Democratic
+86	 Park Yang	 female	 Asian	 Bachelor's degree	 38 years old	 Nurse	 Buddhist	 Democratic
+87	 Miller Jones	 Female	 White	 College graduate	 55 years old	 scientist	 Non-denominational	 Democrat
+88	 Johnson	 female	 Asian	 Bachelor's degree	 35 years old	 healthcare worker	 Buddhist	 Democratic
+89	 Rachel Williams	 Female	 White	 Bachelor's Degree in Science	 35 years old	 School Teacher	 Christian	 Democrat
+90	 Johnson	 female	 White	 Bachelor's degree	 50 years old	 Senior Manager at a software company	 Episcopalian	 Democratic
+91	 Lauren Brown	 female	 white	 Bachelor's degree	 28 years old	 marketing professional	 non-religious	 liberal
+92	 Miller Browning	 female	 Caucasian	 Bachelor's degree in Nursing	 65 years old	 Hospital nurse	 Christian	 Democratic
+93	 Smith	 Female	 White	 Bachelor's degree	 32 years old	 Sales Manager	 Christian	 Democratic
+94	 Johnson	 Female	 White	 Bachelor's degree in Science	 35 years old	 Technology Executive	 Christian	 Democrat
+95	 Sarah Smith	 Female	 White	 Bachelor's Degree	 35 years old	 Computer Engineer	 Christian	 Liberal
+96	 Samantha Williams	 Female	 White	 College graduate	 27 years old	 Marketing manager	 Christianity	 Liberal
+97	 Johnson	 Female	 White	 Bachelor's Degree	 55 years old	 small business owner	 Christian	 liberal
+98	 Smith	 Female	 White	 Bachelor's degree in Business Administration	 25 years old	 Marketing Manager	 Christian	 Democrat
+99	 Johnson Smith	 female	 white	 bachelor's degree	 35 years old	 healthcare worker	 Baptist	 Democrat
+100	 Jill Ryan	 Female	 White	 Bachelor's Degree in Public Health	 35 years old	 Healthcare Worker	 Non-denominational	 Democrat
+101	 Davis	 Female	 White	 Bachelor's Degree	 32 years old	 Marketing Executive	 Protestant	 Democrat
+102	 Lee Adams	 female	 African American	 Bachelor's degree in biology	 58 years old	 Nurse	 Christian	 Democrat
+103	 Sophia Lee	 Female	 Asian	 College	 25 years old	 Medical Intern	 Buddhist	 Liberal
+104	 Julia Davis	 Female	 Black	 Bachelor's degree	 28 years old	 Marketing Manager	 Baptist	 Democratic
+105	 Karen Williams	 Female	 White	 Bachelor's degree in Nursing	 38 years old	 Registered Nurse	 Roman Catholic	 Liberal
+106	 Ms. Kimura	 female	 Asian	 Graduate with a Bachelor's degree	 28 years old	 Scientist	 Buddhist	 Liberal.
+107	 Mark Smith	 Male	 White	 Bachelor's degree	 52 years old	 Software Engineer	 Christianity	 Democrat
+108	 Olivia Green	 Female	 White	 Bachelor's degree	 30 years old	 Marketing professional	 Non-denominational	 Democrat
+109	 Maya Patel	 Female	 Asian	 Bachelor's degree in computer science	 28 years old	 Software developer	 Hindu	 Democrat
+110	 Ava Smith	 female	 White	 Bachelor's degree in psychology	 35 years old	 Stay-at-home mom	 Baptist	 Democrat
+111	 Smith	 Female	 White	 College	 55 years old	 Nurse	 Christian	 Democrat
+112	 Samantha Kim	 Female	 Asian	 Bachelor's Degree	 35 years old	 Technology executive	 Christian	 Democrat
+113	 William Brown	 Male	 White	 Bachelor's degree in Science	 65 years old	 Retired healthcare worker	 Baptist	 Moderate
+114	 Sara Chen	 Female	 Asian	 College degree	 32 years old	 Marketing Manager	 Buddhist	 Democrat
+115	 Wilson Smith	 female	 Black	 Bachelor's degree in biology	 52 years old	 PhD researcher	 Catholic	 Liberal
+116	 Thompson	 female	 White	 Bachelor's degree	 55 years old	 software engineer	 Methodist	 moderate Democrat
+117	 Julia Hernandez	 Female	 Black or African American	 Bachelor's degree in Computer Science	 27 years old	 Software Engineer	 Christian	 Democratic
+118	 Kim Smith	 Female	 White	 Bachelor's Degree	 55 years old	 Software Engineer	 Non-religious	 Democrat
+119	 Smith	 female	 White	 Bachelor's degree in Science	 35 years old	 Biomedical researcher	 Christian	 Democratic
+120	 Emily Johnson	 Female	 White	 Bachelor's degree in nursing	 35 years old	 Registered nurse	 Christian	 Democratic
+121	 Sarah Chen	 Female	 Asian	 College Graduate	 35 years old	 Marketing Manager	 Buddhist	 Democrat
+122	 Emily Chen	 female	 Asian	 College degree in biology	 27 years old	 lab technician	 agnostic	 Democrat
+123	 Jill Smith	 female	 White	 Master's Degree	 35 years old	 Nursing Manager	 Christian	 Democratic
+124	 Johnson	 Female	 Caucasian	 Bachelor's Degree	 35 years old	 Doctor	 Christianity	 Democrat
+125	 Clark Smith	 Female	 White	 Bachelor's degree in Nursing	 38 years old	 Registered Nurse	 Christian	 Liberal
+126	 Lisa Scott	 Female	 White	 Bachelor's degree	 35 years old	 Software engineer	 Christianity	 Democratic
+127	 Emily Johnson	 Female	 White	 Bachelor's Degree	 28 years old	 IT consultant	 Christianity	 Liberal
+128	 Emma Lee	 female	 Asian	 College	 32 years old	 IT Analyst	 Buddhist	 moderate democrat
+129	 Jackson Williams	 Male	 White	 Bachelor's Degree in Biology	 35 years old	 Software Engineer	 Protestant	 Democrat
+130	 Sarah Smith	 female	 White	 Bachelor's Degree	 35 years old	 Software Engineer	 Methodist	 Democrat
+131	 Emerson Davis	 Female	 White	 Bachelor's Degree	 35 years old	 Science Researcher	 Uncertain	 Liberal
+132	 Johnson Smith	 female	 white	 Bachelor's degree	 55 years old	 nurse	 Catholic	 Democrat
+133	 Kennedy Brown	 Female	 African American	 Bachelor's degree in Psychology	 29 years old	 Software Engineer	 Christian	 Democrat
+134	 Taylor Thompson	 female	 White	 Bachelor's degree	 28 years old	 office worker	 Christian	 Democratic
+135	 Victoria Johnson	 Female	 White	 College degree	 35 years old	 Nursing manager	 Baptist	 Moderate
+136	 Olivia Davis	 Female	 White	 Bachelor's Degree	 25 years old	 Marketing Analyst	 Methodist	 Democrat
+137	 Johnson Smith	 Female	 White	 Bachelor's Degree	 35 years old	 Healthcare worker	 Christianity	 Liberal
+138	 Emma Johnson	 Female	 Black	 College	 35 years old	 Marketing Manager	 None	 Democrat
+139	 Susan Lee	 Female	 Asian	 Bachelor's Degree in Biology	 28 years old	 Research Scientist	 Buddhist	 Democrat
+140	 Sarah Patel	 female	 Asian	 Bachelor's degree in Computer Science	 27 years old	 Software Engineer	 Hindu	 Liberal
+141	 Jane Thomas	 Female	 White	 Bachelor's degree in Education	 60 years old	 Retired School Teacher	 Church of Christ	 Democrat
+142	 Sarah Kim	 Female	 Asian	 Bachelor's degree	 28 years old	 Digital marketer	 Catholic	 Liberal
+143	 John Adams	 Male	 Caucasian	 College graduate	 52 years old	 Marketing executive	 Baptist	 Liberal
+144	 Jennifer Thompson	 female	 White	 Bachelor's Degree	 35 years old	 Software Engineer	 Non-religious	 Liberal
+145	 Taylor Collins	 Female	 White	 Bachelor's degree in Nursing	 32 years old	 Registered Nurse	 Catholic	 Democrat
+146	 Johnson	 Female	 Caucasian	 College Graduate	 55 years old	 Nurse	 Methodist	 Democrat
+147	 Sarah Johnson	 Female	 White	 Bachelor's degree in science	 35 years old	 Marketing professional	 Catholic	 Democrat
+148	 Katherine Rodriguez	 Female	 White	 Master's Degree	 38 years old	 Nurse	 Christian	 Moderate
+149	 Madison Williams	 female	 White	 Bachelor's Degree in Environmental Science	 28 years old	 Environmental Consultant	 Non-religious	 Libertarian
+150	 Alice Thompson	 Female	 White	 College	 50 years old	 Sales Executive	 Christianity	 Democratic
+151	 Sarah Johnson	 Female	 White	 Bachelor's Degree	 35 years old	 Public Health Nurse	 None (Non-religious)	 Democrat
+152	 Olivia Smith	 Female	 White	 College degree	 27 years old	 Software Engineer	 Atheist	 Liberal
+153	 Julia Hernandez	 female	 Asian	 Bachelor's degree	 35 years old	 Marketing executive	 Buddhist	 Liberal
+154	 Sara Rodriguez	 female	 White	 Bachelor's degree	 34 years old	 teacher	 Christianity	 moderate Democrat
+155	 Madison Rodriguez	 female	 mixed (African American and Latina)	 Bachelor's degree in Business Administration	 28 years old	 marketing professional	 Catholic	 liberal
+156	 Samantha Lee	 female	 Asian	 College graduate	 35 years old	 lawyer	 Buddhist	 liberal
+157	 Olivia Davis	 female	 white	 Bachelor's degree	 25 years old	 software engineer	 Methodist	 moderate Democrat
+158	 Johnson Smith	 Female	 White	 College	 55 years old	 nurse	 Christian	 moderate Democrat
+159	 Olivia Johnson	 Female	 White	 Bachelor's degree in Computer Science	 35 years old	 Software Engineer	 Catholic	 Liberal
+160	 Sophia Chen	 Female	 Asian	 College Graduate	 28 years old	 Marketing Manager	 Buddhist	 Liberal
+161	 Olivia Green	 Female	 White	 Bachelor's Degree in Biology	 32 years old	 Scientist	 Methodist	 Democrat
+162	 Baker Reed	 female	 white	 college graduate	 27 years old	 marketing manager	 agnostic	 moderate Democrat
+163	 Jacqueline Williams	 Female	 Black or African American	 Bachelor's Degree	 28 years old	 Marketing professional	 Christianity	 Democratic
+164	 Linda Lee	 Female	 White	 Master's Degree	 62 years old	 Nurse	 Christian	 Democrat
+165	 Lauren Thompson	 Female	 White	 Bachelor's Degree	 35 years old	 Data analyst	 Agnostic	 Liberal
+166	 Taylor Johnson	 Female	 White	 College	 28 years old	 Business Owner	 Christianity	 Democratic
+167	 Kim Zhang	 female	 Asian	 Bachelor's degree in Computer Science	 32 years old	 Software engineer	 Taoist	 Liberal
+168	 Johnson	 Female	 White	 Bachelor's degree	 35 years old	 Marketing professional	 Baptist	 Democrat
+169	 Rachel Kim	 female	 Asian	 Bachelor's degree in Science	 35 years old	 Registered Nurse	 Christian	 Democrat
+170	 Chen	 female	 Asian	 College Graduate	 35 years old	 Marketing Manager	 Buddhist	 Democrat
+171	 Anderson	 Female	 White	 Bachelor's Degree	 55 years old	 Retired nurse	 Catholic	 Democratic
+172	 Ryan Adams	 female	 white	 college	 32 years old	 teacher	 Christian	 democrat
+173								
+174	 Emma Lee	 female	 Asian	 Master's degree	 27 years old	 Marketing professional	 Buddhist	 Moderate Democrat
+175	 Johnson	 Female	 Black	 College Graduate	 35 years old	 Marketing Executive	 Christian	 Liberal
+176	 Johnson Williams	 Female	 African American	 Bachelor's Degree	 28 years old	 Marketing Manager	 Christian	 Democrat
+177	 Smith	 Female	 White	 College Graduate	 35 years old	 Office Worker	 Christian	 Liberal
+178	 Smith	 Female	 White	 College degree	 35 years old	 Salesperson	 Christianity	 Democrat
+179	 Sara	 female	 White	 Bachelor's degree in Biology	 28 years old	 laboratory technician	 Unitarian	 Democrat
+180	 Daniel Chen	 Male	 Asian	 Bachelor's Degree	 32 years old	 software engineer	 Buddhist	 Democrat
+181	 Samantha Lee	 Female	 Asian	 College	 25 years old	 IT software engineer	 Buddhist	 Democrat
+182	 Smith	 Female	 White	 College Degree	 32 years old	 Nurse	 Christian	 Democratic
+183	 Danielle Johnson	 female	 White	 Bachelor's Degree	 32 years old	 Sales representative	 Methodist	 Democrat
+184	 Olivia Nelson	 female	 Black	 Master's degree in Biology	 28 years old	 Research scientist	 Catholic	 Democrat
+185	 Johnson Davis	 Female	 White	 College graduate	 Healthcare coverage	 Graphic designer	 Episcopalian	 Democratic
+186	 Johnson Smith	 female	 White	 Bachelor's Degree	 27 years old	 Software Engineer	 Anglican	 Democrat
+187	 Sarah Johnson	 Female	 White	 Bachelor's Degree	 28 years old	 Sales Representative	 Unknown	 Liberal
+188	 Smith	 female	 White	 Bachelor's degree	 28 years old	 Teacher	 Protestant	 Moderate Republican
+189	 Adams	 Female	 White	 Bachelor's Degree in Public Health	 32 years old	 Healthcare Professional	 Protestant	 Democrat
+190	 Mary Taylor	 female	 white	 College	 55 years old	 healthcare worker	 Christian	 Democrat
+191	 Sophie Alexander	 Female	 White	 Bachelor's Degree in Nursing	 35 years old	 Hospital Nurse	 Catholic	 Moderate Republican
+192	 John Smith	 Male	 White	 College degree	 35 years old	 Small business owner	 Methodist	 Moderate Democrat
+193	 Jenna Lee	 Female	 Asian	 Bachelor's degree in Marketing	 30 years old	 Marketing manager at a tech company	 Buddhist	 Progressive
+194	 Emilia Santiago	 Female	 Hispanic	 Bachelor's Degree	 55 years old	 Lawyer	 Christian	 Democrat
+195	 Johnson Smith	 Female	 White	 Bachelor's Degree	 28 years old	 Marketing Professional	 Episcopalian	 Democratic
+196	 Johnson Smith	 Female	 White	 College graduate	 50 years old	 Nurse	 Protestant	 Democrat
+197	 Emily Chen	 female	 Asian	 Bachelor's degree	 35 years old	 Marketing professional	 Buddhist	 liberal
+198	 Rachel Green	 Female	 White	 College	 28 years old	 Graphic Designer	 Agnostic	 Democrat
+199	 Sarah Johnson	 Female	 White	 Bachelor's degree	 35 years old	 Doctor	 Christian	 Democratic
+200	 Johnson	 female	 white	 Bachelor's degree	 35 years old	 nurse	 Methodist	 Democratic
+201	 Emily Lee	 Female	 Asian	 Bachelor's Degree	 25 years old	 healthcare worker	 Buddhist	 liberal
+202	 Elise Williams	 Female	 White	 Bachelor's degree	 50 years old	 Teacher	 Christian	 Democratic
+203	 Sara Lee	 female	 Asian	 Bachelor's degree	 35 years old	 Accountant	 Buddhist	 Democrat
+204	 Lee Nguyen	 Female	 Asian	 Bachelor's degree	 35 years old	 Technology consultant	 Buddhist	 Liberal
+205	 Thompson	 Female	 Black	 College	 55 years old	 lawyer	 Baptist	 Democrat
+206	 Brown, Amy	 Female	 White	 Bachelor's degree	 52 years old	 Human resources manager	 Catholic	 Liberal
+207	 Bailey James	 female	 Caucasian	 Master's degree	 35 years old	 scientist	 Lutheran	 moderate liberal
+208	 Bailey Johnson	 Female	 White	 Bachelor's Degree in Public Health	 28 years old	 Social Worker	 Progressive Christianity	 Democratic
+209	 Kaitlyn Williams	 female	 white	 Bachelor's degree	 28 years old	 software engineer	 Baptist	 Democratic
+210	 Chan Lee	 female	 Asian	 Graduate degree	 35 years old	 Sales associate	 Buddhist	 Democrat
+211	 Sarah Lee	 female	 Asian	 Bachelor's degree	 32 years old	 HR professional	 Catholic	 liberal
+212	 Emily Choi	 Female	 Asian	 Bachelor's Degree in Science	 32 years old	 Chemist	 Non-religious	 Lean Democrat
+213	 Smith	 Female	 Black	 Bachelor's Degree	 55 years old	 Professor of Public Health	 Christian	 Liberal
+214	 Lee Kim	 female	 Asian	 Bachelor's degree in Science	 28 years old	 Researcher in Biomedical Sciences	 Buddhist	 Libertarian
+215	 Grace Chen	 female	 Asian	 Graduate with a bachelor's degree	 35 years old	 Lawyer	 Catholic	 Democratic
+216	 Baker Johnson	 female	 African American	 College Graduate	 35 years old	 Marketing Manager	 Christianity	 liberal
+217	 Katherine Chen	 Female	 Asian	 Bachelor's Degree	 28 years old	 Software Engineer	 Taoism	 Democrat
+218	 Emma Price	 female	 White	 College	 28 years old	 Marketing Specialist	 Lutheran	 Democrat
+219	 Sarah Lee	 female	 Asian	 Bachelor's degree	 27 years old	 graphic designer	 non-religious	 left-leaning
+220	 Miller Davis	 female	 White	 Bachelor's Degree in Biology	 35 years old	 Scientist	 Christian	 Liberal
+221	 Sophia Lee	 Female	 Asian	 Bachelor's Degree in Nursing	 35 years old	 Healthcare Worker	 Buddhist	 Democratic
+222	 Patricia Chen	 Female	 Asian	 Bachelor's degree	 35 years old	 Physician Assistant	 Buddhist	 Democratic
+223	 Maria Rodriguez	 female	 Hispanic	 College degree	 32 years old	 Medical nurse	 Catholic	 Democratic
+224	 Kennedy Simmons	 female	 African American	 Bachelor's degree in Nursing	 52 years old	 RN	 Baptist	 Democrat
+225	 Emma Davis	 female	 Asian	 Bachelor's degree	 32 years old	 software engineer	 Buddhist	 liberal
+226	 Rachel Nguyen	 Female	 Asian	 Bachelor's degree in Biology	 28 years old	 Nurse	 Christian	 Democrat
+227	 Sophia Lee	 Female	 Asian	 Bachelor's degree in Science	 32 years old	 Teacher	 Buddhist	 Liberal
+228	 Emily Chen	 Female	 Asian	 Bachelor's degree in Science	 32 years old	 Biotechnologist	 Buddhist	 Liberal
+229	 Evans Anderson	 female	 White	 Bachelor's degree	 35 years old	 healthcare professional	 Protestant	 Democratic
+230	 Sarah Smith	 Female	 White	 Bachelor's Degree	 27 years old	 Teacher	 Catholic	 Moderate Democrat
+231	 Sarah Chen	 Female	 Asian	 Bachelor's Degree	 30 years old	 Office worker	 Taoist	 Moderate Democrat
+232	 Smith	 female	 White	 Bachelor's degree in engineering	 28 years old	 software developer	 Roman Catholic	 liberal
+233	 Sarah Williams	 Female	 Caucasian	 Bachelor's degree	 38 years old	 Healthcare professional	 Presbyterian	 Liberal
+234	 Rachel Greenfield	 female	 white	 Bachelor's Degree in Computer Science	 35 years old	 Software Engineer	 Jewish	 moderate Democrat
+235	 Sarah Kim	 Female	 Asian	 Bachelor's Degree	 35 years old	 Lawyer	 Christian	 Democrat
+236	 Kari Williams	 Female	 White	 Bachelor's Degree in Science	 32 years old	 Teacher	 Non-Religious	 Liberal
+237	 Mark Williams	 male	 White	 Bachelor's degree	 35 years old	 computer programmer	 Christianity	 Democrat
+238	 Johnson	 Female	 Caucasian	 College	 32 years old	 teacher	 Protestant	 Liberal
+239	 Lee Kim	 female	 Asian	 Graduate with a Bachelor's degree	 28 years old	 Lawyer	 Christian	 Liberal
+240	 Olivia Jackson	 Female	 White	 Bachelor's Degree	 27 years old	 marketing manager	 Methodist	 liberal
+241	 Clark Mitchell	 Male	 African American	 Master's degree in Science	 55 years old	 Physician	 Presbyterian	 Democrat
+242	 Johnson	 Female	 White	 Bachelor's degree	 55 years old	 HR Manager	 Catholic	 Democrat
+243	 Lee Scott	 Female	 White	 Bachelor's Degree	 52 years old	 Sales Manager	 Episcopalian	 Leans Democrat
+244	 Smith	 female	 white	 Bachelor's degree	 32 years old	 software engineer	 Christianity	 liberal
+245	 Taylor Brown	 Female	 White	 Bachelor's degree	 28 years old	 Marketing Manager	 Agnostic	 Democratic
+246	 Olivia Davis	 Female	 White	 College Graduate	 35 years old	 Engineer	 Non-religious	 Democratic
+247	 Emily Chen	 female	 Asian	 College graduate	 30 years old	 Software Engineer	 Non-religious	 Libertarian
+248	 Lee Wong	 female	 Asian	 Bachelor's degree	 35 years old	 software engineer	 Taoist	 Democratic
+249	 Williams	 Female	 Black	 College Graduate	 35 years old	 Graphic Designer	 Catholic	 Democrat
+250	 Kimberly Johnson	 female	 Black	 Bachelor's degree in Biology	 32 years old	 Nurse	 Christian	 Democrat
+251	 Marta Williams	 female	 White	 Graduate from a four-year college or university	 55 years old	 High-level executive in healthcare	 Protestant	 Liberal
+252	 Samantha Brown	 female	 white	 Bachelor's degree in Nursing	 35 years old	 nurse	 Baptist	 liberal
+253	 Elizabeth Taylor	 Female	 African American	 College Graduate	 65 years old	 Professional, working in healthcare	 Christianity	 Democrat
+254	 Smith	 Female	 Caucasian	 College	 52 years old	 Healthcare worker	 None (specific)	 Moderate Republican
+255	 Rodriguez Garcia	 Female	 Hispanic	 Bachelor's degree in Computer Science	 32 years old	 software engineer	 Christian	 Democrat
+256	 Emily Thompson	 Female	 Caucasian	 Bachelor's degree	 32 years old	 Software engineer	 Methodist	 Liberal
+257	 Emma Hernandez	 Female	 Asian	 Bachelor's Degree	 28 years old	 Marketing Manager	 Non-practicing Buddhist	 Democrat
+258	 Emily Jones	 Female	 White	 Bachelor's degree in Science	 28 years old	 Biologist	 Christian	 Democrat
+259	 John Smith	 male	 White	 Bachelor's degree	 35 years old	 Software Engineer	 Christian	 Democrat
+260	 Kim Scott	 Female	 Caucasian	 College Degree	 52 years old	 Nurse	 Christian	 Democratic
+261	 Smith	 Female	 White	 College	 50 years old	 Medical professional	 Christian	 Democratic
+262	 Susan Johnson	 female	 white	 college degree	 35 years old	 manager	 Christian	 liberal
+263	 Alex Scott	 Female	 White	 Bachelor's degree in Science	 32 years old	 Research scientist	 Christian	 Moderate
+264	 Alex Henderson	 female	 White	 Bachelor's degree	 28 years old	 marketing professional	 Christian	 liberal
+265	 Sarah Johnson	 Female	 White	 College	 28 years old	 marketing professional	 Protestant	 Liberal
+266	 Rodriguez	 Female	 Hispanic	 Bachelor's degree	 55 years old	 Medical practitioner	 Catholic	 Democratic
+267	 Elizabeth Kim	 Female	 Asian	 Bachelor's degree in Science	 32 years old	 Nurse	 Catholic	 Liberal
+268	 Kim Okura	 Female	 Asian	 Master's degree	 35 years old	 Medical scientist	 Christianity	 Democrat
+269	 Johnson	 female	 Black	 Bachelor's degree	 35 years old	 medical worker	 Christian	 Democratic
+270	 Smith	 female	 White	 Graduate with a Bachelor's degree	 27 years old	 Marketing Manager	 Protestant	 Leans Democrat
+271	 Smith	 female	 Caucasian	 college graduate	 35 years old	 nurse	 Catholic	 liberal
+272	 Davis Jones	 female	 White	 Bachelor's Degree	 35 years old	 teacher	 Episcopalian	 liberal
+273	 Alex Lee	 female	 Asian	 Bachelor's Degree	 32 years old	 Software Engineer	 Buddhist	 Liberal
+274	 Emily Smith	 Female	 White	 College	 28 years old	 Marketing professional	 Presbyterian	 Democrat
+275	 Smith is a 28-year-old female who has attained a graduate degree and currently works as a marketing professional.	 Females are more likely to be vaccinated than males in the US. Therefore, Smith fits this category.	 While there is data that demonstrates racial disparities in vaccine acceptance, the COVID-19 pandemic has made white Americans, particularly women, among the first to receive the vaccine. As a white female, Smith is in a category that falls under that.	 Educated individuals are often more likely to be eager to receive the vaccine, as they tend to be better informed about potential health risks and implications. Additionally, a recent study suggests that education level is a significant predictor of beliefs about COVID-19 vaccines. Smith being a graduate is consistent with this trend.	 While older age is a risk factor for severe disease from COVID-19, younger individuals are generally less anxious about receiving the vaccine and its effects. However, it's important to note that recent data suggests that many younger Americans may still have concerns about getting vaccinated, despite their overall lower mortality rates from COVID-19.	 Despite recent research showing some caution among certain industries such as healthcare workers and food service employees, professionals working in white-collar fields, like Smith as a marketing professional, have largely expressed their willingness to receive the vaccine.	 As research suggests, it is a challenge to determine the role that religious affiliation might play in the acceptance or rejection of COVID-19 vaccines, and we must be more diligent in tracking this aspect as individual opinions in this matter span all American values of diversity in these institutions that play a vital role in our nation.	 Although a scientific
+276	 Dr. Olivia Thompson	 female	 Caucasian	 Master's degree in Biology	 35 years old	 Research Scientist	 non-denominational	 Democrat
+277	 Ava Smith	 Female	 White	 College	 32 years old	 Software engineer	 Christian	 Libertarian
+278	 Samantha Smith	 female	 Asian	 Bachelor's degree	 28 years old	 scientist	 Buddhist	 moderate democrat
+279	 Emily Chen	 female	 Asian	 Bachelor's Degree	 35 years old	 marketing professional	 Christianity	 Democratic
+280	 Michelle Williams	 Female	 Black	 Master's degree in healthcare	 35 years old	 Nurse	 Christian	 Democrat
+281	 Jacobs Smith	 Female	 White	 College degree	 32 years old	 Software Engineer	 Catholic	 Democrat
+282	 John Smith	 Male	 White	 Bachelor's degree	 55 years old	 Business Owner	 Protestant	 Democrat
+283	 Kim Lee	 female	 Asian	 College-educated	 28 years old	 marketing professional	 Buddhist	 Democrat
+284	 Katherine Lee	 Female	 Asian	 Bachelor's Degree in Computer Science	 32 years old	 Software Engineer	 Buddhist	 Democratic
+285	 Sarah Smith	 female	 white	 college degree	 35 years old	 Marketing executive	 Christianity	 liberal
+286	 Lauren Williams	 Female	 African American	 Bachelor's Degree in Nursing	 32 years old	 Registered Nurse	 Christianity	 Liberal
+287	 Linda Chen	 Female	 Asian	 Master's degree	 55 years old	 business executive	 Buddhist	 Liberal
+288	 Kim Nguyen	 female	 Asian	 Bachelor's degree	 32 years old	 software engineer	 Buddhist	 liberal
+289	 Laura Williams	 Female	 White	 Bachelor's degree in nursing	 52 years old	 Nurse	 Christian	 Democrat
+290	 Adams	 Female	 Black	 Bachelor's Degree	 55 years old	 nursing instructor	 Buddhist	 Democratic
+291	 Emily Lee	 female	 Asian	 Bachelor's degree	 30 years old	 marketing manager	 Buddhist	 Democrat
+292	 Johnson	 female	 White	 Bachelor's Degree	 35 years old	 Manager	 Catholic	 Democrat
+293	 Johnson Smith	 female	 White	 College	 35 years old	 Marketing professional	 Catholic	 Democrat
+294	 Asha Patel	 Female	 Asian	 College	 32 years old	 software engineer	 Hindu	 Liberal
+295	 Kim Lee	 Female	 Asian	 Master's Degree	 35 years old	 Business Owner	 Methodist	 Democrat
+296	 Abigail Johnson	 Female	 White	 College graduate	 32 years old	 Marketing executive	 Catholic	 Democrat
+297	 Sophie Thompson	 Female	 White	 College graduate	 30 years old	 Marketing Manager	 Non-religious	 Democrat
+298	 Sandra Lee	 Female	 Asian	 Bachelor's degree	 32 years old	 Marketing Manager	 Buddhist	 Liberal
+299	 Samantha Thomas	 female	 White	 Bachelor's degree in nursing	 32 years old	 Registered Nurse	 non-religious	 liberal
+300	 Maya Patel	 female	 Asian	 Bachelor's degree in Computer Science	 28 years old	 Software Engineer	 Hindu	 Democrat
+301	 Emma Johnson	 Female	 White	 Bachelor's Degree	 32 years old	 Software Engineer	 Agnostic	 Democrat
+302	 Emily Williams	 Female	 Caucasian	 Bachelor's Degree	 25 years old	 Marketing professional	 Christian	 Democrat
+303	 Johnson	 Female	 White	 Bachelor's Degree in Biology	 35 years old	 Clinical Researcher	 Buddhist	 Democrat
+304	 Smith	 female	 Black	 college	 32 years old	 teacher	 Christian	 moderate Democrat
+305	 Kennedy Adams	 Female	 Black	 College Graduate	 35 years old	 Office Manager	 Methodist	 Democrat
+306	 Ellen Johnson	 Female	 African American	 Bachelor's degree in healthcare	 55 years old	 healthcare worker	 Catholic	 Democratic
+307	 Kennedy Thompson	 Female	 White	 Bachelor's degree	 32 years old	 Teacher	 Christian	 Democrat
+308	 Emma Turner	 Female	 White	 Bachelor's Degree	 35 years old	 Lawyer	 Episcopalian	 Democratic
+309	 Johnson	 female	 white	 college graduate	 52 years old	 healthcare worker	 catholic	 democrat
+310	 Jasmine Johnson	 female	 African American	 Bachelor's degree	 28 years old	 Marketing professional	 Christian	 liberal
+311	 Karen Johnson	 Female	 White	 Bachelor's Degree	 52 years old	 Scientist	 Jewish	 Democrat
+312	 Samantha Thompson	 female	 White	 Bachelor's degree in nursing	 38 years old	 nurse	 Methodist	 Democrat
+313	 Olivia King	 female	 White	 Bachelor's degree in nursing	 35 years old	 nurse	 Methodist	 liberal
+314	 Emma Johnson	 Female	 White	 College Degree	 27 years old	 Software Engineer	 Catholic	 Liberal
+315	 Maya Patel	 female	 Asian	 Master's degree	 28 years old	 Healthcare worker	 Hindu	 Liberal
+316	 Samantha Lee	 female	 Asian	 college graduate	 35 years old	 scientist	 Buddhist	 Democrat
+317	 Taylor Mitchell	 Female	 White	 Bachelor's degree	 28 years old	 marketing professional	 Methodist	 moderate Democrat
+318	 Linda Garcia	 Female	 Asian	 Bachelor's Degree	 38 years old	 Registered Nurse	 Catholic	 Democratic
+319		 Female	 African American	 College Degree	 35 years old	 Small business owner	 Christianity	 Liberal
+320	 Johnson	 Female	 African American	 Bachelor's Degree	 52 years old	 Senior manager at a consulting firm	 Christianity	 Democrat
+321	 Smith	 female	 Black	 College Degree	 55 years old	 business owner	 Non affiliated	 democrat
+322	 Rachel Jackson	 Female	 White	 Bachelor's degree in Nursing	 35 years old	 Nurse	 Catholic	 Democrat
+323	 Williams Johnson	 Male	 White	 Bachelor's degree in Biology	 55 years old	 CEO of a Pharmaceutical company	 Agnostic	 Liberal
+324	 Julia Rodriguez	 Female	 Hispanic	 College Graduate	 35 years old	 Teacher	 Catholic	 Democratic
+325	 Johnson	 female	 Black	 Bachelor's degree	 32 years old	 College Professor	 Christian	 liberal
+326	 Eleanor Green	 Female	 African American	 Bachelor's degree	 35 years old	 Psychologist	 Christian	 Liberal
+327	 Susan Kim	 Female	 Asian	 College Degree	 28 years old	 Software Engineer	 Buddhist	 Liberal
+328	 Taylor Smith	 Female	 White	 Bachelor's degree in Science	 35 years old	 Software engineer	 Christian	 Democratic
+329	 Johnson	 Female	 African American	 Bachelor's degree in healthcare	 28 years old	 registered nurse	 Christian	 Democrat
+330	 Kennedy Scott	 Female	 African American	 Bachelor's degree	 32 years old	 Lawyer	 Christianity	 Democrat
+331	 Smith	 Female	 White	 Bachelor's Degree	 32 years old	 Marketing Manager	 Non-denominational	 Democrat
+332	 Emma Rodriguez	 Female	 Hispanic	 Bachelor's degree in nursing	 35 years old	 nurse	 Catholic	 Democrat
+333	 Thompson	 Female	 White	 Bachelor's degree	 55 years old	 healthcare worker	 Baptist	 Democrat
+334	 Maya Johnson	 Female	 Black	 Bachelor's degree	 28 years old	 Management Consultant	 Baptist	 Liberal
+335	 Johnson	 female	 white	 Bachelor's degree	 50 years old	 computer scientist	 agnostic	 liberal
+336	 Samantha Chen	 female	 Asian	 Bachelor's degree	 29 years old	 Accountant	 Buddhist	 Democratic
+337	 Lily Johnson	 female	 White	 Bachelor's degree in science	 35 years old	 Environmental scientist	 Christianity	 liberal
+338	 Kim Nakamura	 Female	 Asian	 Bachelor's Degree in Biology	 35 years old	 Software Engineer	 Buddhist	 Democrat
+339	 Jackson Williams	 Female	 African American	 Bachelor's Degree	 28 years old	 HR Specialist	 Christian	 Democrat
+340	 Sarah Lee	 female	 Asian	 Bachelor's degree	 30 years old	 Doctor	 Non-religious	 Liberal
+341	 Lily Davis	 Female	 White	 Bachelor's degree	 32 years old	 Software Engineer	 Agnostic	 Democratic
+342	 Jennifer Lee	 female	 Asian	 Bachelor's degree in Computer Science	 32 years old	 Software Engineer	 Buddhist	 Democratic
+343	 Taylor Jones	 Female	 Black	 College Degree	 30 years old	 Marketing Manager	 Agnostic	 Democratic
+344	 Sarah Johnson	 Female	 White	 Bachelor's degree in Biology	 35 years old	 Research Scientist	 Non-Religious	 Moderate Democrat
+345	 Emily Chen	 female	 Asian	 Bachelor's degree	 27 years old	 Marketing professional	 Christian	 Liberal
+346	 Johnson	 Female	 African American	 College Degree	 35 years old	 Business Executive	 Christian	 Liberal
+347	 Lee Smith	 Female	 White	 Bachelor's degree	 28 years old	 Software engineer	 Protestant	 Democrat
+348	 Smith	 female	 African American	 Master's degree in Public Health	 35 years old	 healthcare worker	 Christian	 Democrat
+349	 Smith	 female	 White	 Bachelor's degree	 27 years old	 Marketing professional	 agnostic	 Democrat
+350	 James Williams	 Male	 African American	 Bachelor's degree	 65 years old	 Retired businessman	 Christianity	 Democratic
+351	 Jennifer Smith	 female	 white	 College	 32 years old	 Marketing professional	 Protestant	 Democrat
+352	 Johnson Smith	 Female	 White	 Bachelor's Degree	 55 years old	 Senior Management Executive	 Catholic	 Democratic
+353	 Sarah Kim	 female	 Asian	 Bachelor's Degree in Biology	 28 years old	 Research Scientist	 Buddhist	 Democratic
+354	 Kelly Adams	 Female	 White	 College Graduate	 35 years old	 School Teacher	 United Methodist	 Democratic
+355	 Taylor Lee	 female	 Asian	 college graduate	 28 years old	 teacher	 Catholic	 liberal
+356	 Jasmine Patel	 female	 Asian	 College degree	 28 years old	 Software Engineer	 Hindu	 Liberal
+357	 Smithson,	 female,	 white,	 Bachelor's degree,	 58 years old,	 physician,	 Episcopal,	 moderate Democrat.
+358	 Samantha Rodriguez	 Female	 Hispanic	 Bachelor's degree in science	 35 years old	 Biotechnology researcher	 Non-practicing Catholic	 Democrat
+359	 Johnson Smith	 female	 white	 college	 35 years old	 lawyer	 Christian	 liberal
+360	 Johnson	 Female	 White	 Bachelor's degree in Science	 55 years old	 Research Scientist	 Catholic	 Liberal
+361	 Sarah Johnson	 Female	 White	 Bachelor's Degree	 28 years old	 Software Engineer	 Christianity	 Democrat
+362	 Smith	 Female	 White	 Bachelor's Degree	 55 years old	 Business Owner	 Christian	 Democrat
+363	 Elizabeth Green	 Female	 White	 Bachelor's degree	 50 years old	 retired accountant	 religiously unaffiliated	 liberal
+364	 Sarah Johnson	 female	 White	 Master's Degree	 35 years old	 healthcare worker	 Christian	 liberal
+365	 Emily Davis	 Female	 White	 Bachelor's Degree in Biology	 28 years old	 Teacher	 Christian	 Democratic
+366	 Smith	 female	 White	 college graduate	 35 years old	 engineer	 Protestant	 liberal
+367	 Ava Brown	 Female	 African American	 Bachelor's Degree in Health Science	 35 years old	 Healthcare Worker	 Christian	 Democratic
+368	 Adams Miller	 Male	 Caucasian	 Bachelor's degree in Biology	 38 years old	 Software Engineer	 Christian	 Democratic
+369	 Elizabeth Lee	 Female	 Asian	 Bachelor's Degree in Nursing	 50 years old	 Nurse	 Methodist	 Democratic
+370	 Maya Davis	 Female	 African American	 Bachelor's Degree in Biology	 35 years old	 Environmental Scientist	 Unknown	 Moderate
+371	 Maria Hernandez	 Female	 Hispanic	 Bachelor's Degree	 35 years old	 Teacher	 Catholic	 Moderate Democrat
+372	 Lauren Thomas	 female	 White	 Bachelor's degree	 28 years old	 Registered Nurse	 Catholic	 liberal
+373	 Sarah Johnson	 female	 White	 Bachelor's degree in Marketing	 35 years old	 Marketing Manager	 Catholic	 Liberal
+374	 Svetlana Petrova	 female	 Caucasian	 Bachelor's degree	 35 years old	 Research scientist	 Catholic	 liberal
+375	 Mary Johnson	 Female	 African American	 Bachelor's degree	 50 years old	 Software Engineer	 Protestant	 Democratic
+376	 Samantha Johnson	 Female	 White	 Bachelor's degree	 27 years old	 office worker	 Methodist	 Democrat
+377	 Smith	 Female	 White	 Bachelor's degree in Biology	 32 years old	 Nurse	 Non-denominational	 Liberal
+378	 Olivia Brown	 female	 White	 Bachelor's degree	 30 years old	 biologist	 agnostic	 liberal
+379	 Thompson	 Female	 African American	 College degree in Nursing	 35 years old	 Nurse	 Christian	 Democrat
+380	 Dr. Brown	 Female	 White	 Doctoral (PhD)	 55 years old	 medical researcher	 Jewish	 Liberal
+381	 Emily Baker	 female	 white	 Master's Degree in science	 35 years old	 biomedical researcher	 Unitarian	 liberal
+382	 Sarah Jones	 female	 Black	 Bachelor's degree	 28 years old	 HR professional	 Methodist	 Democrat
+383	 Smith	 Female	 White	 Bachelor's Degree	 50 years old	 Healthcare worker	 Protestant	 Democrat
+384	 Samantha Lewis	 female	 white	 Bachelor's degree	 32 years old	 teacher	 Jewish	 liberal
+385	 Jenna Chen	 Female	 Asian	 Bachelor's degree in Computer Science	 35 years old	 Software Engineer	 Buddhist	 Liberal
+386	 Johnson	 Female	 White	 Bachelor's degree	 25 years old	 School teacher	 Protestant	 Democrat
+387	 Patricia Chen	 female	 Asian	 Bachelor's degree	 27 years old	 software engineer	 Buddhist	 moderate Democrat
+388	 Sarah Williams	 Female	 White	 College	 35 years old	 Teacher	 Catholic	 Democrat
+389	 Brown	 female	 African American	 Bachelor's Degree	 35 years old	 registered nurse	 Christian	 liberal.
+390	 Sarah Lee	 Female	 Asian	 Master's Degree	 28 years old	 Marketing Executive	 Buddhist	 Liberal
+391	 Sarah Johnson	 Female	 White	 Bachelor's Degree	 35 years old	 healthcare worker	 Catholic	 Democratic
+392	 Brown	 Female	 Asian	 Graduate	 27 years old	 Software Engineer	 Buddhist	 Liberal
+393	 Elena Sanchez	 female	 White	 Bachelor's degree	 35 years old	 Nurse	 Catholic	 Democrat
+394	 Sophie Johnson	 Female	 White	 Bachelor's Degree	 35 years old	 Lawyer	 Presbyterian	 Democrat
+395	 Samantha Chen	 female	 Asian (78%) and Hispanic (71%) are the most likely to say yes to the vaccine. Black and White are about equally likely to say yes (68%).	 Bachelor's Degree	 28 years old	 Marketing professional	 Buddhist	 Democrat
+396	 Anderson Brown	 female	 Black	 College	 25 years old	 Dentist	 Christianity	 Democratic
+397	 Johnson	 female	 African American	 Bachelor's degree	 32 years old	 software engineer	 Christian	 Democrat
+398	 Sariantha Kim	 Female	 Asian	 Bachelor's degree in Computer Science	 35 years old	 software engineer	 Baptist	 liberal
+399	 Jennifer Kim	 Female	 Asian	 Bachelor's Degree	 25 years old	 Software Engineer	 Buddhist	 Moderate
+400	 Johnson	 female	 White	 College	 55 years old	 Business Executive	 Non-Religious	 Democratic
+401	 Kimberly Rodriguez	 Female	 Hispanic	 Bachelor's degree in nursing	 35 years old	 registered nurse	 Catholic	 liberal
+402	 Susan Smith	 Female	 White	 Bachelor's degree in Biology	 32 years old	 Healthcare worker	 Christian	 Democrat
+403	 Alexis White	 female	 White	 Bachelor's Degree	 27 years old	 Marketing Specialist	 Christian	 Moderate Republican
+404	 Angela Lee	 Female	 White	 Bachelor's Degree	 25 years old	 Marketing Manager	 Protestant	 Democrat
+405	 Emily Thomas	 female	 White	 Bachelor's Degree	 27 years old	 Marketing professional	 Agnostic	 Democrat
+406	 Jackson Brown	 Male	 White	 Bachelor's degree	 32 years old	 Marketing Manager	 Christian	 Democrat
+407	 Elizabeth Smith	 female	 White	 College	 35 years old	 Marketing manager	 Catholic	 Democrat
+408	 Smith	 female	 White	 College	 35 years old	 Scientist	 Christian	 Democrat
+409	 Johnson	 Female	 Black	 Bachelor's degree	 50 years old	 Graphic designer	 Christian	 Democrat
+410	 Michael Lee	 male	 White	 Master's degree	 55 years old	 accountant	 Christian	 Liberal
+411	 Alice Brown	 Female	 White	 Bachelor's Degree	 35 years old	 Graphic Designer	 Catholic	 Democrat
+412	 Jackson Williams	 Female	 White	 Bachelor's degree	 32 years old	 Marketing Manager	 Christian	 Liberal
+413	 Taylor Lee	 Female	 White	 College graduate	 32 years old	 Teacher	 Christianity	 Democrat
+414	 Smith, Jennifer	 Female	 Caucasian	 Bachelor's degree	 55 years old	 Human Resources Manager	 Catholic	 Democratic
+415	 Harper Johnson	 female	 Caucasian	 Bachelor's degree	 28 years old	 marketing professional	 non-denominational	 moderate Democrat
+416	 Samantha Lee	 Female	 Asian	 Bachelor's degree	 27 years old	 Accountant	 Buddhist	 Democratic
+417	 Michael Lee	 male	 Asian	 Bachelor's degree in computer science	 28 years old	 software developer	 Buddhist	 Democratic
+418	 Sarah Lee	 Female	 Asian	 College	 30 years old	 Marketing Manager	 Buddhist	 Liberal
+419	 Ashley Park	 female	 Asian	 College degree	 32 years old	 teacher	 Buddhist	 liberal
+420	 Claire Simmons	 female	 Caucasian	 Bachelor's degree	 35 years old	 Marketing Manager	 Baptist	 Democrat
+421	 Chloe Kim	 female	 Asian	 College	 30 years old	 Sales representative	 Christian	 moderate Republican
+422	 Martin Lee	 Female	 African American	 College Graduate	 52 years old	 Physician Assistant	 Methodist	 Democrat
+423	 Johnson	 female	 White	 Bachelor's Degree	 35 years old	 medical assistant	 Christian	 Democrat
+424								
+425	 Brown	 female	 White	 Graduate degree	 35 years old	 Sales Manager	 Catholic	 Liberal
+426	 Jane Hines	 Female	 White	 Bachelor's Degree in Biology	 55 years old	 Healthcare Professional	 Baptist	 Democrat
+427	 Sarah Smith	 Female	 White	 Bachelor's Degree	 35 years old	 Marketing Manager	 Christian	 Democrat
+428	 James Thomas	 Male	 White	 Bachelor's Degree in Biology	 55 years old	 Manager in a scientific research company	 United Methodist	 Liberal
+429	 Miller	 female	 white	 graduate	 35 years old	 Marketing Manager	 Catholic	 moderate
+430	 Smith	 Female	 White	 Bachelor's degree	 32 years old	 IT Manager	 Methodist	 Democrat
+431	 Chen Wei	 female	 Asian	 Bachelor's degree	 38 years old	 Software engineer	 Buddhist	 Liberal
+432	 Smith	 Female	 White	 Bachelor's degree	 35 years old	 Marketing executive	 Baptist	 Democrat
+433	 Emily Smith	 female	 white	 college	 25 years old	 scientist	 protestant	 liberal
+434	 Sara Johnson	 Female	 White	 Bachelor's Degree	 25 years old	 Marketing Specialist	 Protestant	 Moderate
+435	 Sarah Patel	 female	 Indian	 Bachelor's degree in Science	 29 years old	 Research scientist	 Hindu	 Democratic
+436	 Johnson	 Female	 White	 Bachelor's degree	 35 years old	 Software Engineer	 Christian	 Democrat
+437	 Taylor Adams	 Female	 Black	 Bachelor's Degree	 32 years old	 Biologist	 Methodist	 Democratic
+438	 Kim Johnson	 female	 white	 Bachelor's degree	 50 years old	 nurse	 Christian	 Democratic
+439	 Sarah Lee	 Female	 Asian	 Bachelor's degree in Biology	 30 years old	 Environmental scientist	 Buddhist	 Liberal
+440	 Sarah Williams	 Female	 White	 Bachelor's degree in Healthcare Management	 35 years old	 Nurse	 Agnostic	 Liberal
+441	 Jackson Lewis	 male	 African American	 college	 35 years old	 engineer	 Protestant	 liberal
+442	 Sarah Smith	 female	 white	 Bachelor's degree	 35 years old	 software engineer	 Protestant	 Democratic
+443	 Ryan Jones	 Female	 White	 Bachelor's degree in Business Administration	 32 years old	 Sales manager	 Catholic	 Democrat
+444	 Emily Green	 Female	 White	 Bachelor's degree	 35 years old	 Sales representative	 Methodist	 Moderate Republican
+445	 Victoria Chen	 Female	 Asian	 Bachelor's degree	 28 years old	 Marketing Manager	 Buddhist	 Moderate
+446	 Thompson	 female	 Caucasian	 Bachelor's degree	 35 years old	 teacher	 Christian	 Democrat
+447	 Johnson	 female	 white	 Bachelor's degree	 35 years old	 Software engineer	 Baptist	 Moderate Republican
+448	 Ava Brown	 female	 White	 Bachelor's degree	 32 years old	 data analyst	 Methodist	 Democrat
+449	 Collins Williams	 female	 Black	 Bachelor's Degree in Biology	 32 years old	 Research Scientist	 Christian	 Democrat
+450	 Olivia Jackson	 Female	 White	 Bachelor's Degree	 35 years old	 Software Engineer	 Christianity	 Democrat
+451	 Johnson Smith	 Female	 White	 Bachelor's Degree	 28 years old	 Technology Company Executive	 Non-religious	 Democratic
+452	 Johnson Williams	 Female	 White	 Bachelor's degree	 35 years old	 Biomedical researcher	 Methodist	 Democrat
+453	 Michelle Johnson	 female	 African American	 Bachelor's degree	 52 years old	 professor	 Christian	 Democrat
+454	 Rodriguez, Maria	 Female	 Hispanic	 Bachelor's Degree in Public Health	 52 years old	 Public Health Consultant	 Catholic	 Democratic
+455	 Samuel Smith	 Male	 African American	 Bachelor's Degree in Engineering	 32 years old	 Software Engineer	 Christianity	 Democratic
+456	 Olivia Johnson	 Female	 African American	 College	 30 years old	 Marketing Specialist	 Methodist	 Democratic
+457	 Patricia Williams	 female	 white	 Bachelor's degree in nursing	 38 years old	 nurse	 Catholic	 liberal
+458	 Maria Rodriguez	 Female	 Hispanic	 Bachelor's degree	 28 years old	 Marketing professional	 Catholic	 Democratic
+459	 Elena Martinez	 female	 White	 Bachelor's degree in public health	 32 years old	 Public health consultant	 Agnostic	 Democrat
+460	 Sarah Johnson	 Female	 White	 Bachelor's Degree in Science	 25 years old	 Biotechnologist	 Agnostic	 Democrat
+461	 Sarah Johnson	 Female	 White	 Bachelor's degree in nursing	 35 years old	 Nurse	 Catholic	 Democrat
+462	 Smith	 female	 African American	 College degree	 28 years old	 software engineer	 Baptist	 Democratic
+463	 Smith	 female	 White	 Bachelor's degree	 35 years old	 Marketing professional	 Christian	 Democrat
+464	 Sarah Smith	 Female	 White	 Bachelor's degree	 35 years old	 Software Engineer	 Catholic	 Liberal
+465	 Jennifer Smith	 Female	 White	 Bachelor's degree	 35 years old	 Dentist	 Christian	 Democrat
+466	 Ryan Johnson	 male	 White	 College	 35 years old	 marketing executive	 Protestant	 Democratic
+467	 Samantha Adams	 Female	 African American	 Bachelor's degree	 32 years old	 Nursing student	 Roman Catholic	 Democratic
+468	 Kim Rodriguez	 Female	 Hispanic	 Bachelor's degree	 30 years old	 Marketing professional	 Catholic	 Democrat
+469	 Smith	 Female	 White	 College	 55 years old	 Nurse	 Catholic	 Democrat
+470	 Lisa Lee	 female	 Asian	 college degree	 32 years old	 medical researcher	 Buddhist	 Democratic
+471	 Maria Rodriguez	 Female	 Hispanic	 Bachelor's degree in nursing	 38 years old	 Nurse	 Catholic	 Democrat
+472	 Susan Patel	 Female	 Asian	 Bachelor's Degree in Nursing	 55 years old	 Nurse	 Hindu	 Democrat
+473	 John Anderson	 male	 White	 Higher levels of education are often associated with higher rates of vaccination. People with higher levels of education are more likely to have access to information and to be more cautious about public health.	 Older age groups are more likely to be at risk of severe COVID-19 and therefore more likely to want to get vaccinated. Additionally, older people tend to be more trusting of public health authorities and more likely to comply with recommendations.	 People in the health care industry, such as computer scientists, are more likely to be at risk of exposure to COVID-19 and therefore more likely to want to get vaccinated. Additionally, computer scientists tend to be more fact-based and more likely to trust scientific evidence.	 People who identify as liberal tend to be more trusting of scientific evidence and more likely to adhere to public health recommendations. Additionally, atheism is often associated with a more rational and science-based worldview.	 People who identify as left-leaning tend to be more trusting of public health authorities and more likely to adhere to public health recommendations. Additionally, left-leaning individuals tend to prioritize the well-being of others and are more likely to want to protect themselves and others by getting vaccinated.
+474	 Johnson	 female	 White	 Bachelor's degree	 50 years old	 Doctor	 Non-denominational Christian	 Democrat
+475	 Johnson	 Female	 White	 Bachelor's Degree	 32 years old	 School Teacher	 Christian	 Democrat
+476	 Johnson	 female	 African American	 Master's degree	 35 years old	 Teacher	 Christian	 Liberal
+477	 Johnson Brown	 Female	 African American	 Bachelor's degree	 35 years old	 Teacher	 Episcopalian	 Democrat
+478	 Johnson	 Female	 White	 Bachelor's Degree	 25 years old	 Software Engineer	 Episcopalian	 Democrat
+479	 Emily Taylor	 Female	 Caucasian	 College	 35 years old	 Marketing Manager	 Catholic	 Democrat
+480	 Andrew Kim	 Male	 White	 Bachelor's Degree	 38 years old	 Marketing Manager	 Christian	 Liberal
+481	 Sarah Johnson	 female	 White	 College graduate	 28 years old	 software developer	 Roman Catholic	 Democrat
+482	 Johnson	 female	 White	 Bachelor's Degree	 35 years old	 health care worker	 Baptist	 moderate Democrat
+483	 Emily Adams	 female	 white	 Bachelor's degree	 28 years old	 Marketing professional	 Methodist	 Democrat
+484	 Smith	 Female	 White	 College	 55 years old	 Teacher	 Christian	 Democratic
+485	 Claire Anderson	 female	 White	 Bachelor's degree	 32 years old	 Nurse	 Catholic	 Liberal
+486	 Lauren Johnson	 Female	 Black	 Bachelor's Degree in Business Administration	 27 years old	 Small Business Owner	 Christian	 Democrat
+487	 Ella Johnson	 Female	 White	 Bachelor's degree in nursing	 55 years old	 Registered nurse	 Protestant	 Democrat
+488	 William Longacre	 male	 White	 Bachelor's degree in Computer Science	 34 years old	 Software Developer	 non-religious	 liberal
+489	 Patricia Mitchell	 female	 White	 Bachelor's degree in Nursing	 55 years old	 RN	 Christian	 Democrat
+490	 Emily Chen	 female	 Asian	 Bachelor's degree in Computer Science	 28 years old	 Software Engineer	 Buddhist	 liberal
+491	 Lee Johnson	 Female	 Black	 Bachelor's Degree in Psychology	 52 years old	 Research Scientist	 Christian	 Democratic
+492	 Thompson	 Female	 White	 Bachelor's Degree	 52 years old	 Accountant	 Catholic	 Democratic
+493	 Abigail Adams	 female	 White	 College degree	 62 years old	 Retired Marketing Executive	 Protestant	 Liberal Democrat
+494	 Olivia Taylor	 Female	 African American	 College Degree in Nursing	 32 years old	 Nurse	 Christian	 Democratic
+495	 Michelle Chen	 female	 Asian	 Bachelor's Degree	 30 years old	 Software Engineer	 Christianity	 Democratic
+496	 Smith	 Female	 White	 Bachelor's Degree	 52 years old	 Business Owner	 Methodist	 Democrat
+497	 Jane Johnson	 Female	 White	 Bachelor's Degree	 35 years old	 Marketing Manager	 Christian	 Democrat
+498	 Jasmine Green	 female	 Black	 Bachelor's degree	 32 years old	 Marketing Manager	 Christianity	 Democrat
