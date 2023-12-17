@@ -162,7 +162,6 @@ class Engine:
     def prompt_reflections(self):
         prompt = {
             "role": "user",
-
         }
     # TO-DO
     def validate_message(messages):
