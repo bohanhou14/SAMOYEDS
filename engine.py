@@ -56,7 +56,7 @@ class Engine:
         responses = [output[i].outputs[0].text for i in range(len(messages_list))]
         return responses
 
-    def init_agents(self, max_iter = 30, cache_path = None, save_dir=f"./cache/default"):
+    def init_agents(self, max_iter = 30, cache_path = None, save_dir=f"./run_cache/default"):
         if cache_path != None:
             if os.path.exists(cache_path):
                 with open(cache_path, "rb") as f:
@@ -162,6 +162,12 @@ class Engine:
     def prompt_reflections(self):
         prompt = {
             "role": "user",
+            "content": ""
+        }
+    def poll_attitude(self):
+        prompt = {
+            "role": "user",
+            "content": "Based on the lessons you learned and your previous attitude towards COVID vaccinations, choose your current attitude towards COVID vaccinations from {definitely no, probably no, probably yes, and definitely yes}."
         }
     # TO-DO
     def validate_message(messages):
