@@ -167,9 +167,14 @@ def parse_attitude(response):
     return "", -1
 
 
+def parse_enumerated_items(text):
+    # Regex pattern to match enumerated items
+    pattern = r"\d+\.\s*(.+)"
 
+    # Find all matches
+    matches = re.findall(pattern, text)
 
-
+    return matches
 
 
 

@@ -40,7 +40,7 @@ class Engine:
         res = output[0].outputs[0].text
         return res
     
-    def batch_generate(self, messages_list=None, max_tokens = 80):
+    def batch_generate(self, messages_list=None, max_tokens = 80, sampling=True):
         if messages_list != None and type(messages_list) != list:
             raise TypeError("Invalid format")
         def convert(msg):
@@ -52,6 +52,7 @@ class Engine:
         model_inputs = [convert(msg) for msg in messages_list]
         sampling_params = self.sampling_params
         sampling_params.max_tokens = max_tokens
+        sampling_params.sampling = sampling
         output = self.model.generate(model_inputs, sampling_params)
         responses = [output[i].outputs[0].text for i in range(len(messages_list))]
         return responses
@@ -138,6 +139,7 @@ class Engine:
             self.messages_list[k].append(prompt)
         responses = self.batch_generate(self.messages_list, max_tokens = 500)
         cleaned = [clean_response(r) for r in responses]
+        print(f"cleaned: {cleaned}")
         return cleaned
 
     def feed_news_and_policies(self, news: list, policies: list = None, k=3):
