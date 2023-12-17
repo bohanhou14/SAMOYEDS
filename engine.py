@@ -1,6 +1,6 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
-from utils import clean_response, parse_attitude, compile_tweets
+from utils import clean_response, parse_attitude, compile_enumerate
 from collections import Counter
 from vllm import LLM, SamplingParams
 from tqdm import trange
@@ -58,7 +58,7 @@ class Engine:
 
     def init_agents(self, max_iter = 30, cache_path = None, save_dir=f"./cache/default"):
         if cache_path != None:
-            if os.path.exists(cache_dir):
+            if os.path.exists(cache_path):
                 with open(cache_path, "rb") as f:
                     self.messages_list = pickle.load(f)
                 return
@@ -126,10 +126,10 @@ class Engine:
             with open(os.path.join(save_dir, f"num-agents={self.num_agents}-agent_attitudes.pkl"), "wb") as f:
                 pickle.dump(self.messages_list, f)
 
-    def feed_tweets(self, tweets: list, k=5):
+    def feed_tweets(self, tweets: list, k=3):
         k = min(k, len(tweets))
         if type(tweets) == list:
-            tweets = compile_tweets(tweets)
+            tweets = compile_enumerate(tweets)
         prompt = {
             "role": "user",
             "content": f"You read following tweets about COVID:\n {tweets}\n What have you learned? Summarize {k} lessons you have learned: "
@@ -139,6 +139,31 @@ class Engine:
         responses = self.batch_generate(self.messages_list, max_tokens = 500)
         cleaned = [clean_response(r) for r in responses]
         return cleaned
+
+    def feed_news_and_policies(self, news: list, policies: list = None, k=3):
+        k = min(k, len(news))
+        if type(news) == list:
+            tweets = compile_enumerate(news)
+        prompt = {
+            "role": "user",
+            "content": f"You read following news today about COVID:\n {news}\n "
+        }
+        if policies != None:
+            policy_prompt = f"The government has also issued the following policies:\n {policies}\n"
+            prompt['content'] += policy_prompt
+        question = f"What have you learned? Summarize {k} lessons you have learned: "
+        prompt['content'] += question
+        for k in range(self.num_agents):
+            self.messages_list[k].append(prompt)
+        responses = self.batch_generate(self.messages_list, max_tokens = 500)
+        cleaned = [clean_response(r) for r in responses]
+        return cleaned
+
+    def prompt_reflections(self):
+        prompt = {
+            "role": "user",
+
+        }
     # TO-DO
     def validate_message(messages):
         return True

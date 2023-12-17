@@ -38,7 +38,11 @@ tweets = [
     "More than 1,200 students test positive for #COVID19 at major university - ABC News https://t.co/6aNhSiF5gh",
 ]
 
+news = ""
+policies = ""
+
 engine.feed_tweets(tweets)
+engine.feed_news_and_policies(news, policies)
 
 # for a in engine.agents:
 #     print(a.attitude)

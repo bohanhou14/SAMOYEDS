@@ -1,7 +1,10 @@
 import pickle
 from collections import Counter
 
-pkl_name = "profiles/profiles-agent_num=500-top_p=0.7-temp=1.5.pkl"
+# pkl_name = "profiles/profiles-state-United States=attitude=probably_no_or_definitely_no-agent_num=500-top_p=0.7-temp=1.5.pkl"
+# pkl_name = "profiles/profiles-agent_num=500-top_p=0.7-temp=1.5.pkl"
+pkl_name = "profiles/profiles-state-United States=attitude=probably yes or definitely yes-agent_num=500-top_p=0.7-temp=1.5.pkl"
+
 with open(pkl_name, "rb") as f:
     profiles = pickle.load(f)
 
