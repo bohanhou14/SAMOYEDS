@@ -174,9 +174,9 @@ def parse_enumerated_items(text):
     matches = re.findall(pattern, text)
     return matches
 
-def parse_actions(text):
-    print("TODO: Parse_actions!!")
-    return text
+def parse_actions(texts):
+    output = [text.split('*', 1) if '*' in text else '' for text in texts]
+    return output
 
 
 if __name__ == '__main__':
