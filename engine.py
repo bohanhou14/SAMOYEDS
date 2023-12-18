@@ -155,6 +155,7 @@ class Engine:
         return reflections
     def prompt_actions(self):
         # self.update_message_lists(ACTION_PROMPT)
+        self.add_prompt(ACTION_PROMPT)
         responses = self.batch_generate(self.messages_list)
         cleaned = [clean_response(r) for r in responses]
         actions = parse_actions(cleaned)
