@@ -15,9 +15,9 @@ class Recommender:
             return [self.model.encode(item) for item in items]
 
     def calculate_scores(self, profile_embedding, tweet_embeddings, tweet_times):
-        current_time = engine.day
-        tweet_ages = np.array([(current_time - tweet_time).days for tweet_time in tweet_times])
+        tweet_ages = np.array([current_time - tweet_time for tweet_time in tweet_times])
         decay_factors = np.exp(-self.decay_rate * tweet_ages)
+
 
         similarities = cosine_similarity([profile_embedding], tweet_embeddings)[0]
         weighted_scores = similarities * decay_factors
