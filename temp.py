@@ -43,6 +43,7 @@ policies = ""
 
 engine.feed_tweets(tweets)
 engine.feed_news_and_policies(news, policies)
-
+engine.poll_attitude()
+engine.prompt_reflections()
 # for a in engine.agents:
 #     print(a.attitude)
