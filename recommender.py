@@ -14,7 +14,7 @@ class Recommender:
         return similarities
 
     def recommend(self, tweets, agents, num_recommendations=10):
-        tweet_embeddings = self.encode_items(tweets)
+        tweet_embeddings = self.encode_items(tweets.text)
         all_recommendations = []
 
         for agent in agents:
