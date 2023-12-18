@@ -174,8 +174,8 @@ def parse_enumerated_items(text):
     matches = re.findall(pattern, text)
     return matches
 
-def parse_actions(texts):
-    output = [text.split('*', 1) if '*' in text else '' for text in texts]
+def parse_actions(text):
+    output = text.split('*', 1) if '*' in text else ''
     return output
 
 
