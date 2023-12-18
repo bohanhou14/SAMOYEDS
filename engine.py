@@ -65,6 +65,25 @@ class Engine:
                     "content": new_messages[k]
                 }
             )
+    def add_prompt(self, new_prompts):
+        # different prompt for each agent
+        if type(new_prompts) == list:
+            for k in range(self.num_agents):
+                self.messages_list[k].append(
+                    {
+                        "role": "user",
+                        "content": new_prompts[k]
+                    }
+                )
+        # same prompt
+        else:
+            for k in range(self.num_agents):
+                self.messages_list[k].append(
+                    {
+                        "role": "user",
+                        "content": new_prompts
+                    }
+                )
 
     def save(self):
         if self.save_dir != None:
@@ -126,7 +145,7 @@ class Engine:
         self.save()
 
     def prompt_reflections(self):
-        self.update_message_lists(REFLECTION_PROMPT)
+        # self.update_message_lists(REFLECTION_PROMPT)
         responses = self.batch_generate(self.messages_list)
         cleaned = [clean_response(r) for r in responses]
         reflections = cleaned
@@ -135,7 +154,7 @@ class Engine:
         self.save()
         return reflections
     def prompt_actions(self):
-        self.update_message_lists(ACTION_PROMPT)
+        # self.update_message_lists(ACTION_PROMPT)
         responses = self.batch_generate(self.messages_list)
         cleaned = [clean_response(r) for r in responses]
         actions = parse_actions(cleaned)
