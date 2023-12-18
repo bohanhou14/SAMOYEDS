@@ -1,6 +1,6 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
-from utils import clean_response, parse_attitude, compile_enumerate
+from utils import clean_response, parse_attitude, compile_enumerate, parse_enumerated_items
 from collections import Counter
 from vllm import LLM, SamplingParams
 from tqdm import trange
@@ -56,6 +56,16 @@ class Engine:
         output = self.model.generate(model_inputs, sampling_params)
         responses = [output[i].outputs[0].text for i in range(len(messages_list))]
         return responses
+    def update_message_lists(self, new_messages):
+        for k in range(self.num_agents):
+            self.messages_list[k].append(
+                {
+                    "role": "assistant",
+                    "content": new_messages[k]
+                }
+            )
+
+
 
     def init_agents(self, max_iter = 30, cache_path = None, save_dir=f"./run_cache/default"):
         if cache_path != None:
@@ -139,8 +149,9 @@ class Engine:
             self.messages_list[k].append(prompt)
         responses = self.batch_generate(self.messages_list, max_tokens = 500)
         cleaned = [clean_response(r) for r in responses]
-        print(f"cleaned: {cleaned}")
-        return cleaned
+        lessons = [parse_enumerated_items(c) for c in cleaned]
+        self.update_message_lists(lessons)
+        return lessons
 
     def feed_news_and_policies(self, news: list, policies: list = None, k=3):
         k = min(k, len(news))
@@ -159,7 +170,9 @@ class Engine:
             self.messages_list[k].append(prompt)
         responses = self.batch_generate(self.messages_list, max_tokens = 500)
         cleaned = [clean_response(r) for r in responses]
-        return cleaned
+        lessons = [parse_enumerated_items(c) for c in cleaned]
+        self.update_message_lists(lessons)
+        return lessons
 
     def prompt_reflections(self):
         prompt = {
