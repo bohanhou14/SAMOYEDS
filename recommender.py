@@ -21,7 +21,9 @@ class Recommender:
         all_recommendations = []
 
         for agent in agents:
-            agent_tweets_texts = [tweet.text for tweet in agent.tweets]  # Agent's own tweets
+            # Extract text from each of agent's own tweets for comparison
+            agent_tweets_texts = set([tweet.text for tweet in agent.tweets])
+            
             profile_embedding = self.model.encode(agent.get_profile_str())
             scores = self.calculate_scores(profile_embedding, tweet_embeddings)
 
@@ -29,7 +31,8 @@ class Recommender:
             top_tweet_indices = []
             for index in sorted_indices:
                 if len(top_tweet_indices) < num_recommendations:
-                    if tweet_objects[index].text not in agent.tweets:
+                    # Check if the tweet's text is not in the agent's own tweets
+                    if tweet_objects[index].text not in agent_tweets_texts:
                         top_tweet_indices.append(index)
             
             top_tweets_texts = [tweet_objects[i].text for i in top_tweet_indices]
