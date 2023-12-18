@@ -13,18 +13,24 @@ class Recommender:
         similarities = cosine_similarity([profile_embedding], tweet_embeddings)[0]
         return similarities
 
-    def recommend(self, tweets, profiles, num_recommendations=10):
+    def recommend(self, tweets, agents, num_recommendations=10):
         tweet_embeddings = self.encode_items(tweets)
         all_recommendations = []
 
-        for profile in profiles:
-            profile_embedding = self.model.encode(profile)
+        for agent in agents:
+            agent_tweets = agent.tweets  # Accessing agent's own tweets
+            profile_embedding = self.model.encode(agent.get_profile_str())
             scores = self.calculate_scores(profile_embedding, tweet_embeddings)
 
-            top_tweet_indices = scores.argsort()[::-1][:num_recommendations]
-            top_tweets = [tweets[i] for i in top_tweet_indices]
+            sorted_indices = scores.argsort()[::-1]
+            top_tweets = []
+            for i in sorted_indices:
+                if len(top_tweets) < num_recommendations:
+                    if tweets[i] not in agent_tweets:
+                        top_tweets.append(tweets[i])
+                else:
+                    break
 
             all_recommendations.append(top_tweets)
 
         return all_recommendations
-
