@@ -175,8 +175,8 @@ def parse_enumerated_items(text):
     return matches
 
 def parse_actions(text):
-    output = text.split('*', 1) if '*' in text else ''
-    return output
+    output = text.split('*', 1)[1] if '*' in text else ''
+    return output.strip()
 
 
 if __name__ == '__main__':

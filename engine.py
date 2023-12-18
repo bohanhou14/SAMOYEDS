@@ -29,7 +29,8 @@ class Engine:
         # keep track of all the conversations, shape=(num_agents X (dynamic) num_conversation_turns)
         # more turns there is, the longer messages_list will become
         self.messages_list = None
-        self.tweets_pool = []
+        with open("./data/combined_posts_texts_covid.pkl", "rb") as f:
+            self.tweets_pool = pickle.load(f)
         # directed graph
         self.social_network = {}
         self.tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
@@ -112,8 +113,7 @@ class Engine:
         self.save()
 
     def feed_tweets(self, k=3, num_recommendations = 10):
-        profiles = [agent.get_profile_str() for agent in self.agents]
-        tweets_list = self.recommender.recommend(self.tweets_pool, profiles, num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
+        tweets_list = self.recommender.recommend(self.tweets_pool, self.agents, num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
         k = min(k, len(tweets_list[0]))
         tweets_list = compile_enumerate(tweets for tweets in tweets_list)
         for k in range(self.num_agents):
@@ -143,8 +143,8 @@ class Engine:
         responses = self.batch_generate(self.messages_list)
         cleaned = [clean_response(r) for r in responses]
         reflections = cleaned
-        self.update_message_lists(reflections)
         self.stage = f"prompt_reflections_day={self.day}"
+        self.update_message_lists(reflections)
         self.save()
         return reflections
     def prompt_actions(self):
@@ -155,8 +155,8 @@ class Engine:
         # print(cleaned)
         actions = [parse_actions(c) for c in cleaned]
         print(actions[:10])
-        self.update_message_lists(actions)
         self.stage = f"prompt_actions_day={self.day}"
+        self.update_message_lists(actions)
         self.save()
         return actions
 
