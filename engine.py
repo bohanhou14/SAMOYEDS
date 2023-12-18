@@ -97,9 +97,10 @@ class Engine:
         self.stage = f"init_agents_day={self.day}"
         self.save()
 
-    def feed_tweets(self, tweets: list, k=3):
-        tweets = self.recommender.recommend(tweets)
-        k = min(k, len(tweets))
+    def feed_tweets(self, tweets: list, k=3, num_recommendations = 10):
+        profiles = [agent.get_profile_str() for agent in self.agents]
+        tweets = self.recommender.recommend(tweets, profiles, num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
+        k = min(k, len(tweets[0]))
         if type(tweets) == list:
             tweets = compile_enumerate(tweets)
 
