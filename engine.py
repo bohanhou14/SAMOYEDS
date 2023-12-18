@@ -139,6 +139,7 @@ class Engine:
         responses = self.batch_generate(self.messages_list)
         cleaned = [clean_response(r) for r in responses]
         actions = parse_actions(cleaned)
+        print(actions[:10])
         self.update_message_lists(actions)
         self.stage = f"prompt_actions_day={self.day}"
         self.save()
