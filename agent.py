@@ -19,7 +19,7 @@ class Agent:
         self.pb = pb
         self.religion = religion
     def update_tweets(self, tweet_text, tweet_time):
-        self.append(Tweet(tweet_text, tweet_time))
+        self.tweets.append(Tweet(tweet_text, tweet_time))
 
     def get_profile_str(self):
         profile_str = f'''
