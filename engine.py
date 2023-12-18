@@ -1,3 +1,5 @@
+import json
+
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 from utils import clean_response, parse_attitude, compile_enumerate, parse_enumerated_items, parse_actions
@@ -5,6 +7,7 @@ from collections import Counter
 from vllm import LLM, SamplingParams
 from tqdm import trange
 import os
+from tweet import Tweet
 from recommender import Recommender
 import numpy as np
 from prompts import *
@@ -13,13 +16,13 @@ class Engine:
     def __init__(
         self, 
         agents: list = None, 
-        num_gpus = 1, 
-        tweets_data = None,
-        news_data = None
+        num_gpus = 1,
+        num_days = 30
     ):
         if agents != None:
             # a list of agents
             self.agents = agents
+        self.num_days = num_days
         self.num_agents = len(agents)
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.sampling_params = SamplingParams(
@@ -36,8 +39,12 @@ class Engine:
         self.tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
         self.model = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=num_gpus)
         self.save_dir = f"./run_cache/default"
+        self.attitude_dist = []
+        self.attitude_dist_4 = []
         self.day = 1
         self.recommender = Recommender()
+        self.news = ""
+        self.policies = ""
 
     # ready to parallel run this
     
@@ -125,7 +132,9 @@ class Engine:
         self.stage = f"feed_tweets_day={self.day}"
         self.save()
 
-    def feed_news_and_policies(self, news: list, policies: list = None, k=3):
+    def feed_news_and_policies(self, k=3):
+        news = self.news
+        policies = self.policies
         k = min(k, len(news))
         if type(news) == list:
             tweets = compile_enumerate(news)
@@ -147,6 +156,7 @@ class Engine:
         self.update_message_lists(reflections)
         self.save()
         return reflections
+
     def prompt_actions(self):
         # self.update_message_lists(ACTION_PROMPT)
         self.add_prompt(ACTION_PROMPT)
@@ -154,9 +164,11 @@ class Engine:
         cleaned = [clean_response(r) for r in responses]
         # print(cleaned)
         actions = [parse_actions(c) for c in cleaned]
-        print(actions[:10])
         self.stage = f"prompt_actions_day={self.day}"
         self.update_message_lists(actions)
+        for k in range(self.num_agents):
+            self.agents[k].tweets.append(text=Tweet(actions[k], time=self.day))
+        self.tweets_pool.extend(actions)
         self.save()
         return actions
 
@@ -169,16 +181,37 @@ class Engine:
             self.messages_list[k].append(
                 {"role": "assistant", "content": f"Your answer: {self.agents[k].attitude}"}
             )
+        attitudes_counter = Counter(attitudes)
+        # num_accept = attitudes_counter['definitely yes'] + attitudes_counter['probably yes']
+        num_hesitancy = attitudes_counter['definitely no'] + attitudes_counter['probably no']
+        hesitancy_percentage = num_hesitancy / self.num_agents
+        self.attitude_dist.append(hesitancy_percentage)
         self.stage = f"poll_attitude_day={self.day}"
         self.save()
         return attitudes
+
+    def finish_simulation(self):
+        d = {
+            "time": list(range(self.num_days)),
+            "percentage": self.attitude_dist
+        }
+        json_object = json.dumps(d)
+        with open("vaccine_hesitancy.json", "w") as f:
+            f.write(json_object)
+
+    def run(self):
+        for i in range(self.num_days):
+            self.init_agents()
+            self.feed_tweets()
+            self.feed_news_and_policies()
+            self.prompt_actions()
+            self.prompt_reflections()
+        self.finish_simulation()
 
     # TO-DO
     def validate_message(messages):
         return True
 
-    def run(self):
-        return
     # def update_attitudes(self):
 
 

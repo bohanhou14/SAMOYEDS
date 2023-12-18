@@ -9,9 +9,10 @@ agents = []
 for p in profiles:
     agents.append(Agent(profile=p))
 engine = Engine(agents = agents, num_gpus=1)
+engine.run()
 
-engine.init_agents()
-engine.prompt_actions()
+# engine.init_agents()
+# engine.prompt_actions()
 # tweets = [
 #     "By supporting and caring for each other ‚ù§Ô∏è during #COVID19 ,we will all win the fight against the spread of the vir",
 #     "How toilet paper and avocados help explain the grocery store of the future https://t.co/I6axYighpz via @FastCompany‚Ä¶",

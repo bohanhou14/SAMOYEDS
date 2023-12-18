@@ -166,6 +166,21 @@ def parse_attitude(response):
     # if here, then no attitude, must be something wrong
     return "", -1
 
+REASONS = ["cost", "ineffective", "distrust_government", "distrust_vaccines", "low_priority"]
+def parse_reasons(response):
+    x = clean_response(response)
+    for att in ATTITUDES:
+        idx = x.find(att)
+        if idx != -1:
+            return att, idx
+        # if here, idx == -1
+        # check if att did not get extractd because it is lower
+        idx = x.lower().find(att.lower())
+        if idx != -1:
+            return att, idx
+
+    # if here, then no attitude, must be something wrong
+    return "", -1
 
 def parse_enumerated_items(text):
     # Regex pattern to match enumerated items

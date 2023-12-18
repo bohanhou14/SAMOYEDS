@@ -8,4 +8,5 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:4
 
+oa
 python temp.py
