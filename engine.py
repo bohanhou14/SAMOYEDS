@@ -152,6 +152,7 @@ class Engine:
         self.add_prompt(ACTION_PROMPT)
         responses = self.batch_generate(self.messages_list)
         cleaned = [clean_response(r) for r in responses]
+        print(cleaned)
         actions = [parse_actions(c) for c in cleaned]
         print(actions[:10])
         self.update_message_lists(actions)
