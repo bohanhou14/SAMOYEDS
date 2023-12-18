@@ -1,5 +1,4 @@
 import numpy as np
-import engine
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 
@@ -14,17 +13,17 @@ class Recommender:
         else:
             return [self.model.encode(item) for item in items]
 
-    def calculate_scores(self, profile_embedding, tweet_embeddings, tweet_times):
-        current_time = engine.day
+    def calculate_scores(self, profile_embedding, tweet_embeddings, tweet_times, current_day):
+        current_time = current_day
         tweet_ages = np.array([current_time - tweet_time for tweet_time in tweet_times])
-        decay_factors = np.exp(-self.decay_rate * tweet_ages)
+        decay_factors = np.power(self.decay_rate, tweet_ages)
 
 
         similarities = cosine_similarity([profile_embedding], tweet_embeddings)[0]
         weighted_scores = similarities * decay_factors
         return weighted_scores
 
-    def recommend(self, tweet_objects, agents, num_recommendations=10):
+    def recommend(self, tweet_objects, current_day, agents, num_recommendations=10):
         tweet_embeddings = self.encode_items(tweet_objects, is_tweet=True)
         tweet_times = [tweet.time for tweet in tweet_objects]  # Extracting time from each tweet
         all_recommendations = []
@@ -33,7 +32,7 @@ class Recommender:
             agent_tweets_texts = set([tweet.text for tweet in agent.tweets])
 
             profile_embedding = self.model.encode(agent.get_profile_str())
-            scores = self.calculate_scores(profile_embedding, tweet_embeddings, tweet_times)
+            scores = self.calculate_scores(profile_embedding, tweet_embeddings, tweet_times, current_day)
 
             sorted_indices = scores.argsort()[::-1]
             top_tweet_indices = []
