@@ -8,7 +8,8 @@ with open("profiles/profiles-state-United States=attitude=probably_no_or_definit
 agents = []
 for p in profiles:
     agents.append(Agent(profile=p))
-engine = Engine(agents = agents, num_gpus=8)
+engine = Engine(agents = agents, num_gpus=1)
+
 engine.init_agents()
 tweets = [
     "By supporting and caring for each other ‚ù§Ô∏è during #COVID19 ,we will all win the fight against the spread of the vir",
@@ -37,13 +38,13 @@ tweets = [
     "@CTVNews A powerful painting by Juan Lucena. It's a tribute to the grandparents who died of COVID 19 and the grandc‚Ä¶ https://t.co/wnXbbyoCe2",
     "More than 1,200 students test positive for #COVID19 at major university - ABC News https://t.co/6aNhSiF5gh",
 ]
-
-news = ""
-policies = ""
-
-engine.feed_tweets(tweets)
-engine.feed_news_and_policies(news, policies)
-engine.poll_attitude()
-engine.prompt_reflections()
+#
+# news = ""
+# policies = ""
+#
+# engine.feed_tweets(tweets)
+# engine.feed_news_and_policies(news, policies)
+# engine.poll_attitude()
+# engine.prompt_reflections()
 # for a in engine.agents:
 #     print(a.attitude)

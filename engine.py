@@ -104,11 +104,10 @@ class Engine:
             self.messages_list[k].append(tweets_prompt(tweets, k))
         responses = self.batch_generate(self.messages_list, max_tokens = 500)
         cleaned = [clean_response(r) for r in responses]
-        lessons = [parse_enumerated_items(c) for c in cleaned]
-        self.update_message_lists(lessons)
+        # lessons = [parse_enumerated_items(c) for c in cleaned]
+        self.update_message_lists(cleaned)
         self.stage = f"feed_tweets_day={self.day}"
         self.save()
-        return lessons
 
     def feed_news_and_policies(self, news: list, policies: list = None, k=3):
         k = min(k, len(news))
@@ -118,11 +117,10 @@ class Engine:
             self.messages_list[k].append(news_policies_prompt(news, policies))
         responses = self.batch_generate(self.messages_list, max_tokens = 500)
         cleaned = [clean_response(r) for r in responses]
-        lessons = [parse_enumerated_items(c) for c in cleaned]
-        self.update_message_lists(lessons)
+        # lessons = [parse_enumerated_items(c) for c in cleaned]
+        self.update_message_lists(cleaned)
         self.stage = f"feed_news_and_policies_day={self.day}"
         self.save()
-        return lessons
 
     def prompt_reflections(self):
         self.update_message_lists(REFLECTION_PROMPT)
