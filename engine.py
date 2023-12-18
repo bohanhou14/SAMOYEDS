@@ -31,6 +31,7 @@ class Engine:
         self.social_network = {}
         self.tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
         self.model = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=num_gpus)
+        self.save_dir = f"./run_cache/default"
 
     # ready to parallel run this
     def generate(self, messages):
@@ -67,7 +68,7 @@ class Engine:
 
 
 
-    def init_agents(self, max_iter = 30, cache_path = None, save_dir=f"./run_cache/default"):
+    def init_agents(self, max_iter = 30, cache_path = None):
         if cache_path != None:
             if os.path.exists(cache_path):
                 with open(cache_path, "rb") as f:
@@ -133,9 +134,8 @@ class Engine:
             self.messages_list[k].append(
                 {"role": "assistant", "content": f"Your answer: {self.agents[k].attitude}"}
             )
-        if save_dir != None:
-            with open(os.path.join(save_dir, f"num-agents={self.num_agents}-agent_attitudes.pkl"), "wb") as f:
-                pickle.dump(self.messages_list, f)
+        self.stage = "init_agents"
+        self.save()
 
     def feed_tweets(self, tweets: list, k=3):
         k = min(k, len(tweets))
@@ -151,6 +151,8 @@ class Engine:
         cleaned = [clean_response(r) for r in responses]
         lessons = [parse_enumerated_items(c) for c in cleaned]
         self.update_message_lists(lessons)
+        self.stage = "feed_tweets"
+        self.save()
         return lessons
 
     def feed_news_and_policies(self, news: list, policies: list = None, k=3):
@@ -172,7 +174,15 @@ class Engine:
         cleaned = [clean_response(r) for r in responses]
         lessons = [parse_enumerated_items(c) for c in cleaned]
         self.update_message_lists(lessons)
+        self.stage = "feed_news_and_policies"
+        self.save()
         return lessons
+
+    def save(self):
+        if self.save_dir != None:
+            with open(os.path.join(self.save_dir, f"num-agents={self.num_agents}-{self.stage}.pkl"), "wb") as f:
+                pickle.dump(self.messages_list, f)
+
 
     def prompt_reflections(self):
         prompt = {
