@@ -29,6 +29,7 @@ class Engine:
         # keep track of all the conversations, shape=(num_agents X (dynamic) num_conversation_turns)
         # more turns there is, the longer messages_list will become
         self.messages_list = None
+        self.tweets_pool = []
         # directed graph
         self.social_network = {}
         self.tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
@@ -97,15 +98,13 @@ class Engine:
         self.stage = f"init_agents_day={self.day}"
         self.save()
 
-    def feed_tweets(self, tweets: list, k=3, num_recommendations = 10):
+    def feed_tweets(self, k=3, num_recommendations = 10):
         profiles = [agent.get_profile_str() for agent in self.agents]
-        tweets = self.recommender.recommend(tweets, profiles, num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
-        k = min(k, len(tweets[0]))
-        if type(tweets) == list:
-            tweets = compile_enumerate(tweets)
-
+        tweets_list = self.recommender.recommend(self.tweets_pool, profiles, num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
+        k = min(k, len(tweets_list[0]))
+        tweets_list = compile_enumerate(tweets for tweets in tweets_list)
         for k in range(self.num_agents):
-            self.messages_list[k].append(tweets_prompt(tweets, k))
+            self.messages_list[k].append(tweets_prompt(tweets_list[k], k))
         responses = self.batch_generate(self.messages_list, max_tokens = 500)
         cleaned = [clean_response(r) for r in responses]
         # lessons = [parse_enumerated_items(c) for c in cleaned]

@@ -64,8 +64,16 @@ REFLECTION_PROMPT = {
 
 ACTION_PROMPT = {
             "role": "user",
-            "content": '''Based on your attitude towards COVID vaccinations and your background, what actions do you want to take to express your feelings? 
-                You can choose from {make a new tweet, comment on a tweet or news you read, do nothing}'''
+            "content": '''Based on your attitude towards COVID vaccinations and your background, make a new tweet that responds to an old tweet or start an entirely new tweet on COVID vaccination:
+                
+                Example A:
+                # COVID vaccination is a debated topic. I hope that people can have more awareness and critical thinking and make their informed decisions based on facts and evidences than emotions.
+                
+                Example B:
+                # I'd like to respond to this tweet I read today. I feel like this tweet is trying to gaslight people into believing that the government is harming people.
+
+                Write a tweet about COVID vaccinations expressing your opinions or attitudes; make it start with #: 
+                '''
         }
 
 
