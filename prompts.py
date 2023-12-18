@@ -72,7 +72,7 @@ ACTION_PROMPT = {
                 Example B:
                 # I'd like to respond to this tweet I read today. I feel like this tweet is trying to gaslight people into believing that the government is harming people.
 
-                Write a tweet about COVID vaccinations expressing your opinions or attitudes; make it start with #: 
+                Write a tweet about COVID vaccinations expressing your opinions or attitudes; make it start with *: 
                 '''
         }
 
