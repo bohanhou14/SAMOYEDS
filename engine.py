@@ -70,19 +70,13 @@ class Engine:
         if type(new_prompts) == list:
             for k in range(self.num_agents):
                 self.messages_list[k].append(
-                    {
-                        "role": "user",
-                        "content": new_prompts[k]
-                    }
+                    new_prompts[k]
                 )
         # same prompt
         else:
             for k in range(self.num_agents):
                 self.messages_list[k].append(
-                    {
-                        "role": "user",
-                        "content": new_prompts
-                    }
+                    new_prompts
                 )
 
     def save(self):
