@@ -1,14 +1,14 @@
 from engine import Engine
 import pickle
 from agent import Agent
-with open("profiles/profiles-agent_num=10-top_p=0.7-temp=2.0.pkl", "rb") as f:
+with open("profiles/profiles-state-United States=attitude=probably_no_or_definitely_no-agent_num=500-top_p=0.7-temp=1.5.pkl", "rb") as f:
     # a list of dictionaries
     profiles = list(pickle.load(f))
 
 agents = []
 for p in profiles:
     agents.append(Agent(profile=p))
-engine = Engine(agents = agents)
+engine = Engine(agents = agents, num_gpus=8)
 engine.init_agents()
 tweets = [
     "By supporting and caring for each other ‚ù§Ô∏è during #COVID19 ,we will all win the fight against the spread of the vir",
