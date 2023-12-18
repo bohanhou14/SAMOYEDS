@@ -5,6 +5,7 @@ from collections import Counter
 from vllm import LLM, SamplingParams
 from tqdm import trange
 import os
+from recommender import Recommender
 import numpy as np
 from prompts import *
 import pickle
@@ -34,6 +35,7 @@ class Engine:
         self.model = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=num_gpus)
         self.save_dir = f"./run_cache/default"
         self.day = 1
+        self.recommender = Recommender()
 
     # ready to parallel run this
     
@@ -96,6 +98,7 @@ class Engine:
         self.save()
 
     def feed_tweets(self, tweets: list, k=3):
+        tweets = self.recommender.recommend(tweets)
         k = min(k, len(tweets))
         if type(tweets) == list:
             tweets = compile_enumerate(tweets)
