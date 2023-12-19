@@ -2,7 +2,7 @@ import json
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
-from utils import clean_response, parse_attitude, compile_enumerate, parse_enumerated_items, parse_actions
+from utils import clean_response, parse_attitude, compile_enumerate, parse_enumerated_items, parse_actions, counter_to_ordered_list
 from collections import Counter
 from vllm import LLM, SamplingParams
 from tqdm import trange
@@ -43,8 +43,15 @@ class Engine:
         self.attitude_dist_4 = []
         self.day = 1
         self.recommender = Recommender()
-        self.news = ""
-        self.policies = ""
+
+        with open("data/news.pkl", "rb") as f:
+            self.news = pickle.load(f)
+            f.close()
+
+        with open("data/policies.pkl", "rb") as f:
+            self.policies = pickle.load(f)
+            f.close()
+
 
     # ready to parallel run this
     
@@ -132,14 +139,13 @@ class Engine:
         self.stage = f"feed_tweets_day={self.day}"
         self.save()
 
-    def feed_news_and_policies(self, k=3):
-        news = self.news
-        policies = self.policies
+    def feed_news_and_policies(self, policy = None, k=3, num_news = 5):
+        news = self.news[self.day-1: self.day - 1 + num_news]
         k = min(k, len(news))
         if type(news) == list:
             tweets = compile_enumerate(news)
         for k in range(self.num_agents):
-            self.messages_list[k].append(news_policies_prompt(news, policies))
+            self.messages_list[k].append(news_policies_prompt(news, policy))
         responses = self.batch_generate(self.messages_list, max_tokens = 500)
         cleaned = [clean_response(r) for r in responses]
         # lessons = [parse_enumerated_items(c) for c in cleaned]
@@ -149,13 +155,14 @@ class Engine:
 
     def prompt_reflections(self):
         # self.update_message_lists(REFLECTION_PROMPT)
-        responses = self.batch_generate(self.messages_list)
+        for k in range(self.num_agents):
+            self.messages_list[k].append(REFLECTION_PROMPT)
+        responses = self.batch_generate(self.messages_list, max_tokens=50)
         cleaned = [clean_response(r) for r in responses]
-        reflections = cleaned
         self.stage = f"prompt_reflections_day={self.day}"
-        self.update_message_lists(reflections)
+        self.update_message_lists(cleaned)
         self.save()
-        return reflections
+        return cleaned
 
     def prompt_actions(self):
         # self.update_message_lists(ACTION_PROMPT)
@@ -199,11 +206,17 @@ class Engine:
         with open("vaccine_hesitancy.json", "w") as f:
             f.write(json_object)
 
-    def run(self):
-        for i in range(self.num_days):
+    def run_all_policies(self):
+        for i in range(len(self.policies)):
+            policy = self.policies[i]
+            self.run(policy)
+
+
+    def run(self, policy):
+        for t in range(self.num_days):
             self.init_agents()
             self.feed_tweets()
-            self.feed_news_and_policies()
+            self.feed_news_and_policies(policy=policy)
             self.prompt_actions()
             self.prompt_reflections()
         self.finish_simulation()

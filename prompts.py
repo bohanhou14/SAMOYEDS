@@ -67,7 +67,7 @@ def tweets_prompt(tweets, k=5):
 REFLECTION_PROMPT = {
             "role": "user",
             "content": '''Based on your background and the lessons you have learned, 
-                reflect upon the most significant reasons that cause your attitude towards COVID vaccination to change or unchange: '''
+                reflect upon the most significant reasons that cause your attitude towards COVID vaccination to change or stay unchanged: '''
         }
 
 ACTION_PROMPT = {
