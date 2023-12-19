@@ -1,14 +1,11 @@
 import openai
 import backoff
-from utils import parse_reasons
+from utils import parse_reasons, REASONS
 
 ATTITUDE_PROMPT = {
             "role": "user",
             "content": "Based on the lessons you learned and your previous attitude towards COVID vaccinations, choose your current attitude towards COVID vaccinations from {definitely no, probably no, probably yes, and definitely yes}."
         }
-
-
-
 
 def profile_prompt(profile_str):
     return [{"role": "user",
@@ -44,7 +41,7 @@ def profile_prompt(profile_str):
                     Attitude: 
                 '''
              }]
-def news_policies_prompt(news, policies = None):
+def news_policies_prompt(news, policies = None, top_k=5):
     prompt = {
         "role": "user",
         "content": f"You read following news today about COVID:\n {news}\n "
@@ -63,6 +60,12 @@ def tweets_prompt(tweets, k=5):
         "content": f"You read following tweets about COVID:\n {tweets}\n What have you learned? Summarize {k} lessons you have learned: "
     }
     return TWEETS_PROMPT
+
+ENDTURN_REFLECTION_PROMPT = {
+            "role": "user",
+            "content": '''Based on your background and the lessons you have learned, 
+                elaborate on why you are hesitant towards getting vaccinations: '''
+        }
 
 REFLECTION_PROMPT = {
             "role": "user",
@@ -84,35 +87,34 @@ ACTION_PROMPT = {
                 '''
         }
 
-
 def categorize_reasons(responses):
     def get_prompt(response):
         prompt = f'''
             Example A:
                 Response: I've been watching news lately, I don't think vaccines are effective. People still get COVID after vaccinations, so I won't get one.
                 
-                Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {"cost, ineffective, distrust_government, distrust_vaccines, low_priority"}
+                Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {REASONS}
                 
                 Reason: ineffective
             
             Example B:
                 Response: Because I don't trust vaccines and I don't trust English medicines. And I've been avurveda medicines for a long time. So I think I will be cured naturally.
                 
-                Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {"cost, ineffective, distrust_government, distrust_vaccines, low_priority"}
+                Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {REASONS}
                 
                 Reason: distrust_vaccines
             
-            Example C:
-                Response: {response}
-                
-                Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from ["cost", "ineffective", "distrust_government", "distrust_vaccines, "low_priority"]
-                
-                Reason: 
             
+            Response: {response}
+            
+            Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {REASONS}
+            
+            Reason: 
         '''
     prompts = [get_prompt(response) for response in responses]
     reasons = [query_openai(p) for p in prompts]
     reasons = [parse_reasons(r) for r in reasons]
+    return reasons
 
 
 @backoff.on_exception(backoff.expo, openai.error.RateLimitError)
