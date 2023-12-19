@@ -3,7 +3,7 @@ from collections import Counter
 
 # pkl_name = "profiles/profiles-state-United States=attitude=probably_no_or_definitely_no-agent_num=500-top_p=0.7-temp=1.5.pkl"
 # pkl_name = "profiles/profiles-agent_num=500-top_p=0.7-temp=1.5.pkl"
-pkl_name = "profiles/profiles-state-United States=attitude=probably yes or definitely yes-agent_num=500-top_p=0.7-temp=1.5.pkl"
+pkl_name = "profiles/profiles-state-United States=attitude=probably_no_or_definitely_no-agent_num=500-top_p=0.7-temp=1.5.pkl"
 
 with open(pkl_name, "rb") as f:
     profiles = pickle.load(f)
@@ -36,21 +36,53 @@ occupation_counter = Counter(occupation)
 religion_counter = Counter(religion)
 pb_counter = Counter(pb)
 
-print(names_counter)
+def counter_to_ordered_list(counter):
+    ordered_keys = []
+    ordered_values = []
+    for key in counter.keys():
+        ordered_keys.append(key)
+        ordered_values.append(counter[key])
+    return ordered_keys, ordered_values
+
+# print(names_counter)
+ordered_keys, ordered_values = counter_to_ordered_list(names_counter)
+print(ordered_keys)
+print(ordered_values)
 print()
-print(gender_counter)
+
+ordered_keys, ordered_values = counter_to_ordered_list(gender_counter)
+print(ordered_keys)
+print(ordered_values)
 print()
-print(race_counter)
+
+ordered_keys, ordered_values = counter_to_ordered_list(race_counter)
+print(ordered_keys)
+print(ordered_values)
 print()
-print(education_counter)
+
+ordered_keys, ordered_values = counter_to_ordered_list(education_counter)
+print(ordered_keys)
+print(ordered_values)
 print()
-print(age_counter)
+
+ordered_keys, ordered_values = counter_to_ordered_list(occupation_counter)
+print(ordered_keys)
+print(ordered_values)
 print()
-print(occupation_counter)
+
+ordered_keys, ordered_values = counter_to_ordered_list(age_counter)
+print(ordered_keys)
+print(ordered_values)
 print()
-print(religion_counter)
+
+ordered_keys, ordered_values = counter_to_ordered_list(religion_counter)
+print(ordered_keys)
+print(ordered_values)
 print()
-print(pb_counter)
+
+ordered_keys, ordered_values = counter_to_ordered_list(pb_counter)
+print(ordered_keys)
+print(ordered_values)
 print()
 # plt.pie(names)
 # plt.savefig(f"{pkl_name}.png")

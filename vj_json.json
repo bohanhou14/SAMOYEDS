@@ -1,4 +1,4 @@
-json_data = {
+{
     "Strategy 1": {
         "Formal Implementation": "The state government has initiated a program to train community members as Vaccine Ambassadors. These ambassadors are equipped with comprehensive knowledge about vaccines and are tasked with organizing educational workshops in local community centers, schools, and neighborhood gatherings, starting shortly after their training.",
         "Casual Implementation": "Your state is setting up a program where locals get trained to chat about vaccines. They'll be popping up at local spots like schools and parks to share info and answer questions, soon after their training.",
@@ -72,15 +72,3 @@ json_data = {
       "Casual Consequence": "The more we all know about vaccines thanks to these messages, the healthier we can all be."
   }
 }
-
-strategies = [
-'''The state government has initiated a program to train community members as Vaccine Ambassadors. 
-These ambassadors are equipped with comprehensive knowledge about vaccines and are tasked with organizing educational 
-workshops in local community centers, schools, and neighborhood gatherings, starting shortly after their training.
-''',
-'''
-"State healthcare regulations now mandate the integration of vaccination discussions into standard medical check-ups. 
- Medical practices are required to adopt this protocol where vaccinations are routinely offered 
- and discussed as part of patient care, starting in the near future."
-''',
-]
