@@ -8,7 +8,8 @@ class Agent:
         self.education = profile['Education']
         self.pb = profile['Political belief']
         self.religion = profile['Religion']
-        self.attitude = "unknown"
+        self.attitudes = []
+        self.changes = []
         self.tweets = []
     def custom_init(self, name, gender, age, occupation, education, pb, religion):
         self.name = name
@@ -33,7 +34,18 @@ class Agent:
         '''
         return profile_str
 
+    def get_json(self):
+        profile_json = {
+            "Gender": self.gender,
+            "Age": self.age,
+            "Education": self.education,
+            "Occupation": self.occupation,
+            "Political belief": self.pb,
+            "Religion": self.religion,
+            "Reasons for Changing": self.changes
+        }
 
+        return profile_json
 
 
 

@@ -158,6 +158,18 @@ ATTITUDES = [
     "definitely no"
 ]
 
+HESITANCY = [
+    "probably no",
+    "definitely no"
+]
+
+REASONS = ["sideeffects", "allergic", "ineffective",
+           "unnecessary", "dislike_vaccines_generally",
+           "dislike_vaccines", "not_recommended",
+           "wait_safety", "low_priority", "cost",
+           "distrust_vaccines", "distrust_gov",
+           "health_condition", "pregnant",
+           "religious", "other"]
 # parse attitude based on response
 def parse_attitude(response):
     x = clean_response(response)
@@ -174,18 +186,17 @@ def parse_attitude(response):
     # if here, then no attitude, must be something wrong
     return "", -1
 
-REASONS = ["cost", "ineffective", "distrust_government", "distrust_vaccines", "low_priority"]
 def parse_reasons(response):
     x = clean_response(response)
-    for att in ATTITUDES:
-        idx = x.find(att)
+    for reason in REASONS:
+        idx = x.find(reason)
         if idx != -1:
-            return att, idx
+            return reason, idx
         # if here, idx == -1
         # check if att did not get extractd because it is lower
-        idx = x.lower().find(att.lower())
+        idx = x.lower().find(reason)
         if idx != -1:
-            return att, idx
+            return reason, idx
 
     # if here, then no attitude, must be something wrong
     return "", -1
