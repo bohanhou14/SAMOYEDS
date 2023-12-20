@@ -4,7 +4,14 @@ from utils import parse_reasons, REASONS
 
 ATTITUDE_PROMPT = {
             "role": "user",
-            "content": "Based on the lessons you learned and your previous attitude towards COVID vaccinations, choose your current attitude towards COVID vaccinations from {definitely no, probably no, probably yes, and definitely yes}."
+            "content": '''Based on the lessons you learned and your previous attitude towards COVID vaccinations, choose your current attitude towards COVID vaccinations from {definitely no, probably no, probably yes, and definitely yes}.
+                Choice A: definitely no.
+                Choice B: probably no.
+                Choice C: probably yes.
+                Choice D: definitely yes.
+                What's your current attitude towards COVID vaccinations from {definitely no, probably no, probably yes, and definitely yes} ?
+                Your answer:
+            '''
         }
 
 def profile_prompt(profile_str):
@@ -49,7 +56,7 @@ def news_policies_prompt(news, policies = None, top_k=5):
     if policies != None:
         policy_prompt = f"The government has also issued the following policies:\n {policies}\n"
         prompt['content'] += policy_prompt
-    question = f"What have you learned? Summarize {k} lessons you have learned: "
+    question = f"What have you learned? Summarize {top_k} lessons you have learned: "
     prompt['content'] += question
 
     return prompt
@@ -112,7 +119,13 @@ def categorize_reasons(responses):
             Reason: 
         '''
     prompts = [get_prompt(response) for response in responses]
+    print(prompts)
     reasons = [query_openai(p) for p in prompts]
+    # for p in prompts:
+    #     if p != "":
+    #         reasons.append("")
+    #     else:
+    #         reasons.append(query_openai(p))
     reasons = [parse_reasons(r) for r in reasons]
     return reasons
 
@@ -135,7 +148,7 @@ def query_openai(prompt):
         frequency_penalty=0,
         presence_penalty=0
       )
-    except openai.APIError:
+    except openai.error.APIError:
       continue
     break
   return response.choices[0].message.content
