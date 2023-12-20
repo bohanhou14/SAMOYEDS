@@ -16,6 +16,7 @@ def counter_to_ordered_list(counter):
         ordered_keys.append(key)
         ordered_values.append(counter[key])
     return ordered_keys, ordered_values
+    
 def clean_response(response):
     x = response.strip()
     x = re.sub('\[INST\]([\s\S]*)\[/INST\]', '', response, flags=re.DOTALL)

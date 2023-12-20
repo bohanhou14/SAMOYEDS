@@ -2,6 +2,7 @@ import json
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
+from time import time
 from utils import clean_response, parse_attitude, compile_enumerate, parse_enumerated_items, parse_actions, counter_to_ordered_list, HESITANCY
 from collections import Counter
 from vllm import LLM, SamplingParams
@@ -45,19 +46,19 @@ class Engine:
         self.day = 1
         self.recommender = Recommender()
 
-        with open("data/combined_posts_texts_covid.pkl", "rb") as f:
+        with open("data/tweet_pool_reddit_obj.pkl", "rb") as f:
             self.tweets_pool = pickle.load(f)
-        with open("data/news.pkl", "rb") as f:
+        with open("data/news-title.pkl", "rb") as f:
             self.news = pickle.load(f)
             f.close()
         with open("data/policies.pkl", "rb") as f:
-            self.policies = pickle.load(f)
+            self.policies = pickle.load(f)[:3]
             f.close()
 
 
     # ready to parallel run this
     
-    def batch_generate(self, messages_list=None, max_tokens = 80, sampling=True):
+    def batch_generate(self, messages_list, desc=None, max_tokens = 80, sampling=True):
         if messages_list != None and type(messages_list) != list:
             raise TypeError("Invalid format")
         def convert(msg):
@@ -70,6 +71,8 @@ class Engine:
         sampling_params = self.sampling_params
         sampling_params.max_tokens = max_tokens
         sampling_params.sampling = sampling
+        if desc != None:
+            print(f"Desc: {desc}")
         output = self.model.generate(model_inputs, sampling_params)
         responses = [output[i].outputs[0].text for i in range(len(messages_list))]
         return responses
@@ -101,9 +104,6 @@ class Engine:
             with open(os.path.join(self.save_dir, f"num-agents={self.num_agents}-{self.stage}.pkl"), "wb") as f:
                 pickle.dump(self.messages_list, f)
 
-
-
-
     def init_agents(self, max_iter = 30, cache_path = None):
         if cache_path != None:
             if os.path.exists(cache_path):
@@ -117,7 +117,7 @@ class Engine:
             self.messages_list.append(profile_prompt(agent.get_profile_str()))
 
         # greedy decoding to get the most dominant attitude
-        responses = self.batch_generate(self.messages_list, sampling=False)
+        responses = self.batch_generate(self.messages_list,desc="Initializing agents", sampling=False)
         attitudes = [parse_attitude(r)[0] for r in responses]
 
         for j in range(self.num_agents):
@@ -126,41 +126,43 @@ class Engine:
         # update the message lists
         for k in range(self.num_agents):
             self.messages_list[k].append(
-                {"role": "assistant", "content": f"Your answer: {self.agents[k].attitude}"}
+                {"role": "assistant", "content": f"Your answer: {attitudes[k]}"}
             )
         self.stage = f"init_agents_day={self.day}"
-        self.save()
+        # self.save()
 
-    def feed_tweets(self, top_k=3, num_recommendations = 10):
+    def feed_tweets(self, top_k=1, num_recommendations = 3):
         tweets_list = self.recommender.recommend(self.tweets_pool, current_day=self.day, agents=self.agents, num_recommendations=num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
+        print("Tweets recommended.")
         assert top_k <= num_recommendations
         for k in range(self.num_agents):
             self.messages_list[k].append(tweets_prompt(tweets_list[k], top_k))
-        responses = self.batch_generate(self.messages_list, max_tokens = 120)
+        responses = self.batch_generate(self.messages_list, desc = "Feeding tweets", max_tokens = 120)
         cleaned = [clean_response(r) for r in responses]
         # lessons = [parse_enumerated_items(c) for c in cleaned]
         self.update_message_lists(cleaned)
         self.stage = f"feed_tweets_day={self.day}"
-        self.save()
+        # self.save()
 
-    def feed_news_and_policies(self, policy = None, top_k=3, num_news = 5):
+    def feed_news_and_policies(self, policy = None, top_k=1, num_news = 3):
         news = self.news[self.day-1: self.day - 1 + num_news]
         top_k = min(top_k, len(news))
         if type(news) == list:
             news = compile_enumerate(news)
         for k in range(self.num_agents):
             self.messages_list[k].append(news_policies_prompt(news, policy, top_k=5))
-        responses = self.batch_generate(self.messages_list, max_tokens = 120)
+        responses = self.batch_generate(self.messages_list, desc = "feeding news and policies", max_tokens = 120)
+        # breakpoint()
         cleaned = [clean_response(r) for r in responses]
         # lessons = [parse_enumerated_items(c) for c in cleaned]
         self.update_message_lists(cleaned)
         self.stage = f"feed_news_and_policies_day={self.day}"
-        self.save()
+        # self.save()
 
     def prompt_actions(self):
         # self.update_message_lists(ACTION_PROMPT)
         self.add_prompt(ACTION_PROMPT)
-        responses = self.batch_generate(self.messages_list)
+        responses = self.batch_generate(self.messages_list, desc="Generating tweets")
         cleaned = [clean_response(r) for r in responses]
         # print(cleaned)
         actions = [parse_actions(c) for c in cleaned]
@@ -170,18 +172,18 @@ class Engine:
         for k in range(self.num_agents):
             self.agents[k].tweets.append(actions_tweets[k])
         self.tweets_pool.extend(actions_tweets)
-        self.save()
+        # self.save()
         return actions
 
     def poll_attitude(self):
         self.add_prompt(ATTITUDE_PROMPT)
-        responses = self.batch_generate(self.messages_list)
+        responses = self.batch_generate(self.messages_list, desc="Polling attitudes")
         cleaned = [clean_response(r) for r in responses]
-        attitudes = parse_attitude(cleaned)
+        attitudes = [parse_attitude(c) for c in cleaned]
         for k in range(self.num_agents):
             self.agents[k].attitudes.append(attitudes[k])
             self.messages_list[k].append(
-                {"role": "assistant", "content": f"Your answer: {self.agents[k].attitude}"}
+                {"role": "assistant", "content": f"Your answer: {attitudes[k]}"}
             )
         attitudes_counter = Counter(attitudes)
         # num_accept = attitudes_counter['definitely yes'] + attitudes_counter['probably yes']
@@ -189,13 +191,13 @@ class Engine:
         hesitancy_percentage = num_hesitancy / self.num_agents
         self.attitude_dist.append(hesitancy_percentage)
         self.stage = f"poll_attitude_day={self.day}"
-        self.save()
+        # self.save()
         return attitudes
 
     def prompt_reflections(self):
         # self.update_message_lists(REFLECTION_PROMPT)
         self.add_prompt(REFLECTION_PROMPT)
-        responses = self.batch_generate(self.messages_list, max_tokens=50)
+        responses = self.batch_generate(self.messages_list, desc = "Prompting reflections", max_tokens=80)
         reflections = [clean_response(r) for r in responses]
         for k in range(len(reflections)):
             reflection = reflections[k]
@@ -204,12 +206,12 @@ class Engine:
             self.agents[k].reflections.append(reflection)
         self.stage = f"prompt_reflections_day={self.day}"
         self.update_message_lists(reflections)
-        self.save()
+        # self.save()
         return reflections
 
     def endturn_reflection(self, top_k = 5):
         self.add_prompt(ENDTURN_REFLECTION_PROMPT)
-        responses = self.batch_generate(self.messages_list)
+        responses = self.batch_generate(self.messages_list, desc="Finishing up reflection")
         cleaned = [clean_response(r) for r in responses]
         reasons = categorize_reasons(cleaned)
         rejection_reasons = []
@@ -223,13 +225,14 @@ class Engine:
         freqs = [(f / len(rej_reasons)) for f in freqs]
         return rej_reasons[:top_k], freqs[:top_k]
 
-    def finish_simulation(self, id, policy, top_k=5):
+    def finish_simulation(self, id, policy, top_k=1):
         reject_reasons, reject_freqs = self.endturn_reflection(top_k)
         swing_agents = []
         for k in range(self.num_agents):
             agent = self.agents[k]
             if len(agent.changes) > top_k:
                 swing_agents.append(agent)
+
         d = {
             "policy": policy,
             "vaccine_hesitancy_ratio": self.attitude_dist,
@@ -238,18 +241,17 @@ class Engine:
             "swing_agents": [{f"agent_{agent.name}": agent.get_json()} for agent in swing_agents]
         }
         json_object = json.dumps(d)
-        with open(f"simulation_id={id}.json", "w") as f:
+        with open(f"num_agents={self.num_agents}-simulation_id={id}.json", "w") as f:
             f.write(json_object)
 
         # erase
         self.messages_list = None
         del(self.agents)
-
         self.agents = self.agents_copy
         self.day = 1
         self.attitude_dist = []
         del(self.tweets_pool)
-        with open("data/combined_posts_texts_covid.pkl", "rb") as f:
+        with open("data/tweet_pool_reddit_obj.pkl.pkl", "rb") as f:
             self.tweets_pool = pickle.load(f)
 
     def run(self, id, policy):
@@ -261,6 +263,7 @@ class Engine:
             self.poll_attitude()
             self.prompt_reflections()
             self.day += 1
+        self.save()
         self.finish_simulation(id, policy)
 
     def run_all_policies(self):

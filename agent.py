@@ -10,6 +10,7 @@ class Agent:
         self.religion = profile['Religion']
         self.attitudes = []
         self.changes = []
+        self.reflections = []
         self.tweets = []
     def custom_init(self, name, gender, age, occupation, education, pb, religion):
         self.name = name
