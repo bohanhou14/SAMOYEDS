@@ -1,5 +1,4 @@
 import openai
-import backoff
 from utils import parse_reasons, REASONS
 
 ATTITUDE_PROMPT = {
