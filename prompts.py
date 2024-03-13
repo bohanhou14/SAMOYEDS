@@ -1,4 +1,5 @@
 import openai
+import backoff
 from utils import parse_reasons, REASONS
 
 ATTITUDE_PROMPT = {
@@ -129,7 +130,7 @@ def categorize_reasons(responses):
     return reasons
 
 
-@backoff.on_exception(backoff.expo, openai.error.RateLimitError)
+@backoff.on_exception(backoff.expo, openai.RateLimitError)
 def query_openai(prompt):
   while True:
     try:
