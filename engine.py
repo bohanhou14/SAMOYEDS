@@ -101,9 +101,6 @@ class Engine:
             with open(os.path.join(self.save_dir, f"num-agents={self.num_agents}-{self.stage}.pkl"), "wb") as f:
                 pickle.dump(self.messages_list, f)
 
-
-
-
     def init_agents(self, max_iter = 30, cache_path = None):
         if cache_path != None:
             if os.path.exists(cache_path):
