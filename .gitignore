@@ -1,3 +1,4 @@
 # data/*
 fig/*
 __pycache__/
+mistralai/*

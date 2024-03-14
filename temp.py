@@ -8,7 +8,7 @@ with open("profiles/profiles-state-United States=attitude=probably_no_or_definit
 agents = []
 for p in profiles:
     agents.append(Agent(profile=p))
-engine = Engine(agents = agents[:10], num_gpus=2, num_days=3)
+engine = Engine(agents = agents[:10], num_gpus=1, num_days=3)
 engine.run_all_policies()
 
 # engine.init_agents()
