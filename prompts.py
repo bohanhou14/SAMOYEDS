@@ -55,13 +55,11 @@ def profile_prompt(profile_str):
                     Infer your attitude towards getting COVID vaccination? 
                     Attitude: Definitely yes.
 
-                    Example D:
+                    Question:
                     Pretend you are this person: {profile_str}\n
                     Choose from definitely yes, probably yes, probably no, definitely no.
                     Infer your attitude towards getting COVID vaccination? 
                     Attitude: 
-
-
                 '''
              }]
 def news_policies_prompt(news, policies = None, top_k=5):
