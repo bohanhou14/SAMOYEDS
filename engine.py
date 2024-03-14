@@ -122,7 +122,7 @@ class Engine:
         # update the message lists
         for k in range(self.num_agents):
             self.messages_list[k].append(
-                {"role": "assistant", "content": f"Your answer: {self.agents[k].attitude}"}
+                {"role": "assistant", "content": f"Your answer: {self.agents[k].attitudes}"}
             )
         self.stage = f"init_agents_day={self.day}"
         self.save()
