@@ -62,13 +62,19 @@ class Engine:
     def batch_generate(self, messages_list=None, max_tokens = 80, sampling=True):
         if messages_list != None and type(messages_list) != list:
             raise TypeError("Invalid format")
-        def convert(msg):
+        
+        def convert_mistral(msg):
             return self.tokenizer.apply_chat_template(msg, tokenize=False)
+        
+        def convert_qwen(msg):
+            text = self.tokenizer.apply_chat_template(msg, tokenize=False, add_generation_prompt=True)
+            return self.tokenizer([text], return_tensors="pt").to(self.device)
         if messages_list == None:
             if self.messages_list == None:
                 raise RuntimeError("Messages_list not initialized yet")
             messages_list = self.messages_list
-        model_inputs = [convert(msg) for msg in messages_list]
+        
+        model_inputs = [convert_qwen(msg) for msg in messages_list]
         sampling_params = self.sampling_params
         sampling_params.max_tokens = max_tokens
         sampling_params.sampling = sampling
