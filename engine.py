@@ -177,7 +177,7 @@ class Engine:
         for k in range(self.num_agents):
             self.agents[k].attitudes.append(attitudes[k])
             self.messages_list[k].append(
-                {"role": "assistant", "content": f"Your answer: {self.agents[k].attitude}"}
+                {"role": "assistant", "content": f"Your answer: {self.agents[k].attitudes}"}
             )
         attitudes_counter = Counter(attitudes)
         # num_accept = attitudes_counter['definitely yes'] + attitudes_counter['probably yes']
