@@ -67,7 +67,8 @@ class Engine:
             return self.tokenizer.apply_chat_template(msg, tokenize=False)
         
         def convert_qwen(msg):
-            print(msg)
+            if type(msg) != list:
+                msg = [msg]
             text = self.tokenizer.apply_chat_template(msg, tokenize=False, add_generation_prompt=True)
             return self.tokenizer([text], return_tensors="pt").to(self.device)
         if messages_list == None:
