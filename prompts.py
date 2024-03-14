@@ -150,7 +150,7 @@ def query_openai(prompt):
         frequency_penalty=0,
         presence_penalty=0
       )
-    except openai.error.APIError:
+    except openai.APIError:
       continue
     break
   return response.choices[0].message.content
