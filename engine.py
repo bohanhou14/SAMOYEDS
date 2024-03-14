@@ -80,7 +80,7 @@ class Engine:
         sampling_params = self.sampling_params
         sampling_params.max_tokens = max_tokens
         sampling_params.sampling = sampling
-        output = self.model.generate(model_inputs, sampling_params)
+        output = [self.model.generate(model_input, sampling_params) for model_input in model_inputs]
         responses = [output[i].outputs[0].text for i in range(len(messages_list))]
         return responses
 
@@ -119,6 +119,7 @@ class Engine:
                 return
             else:
                 raise RuntimeError("Cache dir not exist")
+            
         self.messages_list = []
         for agent in self.agents:
             self.messages_list.append({"role": "system", 
