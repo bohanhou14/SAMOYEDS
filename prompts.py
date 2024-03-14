@@ -26,8 +26,8 @@ def profile_prompt(profile_str):
                         - Education:  College graduate
                         - Occupation:  small business owner
                         - Political belief:  moderate democrat
-                        - Religion:  Baptist
-                    What's your attitude towards getting COVID vaccination? 
+                        - Religion:  Buddhist
+                    Infer your attitude towards getting COVID vaccination? 
                     Attitude: probably yes.
 
                     Example B:
@@ -39,12 +39,12 @@ def profile_prompt(profile_str):
                         - Occupation:  stay-at-home mom
                         - Political belief:  Republican
                         - Religion:  Baptist
-                    What's your attitude towards getting COVID vaccination? 
+                    Infer your attitude towards getting COVID vaccination? 
                     Attitude: probably no.
 
                     Pretend you are this person: {profile_str}\n
                     Choose from definitely yes, probably yes, probably no, definitely no.
-                    What's your attitude towards getting COVID vaccination? 
+                    Infer your attitude towards getting COVID vaccination? 
                     Attitude: 
                 '''
              }]
