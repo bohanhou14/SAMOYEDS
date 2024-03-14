@@ -16,47 +16,7 @@ ATTITUDE_PROMPT = {
 
 def profile_prompt(profile_str):
     return [{"role": "user",
-             "content":
-                 f'''
-                    Example A:
-                    Pretend you are this person: 
-                        - Gender:  female
-                        - Age:  50 years old
-                        - Education:  College graduate
-                        - Occupation:  small business owner
-                        - Political belief:  moderate democrat
-                        - Religion:  Buddhist
-                    Choose from definitely yes, probably yes, probably no, definitely no.
-                    Infer your attitude towards getting COVID vaccination? 
-                    Attitude: probably yes.
-
-                    Example B:
-                    Pretend you are this person: 
-                        - Gender:  female
-                        - Age:  27 years old
-                        - Education:  college degree in science
-                        - Occupation:  stay-at-home mom
-                        - Political belief:  Republican
-                        - Religion:  Baptist
-                    Choose from definitely yes, probably yes, probably no, definitely no.
-                    Infer your attitude towards getting COVID vaccination? 
-                    Attitude: probably no.
-
-                    Example C:
-                    Pretend you are this person: 
-                        - Gender:  male
-                        - Age:  21 years old
-                        - Education:  college degree in computer science and sociology
-                        - Occupation:  student
-                        - Political belief:  other
-                        - Religion:  Atheist
-
-                    Choose from definitely yes, probably yes, probably no, definitely no.
-                    Infer your attitude towards getting COVID vaccination? 
-                    Attitude: Definitely yes.
-
-                    Question:
-                    Pretend you are this person: {profile_str}\n
+             "content":'''
                     Choose from definitely yes, probably yes, probably no, definitely no.
                     Infer your attitude towards getting COVID vaccination? 
                     Attitude: 
