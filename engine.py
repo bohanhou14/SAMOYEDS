@@ -17,7 +17,8 @@ class Engine:
         self, 
         agents: list = None, 
         num_gpus = 1,
-        num_days = 30
+        num_days = 30,
+        save_dir = None
     ):
         # a list of agents
         self.agents = agents
@@ -39,7 +40,7 @@ class Engine:
         self.tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
         self.model = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=num_gpus)
 
-        self.save_dir = f"./run_cache/default"
+        self.save_dir = f"./run_cache/default" if save_dir == None else save_dir
 
         self.attitude_dist = []
         self.day = 1
@@ -131,7 +132,6 @@ class Engine:
 
     def feed_tweets(self, top_k=3, num_recommendations = 10):
         tweets_list = self.recommender.recommend(self.tweets_pool, current_day=self.day, agents=self.agents, num_recommendations=num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
-        assert top_k <= num_recommendations
         for k in range(self.num_agents):
             self.messages_list[k].append(tweets_prompt(tweets_list[k], top_k))
         responses = self.batch_generate(self.messages_list, max_tokens = 120)
@@ -253,14 +253,14 @@ class Engine:
 
     def run(self, id, policy):
         self.init_agents()
-        for t in trange(self.num_days, desc=f"Running simulations of policy={id}"):
-            self.feed_tweets()
-            self.feed_news_and_policies(policy=policy)
-            self.prompt_actions()
-            self.poll_attitude()
-            self.prompt_reflections()
-            self.day += 1
-        self.finish_simulation(id, policy)
+        # for t in trange(self.num_days, desc=f"Running simulations of policy={id}"):
+        #     self.feed_tweets()
+        #     self.feed_news_and_policies(policy=policy)
+        #     self.prompt_actions()
+        #     self.poll_attitude()
+        #     self.prompt_reflections()
+        #     self.day += 1
+        # self.finish_simulation(id, policy)
 
     def run_all_policies(self):
         for i in range(len(self.policies)):
