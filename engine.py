@@ -47,6 +47,8 @@ class Engine:
 
         with open("data/combined_posts_texts_covid.pkl", "rb") as f:
             self.tweets_pool = pickle.load(f)
+            f.close()
+        self.tweets_pool = [Tweet(text, time=self.day) for text in self.tweets_pool]
         with open("data/news.pkl", "rb") as f:
             self.news = pickle.load(f)
             f.close()
