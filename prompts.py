@@ -27,6 +27,7 @@ def profile_prompt(profile_str):
                         - Occupation:  small business owner
                         - Political belief:  moderate democrat
                         - Religion:  Buddhist
+                    Choose from definitely yes, probably yes, probably no, definitely no.
                     Infer your attitude towards getting COVID vaccination? 
                     Attitude: probably yes.
 
@@ -39,6 +40,7 @@ def profile_prompt(profile_str):
                         - Occupation:  stay-at-home mom
                         - Political belief:  Republican
                         - Religion:  Baptist
+                    Choose from definitely yes, probably yes, probably no, definitely no.
                     Infer your attitude towards getting COVID vaccination? 
                     Attitude: probably no.
 
