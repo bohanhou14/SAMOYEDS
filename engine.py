@@ -142,7 +142,7 @@ class Engine:
         self.save()
 
     def feed_news_and_policies(self, policy = None, top_k=3, num_news = 5):
-        print(self.news)
+        # print(self.news)
         news = self.news[(self.day-1): (self.day-1 + num_news)]
         top_k = min(top_k, len(news))
         if type(news) == list:
@@ -175,8 +175,8 @@ class Engine:
     def poll_attitude(self):
         self.add_prompt(ATTITUDE_PROMPT)
         responses = self.batch_generate(self.messages_list)
-        cleaned = [clean_response(r) for r in responses]
-        attitudes = parse_attitude(cleaned)
+        attitudes = [parse_attitude(r) for r in responses]
+        print("attitudes: ", attitudes)
         for k in range(self.num_agents):
             self.agents[k].attitudes.append(attitudes[k])
             self.messages_list[k].append(
