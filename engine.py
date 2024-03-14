@@ -175,7 +175,7 @@ class Engine:
     def poll_attitude(self):
         self.add_prompt(ATTITUDE_PROMPT)
         responses = self.batch_generate(self.messages_list)
-        attitudes = [parse_attitude(r) for r in responses]
+        attitudes = [parse_attitude(r)[0] for r in responses]
         print("attitudes: ", attitudes)
         for k in range(self.num_agents):
             self.agents[k].attitudes.append(attitudes[k])
