@@ -37,8 +37,8 @@ class Engine:
         # directed graph TBD
         self.social_network = {}
 
-        self.tokenizer = AutoTokenizer.from_pretrained("google/gemma-7b")
-        self.model = LLM("google/gemma-7b", tensor_parallel_size=num_gpus)
+        self.tokenizer = AutoTokenizer.from_pretrained("google/gemma-7b-it")
+        self.model = LLM("google/gemma-7b-it", tensor_parallel_size=num_gpus)
 
         self.save_dir = f"./run_cache/default" if save_dir == None else save_dir
 
