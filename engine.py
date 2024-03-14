@@ -142,7 +142,7 @@ class Engine:
         self.save()
 
     def feed_news_and_policies(self, policy = None, top_k=3, num_news = 5):
-        news = self.news[self.day-1: self.day - 1 + num_news]
+        news = self.news[(self.day-1): (self.day-1 + num_news)]
         top_k = min(top_k, len(news))
         if type(news) == list:
             news = compile_enumerate(news)
