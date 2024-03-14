@@ -111,6 +111,8 @@ def categorize_reasons(responses):
             
             Reason: 
         '''
+        return prompt
+    
     prompts = [get_prompt(response) for response in responses]
     reasons = [query_openai(p) for p in prompts]
     reasons = [parse_reasons(r) for r in reasons]
@@ -121,7 +123,7 @@ def categorize_reasons(responses):
 def query_openai(prompt):
   while True:
     try:
-      response = openai.ChatCompletion.create(
+      response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
           {

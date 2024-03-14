@@ -56,7 +56,6 @@ class Engine:
 
 
     # ready to parallel run this
-    
     def batch_generate(self, messages_list=None, max_tokens = 80, sampling=True):
         if messages_list != None and type(messages_list) != list:
             raise TypeError("Invalid format")
