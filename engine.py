@@ -37,8 +37,8 @@ class Engine:
         # directed graph TBD
         self.social_network = {}
 
-        self.tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.1")
-        self.model = LLM("mistralai/Mistral-7B-Instruct-v0.1", tensor_parallel_size=num_gpus)
+        self.tokenizer = AutoTokenizer.from_pretrained("google/gemma-7b")
+        self.model = LLM("google/gemma-7b", tensor_parallel_size=num_gpus)
 
         self.save_dir = f"./run_cache/default" if save_dir == None else save_dir
 
@@ -118,7 +118,7 @@ class Engine:
         # greedy decoding to get the most dominant attitude
         responses = self.batch_generate(self.messages_list, sampling=False)
         attitudes = [parse_attitude(r)[0] for r in responses]
-        
+
 
         for j in range(self.num_agents):
             self.agents[j].attitudes.append(attitudes[j])
