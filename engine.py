@@ -80,7 +80,7 @@ class Engine:
         sampling_params = self.sampling_params
         sampling_params.max_tokens = max_tokens
         sampling_params.sampling = sampling
-        output = [self.model.generate(model_input.input_ids, sampling_params) for model_input in model_inputs]
+        output = [self.model.generate(model_input, sampling_params) for model_input in model_inputs]
         responses = [output[i].outputs[0].text for i in range(len(messages_list))]
         return responses
 
