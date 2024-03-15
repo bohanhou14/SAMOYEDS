@@ -70,7 +70,7 @@ class Engine:
             if type(msg) != list:
                 msg = [msg]
             text = self.tokenizer.apply_chat_template(msg, tokenize=False, add_generation_prompt=True)
-            return self.tokenizer([text], return_tensors="pt").to(self.device)
+            return text
         if messages_list == None:
             if self.messages_list == None:
                 raise RuntimeError("Messages_list not initialized yet")
@@ -122,9 +122,7 @@ class Engine:
             
         self.messages_list = []
         for agent in self.agents:
-            self.messages_list.append({"role": "system", 
-                                       "content": f"You are a person with this profile: {agent.get_profile_str()}"
-                                       })
+            self.messages_list.append({"role": "system", "content": f"You are a person with this profile: {agent.get_profile_str()}"})
             
 
         # greedy decoding to get the most dominant attitude
@@ -266,14 +264,14 @@ class Engine:
 
     def run(self, id, policy):
         self.init_agents()
-        # for t in trange(self.num_days, desc=f"Running simulations of policy={id}"):
-        #     self.feed_tweets()
-        #     self.feed_news_and_policies(policy=policy)
-        #     self.prompt_actions()
-        #     self.poll_attitude()
-        #     self.prompt_reflections()
-        #     self.day += 1
-        # self.finish_simulation(id, policy)
+        for t in trange(self.num_days, desc=f"Running simulations of policy={id}"):
+            self.feed_tweets()
+            self.feed_news_and_policies(policy=policy)
+            self.prompt_actions()
+            self.poll_attitude()
+            self.prompt_reflections()
+            self.day += 1
+        self.finish_simulation(id, policy)
 
     def run_all_policies(self):
         for i in range(len(self.policies)):
