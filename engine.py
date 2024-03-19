@@ -27,7 +27,7 @@ class Engine:
         self.num_agents = len(agents)
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.sampling_params = SamplingParams(
-            top_p = 1.0,
+            top_p = 0.96,
             temperature = 0.7
         )
         # keep track of all the conversations, shape=(num_agents X (dynamic) num_conversation_turns)
