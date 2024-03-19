@@ -1,7 +1,7 @@
 from engine import Engine
 import pickle
 from agent import Agent
-with open("profiles/profiles-agent_num=10-top_p=0.7-temp=2.0.pkl", "rb") as f:
+with open('profiles/profiles-state-United States=attitude="probably no or definitely no"-agent_num=10-top_p=0.96-temp=1.0.pkl', "rb") as f:
     # a list of dictionaries
     profiles = list(pickle.load(f))
 
