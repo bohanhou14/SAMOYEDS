@@ -16,7 +16,7 @@ def parse_args():
     parser.add_argument("p", type=float)
     parser.add_argument("temp", type=float)
     parser.add_argument("--state",default="United States")
-    parser.add_argument("--attitude", default='"probably no or definitely no"')
+    parser.add_argument("--attitude", default='"probably no, definitely no, probably yes, definitely yes"')
     return parser.parse_args()
 
 if __name__=='__main__':
