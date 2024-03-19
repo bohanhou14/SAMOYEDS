@@ -1,7 +1,6 @@
 from tweet import Tweet
 class Agent:
     def __init__(self, profile):
-        self.name = profile['Name']
         self.gender = profile['Gender']
         self.age = profile['Age']
         self.occupation = profile['Occupation']
@@ -13,7 +12,6 @@ class Agent:
         self.reflections = []
         self.tweets = []
     def custom_init(self, name, gender, age, occupation, education, pb, religion):
-        self.name = name
         self.gender = gender
         self.age = age
         self.occupation = occupation
@@ -25,7 +23,6 @@ class Agent:
 
     def get_profile_str(self):
         profile_str = f'''
-            - Name: {self.name}
             - Gender: {self.gender}
             - Age: {self.age}
             - Education: {self.education}

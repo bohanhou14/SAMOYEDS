@@ -72,7 +72,7 @@ SHORT_SIGNALS = np.array(["sideeffects",
 
 
 # Fields and methods for profile information
-PROFILE_ATTRIBUTES_LOWER = ["name:",
+PROFILE_ATTRIBUTES_LOWER = [
                             "gender:",
                             "race:",
                             "age:",
@@ -81,7 +81,7 @@ PROFILE_ATTRIBUTES_LOWER = ["name:",
                             "religion:",
                             "political belief:"]
 
-PROFILE_ATTRIBUTES = ['Name',
+PROFILE_ATTRIBUTES = [
                       'Gender',
                       'Race',
                       'Age',
@@ -133,14 +133,12 @@ def parse_profile(text):
 # read a profile and return a string describing the profile
 def read_profile(profile):
     gender = profile['Gender']
-    name = profile['Name']
     religion = profile['Religion']
     pb = profile['Political belief']
     age = profile['Age']
     oc = profile['Occupation']
     ed = profile['Education']
     str = f'''
-        - Name: {name}
         - Gender: {gender}
         - Age: {age}
         - Education: {ed}
