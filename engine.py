@@ -124,12 +124,12 @@ class Engine:
         for i in range(self.num_agents):
             agent = self.agents[i]
             self.messages_list.append([{"role": "system", "content": f"You are a person with this profile: {agent.get_profile_str()}"}])
-            self.messages_list[i].append({"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"})            
-
+            self.messages_list[i].append({"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"})
+            print(f"Prompting agent {i} to input their profile: \n{self.messages_list[i]\n\n}")            
+        
         # greedy decoding to get the most dominant attitude
-        responses = self.batch_generate(self.messages_list, sampling=False)
+        responses = self.batch_generate(self.messages_list, sampling=False, max_tokens=50)
         attitudes = [parse_attitude(r)[0] for r in responses]
-
 
         for j in range(self.num_agents):
             self.agents[j].attitudes.append(attitudes[j])
