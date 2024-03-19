@@ -121,10 +121,12 @@ class Engine:
                 raise RuntimeError("Cache dir not exist")
             
         self.messages_list = []
-        for agent in self.agents:
-            self.messages_list.append([{"role": "system", "content": f"You are a person with this profile: {agent.get_profile_str()}"}])
-            
-
+        for i in range(self.num_agents):
+            agent = self.agents[i]
+            self.messages_list[i] = []
+            self.messages_list[i].append({"role": "system", "content": f"You are a person with this profile: {agent.get_profile_str()}"})
+            self.messages_list[i].append({"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"})            
+        
         # greedy decoding to get the most dominant attitude
         responses = self.batch_generate(self.messages_list, sampling=False)
         attitudes = [parse_attitude(r)[0] for r in responses]
