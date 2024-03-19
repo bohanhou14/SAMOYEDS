@@ -31,7 +31,6 @@ if __name__=='__main__':
                 {state} that will say {attitude} to COVID vaccination.
 
                 Example: 
-                    - Name: Garcia Marquez
                     - Gender: male
                     - Race: Hispanic
                     - Education: High School
