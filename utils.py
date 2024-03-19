@@ -185,7 +185,7 @@ def parse_attitude(response):
             return att, idx
 
     # if here, then no attitude, must be something wrong
-    print(f"No attitude found: {x}")
+    print(f"No attitude found:\n {x}\n\n")
     return "", -1
 
 def parse_reasons(response):
