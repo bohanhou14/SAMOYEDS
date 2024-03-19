@@ -39,8 +39,8 @@ def profile_prompt(profile_str):
 
                 Question:
                     {profile_str}
-                    Attitude towards COVID vaccination from [definitely yes, probably yes, probably no, definitely no] in one-word:
-                         
+                    Attitude towards COVID vaccination from in one-word:
+
                 '''
              }]
 
