@@ -129,10 +129,14 @@ class Engine:
         
         # greedy decoding to get the most dominant attitude
         responses = self.batch_generate(self.messages_list, sampling=False, max_tokens=200)
+        for r in responses:
+            print(r)
+            print("\n\n")
         attitudes = [parse_attitude(r)[0] for r in responses]
 
         for j in range(self.num_agents):
             self.agents[j].attitudes.append(attitudes[j])
+        
         
         # update the message lists
         for k in range(self.num_agents):
