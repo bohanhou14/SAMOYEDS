@@ -24,7 +24,7 @@ def profile_prompt(profile_str):
                 - Occupation:  small business owner 
                 - Political belief:  moderate democrat 
                 - Religion:  Buddhist. 
-                - Attitude towards COVID vaccination: probably yes.
+                - Attitude towards COVID vaccination from [definitely yes, probably yes, probably no, definitely no]: probably yes.
 
                 Example B:
                     - Gender:  female
@@ -33,11 +33,11 @@ def profile_prompt(profile_str):
                     - Occupation:  stay-at-home mom
                     - Political belief:  Republican
                     - Religion:  Baptist
-                    - Attitude towards COVID vaccination: probably no.
+                    - Attitude towards COVID vaccination from [definitely yes, probably yes, probably no, definitely no]: probably no.
 
                 Question:
                     {profile_str}
-                    - Attitude towards COVID vaccination: 
+                    - Attitude towards COVID vaccination from [definitely yes, probably yes, probably no, definitely no]: 
                 '''
              }]
 
