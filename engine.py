@@ -149,7 +149,7 @@ class Engine:
                 {"role": "assistant", "content": f"Attitude towards COVID vaccination: {self.agents[j].attitudes[-1]}"}
             )            
         self.stage = f"init_agents_day={self.day}"
-        self.save(save_path)
+        self.save()
 
     def feed_tweets(self, top_k=3, num_recommendations = 10):
         tweets_list = self.recommender.recommend(self.tweets_pool, current_day=self.day, agents=self.agents, num_recommendations=num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
