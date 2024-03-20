@@ -129,7 +129,7 @@ class Engine:
         if openai:
             responses = []
             for i in trange(len(self.messages_list)):
-                responses.append(query_openai(self.messages_list[i]))
+                responses.append(query_openai_messages(self.messages_list[i]))
                 print(responses[i]) 
         else:
             # greedy decoding to get the most dominant attitude
