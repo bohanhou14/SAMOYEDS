@@ -5,7 +5,7 @@ import torch
 from utils import clean_response, parse_attitude, compile_enumerate, parse_enumerated_items, parse_actions, counter_to_ordered_list, HESITANCY
 from collections import Counter
 from vllm import LLM, SamplingParams
-from tqdm import trange
+from tqdm import trange, tqdm
 import os
 from tweet import Tweet
 from recommender import Recommender
@@ -127,7 +127,7 @@ class Engine:
             self.messages_list[i].append({"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"})
 
         if openai:
-            response = [query_openai(msg) for msg in self.messages_list]
+            response = [query_openai(self.messages_list[i]) for i in trange(len(self.messages_list))]
             print(response) 
         else:
             # greedy decoding to get the most dominant attitude
