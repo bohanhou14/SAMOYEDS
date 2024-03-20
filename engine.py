@@ -127,8 +127,10 @@ class Engine:
             self.messages_list[i].append({"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"})
 
         if openai:
-            response = [query_openai(self.messages_list[i]) for i in trange(len(self.messages_list))]
-            print(response) 
+            responses = []
+            for i in trange(len(self.messages_list)):
+                responses.append(query_openai(self.messages_list[i]))
+                print(responses[i]) 
         else:
             # greedy decoding to get the most dominant attitude
             responses = self.batch_generate(self.messages_list, sampling=False, max_tokens=200)
