@@ -111,7 +111,7 @@ class Engine:
             with open(os.path.join(self.save_dir, f"num-agents={self.num_agents}-{self.stage}.pkl"), "wb") as f:
                 pickle.dump(self.messages_list, f)
 
-    def init_agents(self, max_iter = 30, cache_path = None):
+    def init_agents(self, max_iter = 30, cache_path = None, openai = False):
         if cache_path != None:
             if os.path.exists(cache_path):
                 with open(cache_path, "rb") as f:
@@ -125,10 +125,13 @@ class Engine:
             agent = self.agents[i]
             self.messages_list.append([{"role": "system", "content": f"You are a person with this profile: {agent.get_profile_str()}"}])
             self.messages_list[i].append({"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"})
-            print(f"Prompting agent {i} to input their profile: \n{self.messages_list[i]}\n\n")            
-        
-        # greedy decoding to get the most dominant attitude
-        responses = self.batch_generate(self.messages_list, sampling=False, max_tokens=200)
+
+        if openai:
+            response = [query_openai(msg) for msg in self.messages_list]
+            print(response) 
+        else:
+            # greedy decoding to get the most dominant attitude
+            responses = self.batch_generate(self.messages_list, sampling=False, max_tokens=200)
         
         attitudes = [parse_attitude(r)[0] for r in responses]
         for i in range(len(responses)):
