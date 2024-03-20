@@ -123,8 +123,8 @@ class Engine:
         self.messages_list = []
         for i in range(self.num_agents):
             agent = self.agents[i]
-            self.messages_list.append([{"role": "system", "content": f"You are a person with this profile: {agent.get_profile_str()}"}])
-            self.messages_list[i].append({"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"})
+            # self.messages_list.append([{"role": "system", "content": f"You are a person with this profile: {agent.get_profile_str()}"}])
+            self.messages_list.append([{"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"}])
 
         if openai:
             responses = []
