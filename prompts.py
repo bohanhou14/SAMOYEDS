@@ -152,7 +152,7 @@ def query_openai_messages(messages):
   while True:
     try:
       response = openai.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=messages,
         temperature=1,
         max_tokens=256,
