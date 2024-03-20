@@ -105,11 +105,17 @@ class Engine:
                 self.messages_list[k].append(
                     new_prompts
                 )
+    def load(self, path):
+        if os.path.exists(path):
+            with open(path, "rb") as f:
+                self.messages_list = pickle.load(f)
+                f.close()
 
     def save(self):
         if self.save_dir != None:
             with open(os.path.join(self.save_dir, f"num-agents={self.num_agents}-{self.stage}.pkl"), "wb") as f:
                 pickle.dump(self.messages_list, f)
+                f.close()
 
     def init_agents(self, max_iter = 30, cache_path = None, openai = False):
         if cache_path != None:
@@ -127,7 +133,6 @@ class Engine:
             self.messages_list.append([{"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"}])
 
         if openai:
-            print(query_openai("Hello, introduce yourself:"))
             responses = []
             for i in trange(len(self.messages_list)):
                 responses.append(query_openai_messages(self.messages_list[i]))
@@ -137,23 +142,14 @@ class Engine:
             responses = self.batch_generate(self.messages_list, sampling=False, max_tokens=200)
         
         attitudes = [parse_attitude(r)[0] for r in responses]
-        for i in range(len(responses)):
-            r = responses[i]
-            a = attitudes[i]
-            print(f"Raw response: {r}\n")
-            print(f"Attitude: {a}\n\n")
-
+        # update the message lists
         for j in range(self.num_agents):
             self.agents[j].attitudes.append(attitudes[j])
-        
-        
-        # update the message lists
-        for k in range(self.num_agents):
-            self.messages_list[k].append(
-                {"role": "assistant", "content": f"Your answer: {self.agents[k].attitudes}"}
-            )
+            self.messages_list[j].append(
+                {"role": "assistant", "content": f"Attitude towards COVID vaccination: {self.agents[j].attitudes[-1]}"}
+            )            
         self.stage = f"init_agents_day={self.day}"
-        self.save()
+        self.save(save_path)
 
     def feed_tweets(self, top_k=3, num_recommendations = 10):
         tweets_list = self.recommender.recommend(self.tweets_pool, current_day=self.day, agents=self.agents, num_recommendations=num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
@@ -277,7 +273,7 @@ class Engine:
             self.tweets_pool = pickle.load(f)
 
     def run(self, id, policy):
-        self.init_agents()
+        self.init_agents(openai=True)
         for t in trange(self.num_days, desc=f"Running simulations of policy={id}"):
             self.feed_tweets()
             self.feed_news_and_policies(policy=policy)
