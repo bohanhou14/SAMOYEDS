@@ -1,5 +1,4 @@
 import numpy as np
-
 API_KEY = '7fa6fe05da148'
 import datetime
 import os
