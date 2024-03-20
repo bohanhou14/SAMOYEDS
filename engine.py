@@ -127,6 +127,7 @@ class Engine:
             self.messages_list.append([{"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"}])
 
         if openai:
+            print(query_openai("Hello, introduce yourself:"))
             responses = []
             for i in trange(len(self.messages_list)):
                 responses.append(query_openai_messages(self.messages_list[i]))
