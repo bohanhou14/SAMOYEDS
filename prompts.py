@@ -17,30 +17,26 @@ ATTITUDE_PROMPT = {
 def profile_prompt(profile_str):
     return [{"role": "user",
              "content":f'''
-                Example A:
                 - Gender:  female 
                 - Age:  50 years old
                 - Education:  College graduate 
                 - Occupation:  small business owner 
                 - Political belief:  moderate democrat 
                 - Religion:  Buddhist. 
-                Attitude towards COVID vaccination from [definitely yes, probably yes, probably no, definitely no] in one-word: 
+                Attitude towards COVID vaccination from [definitely yes, probably yes, probably no, definitely no] in two words: 
                     probably yes.
 
-                Example B:
-                    - Gender:  female
-                    - Age:  27 years old
-                    - Education:  college degree in science
-                    - Occupation:  stay-at-home mom
-                    - Political belief:  Republican
-                    - Religion:  Baptist
-                    Attitude towards COVID vaccination from [definitely yes, probably yes, probably no, definitely no] in one-word: 
-                        probably no.
+                - Gender:  female
+                - Age:  27 years old
+                - Education:  college degree in science
+                - Occupation:  stay-at-home mom
+                - Political belief:  Republican
+                - Religion:  Baptist
+                Attitude towards COVID vaccination from [definitely yes, probably yes, probably no, definitely no] in two words: 
+                    probably no.
 
-                Question:
-                    {profile_str}
-                    Attitude towards COVID vaccination from in one-word:
-
+                {profile_str}
+                Attitude towards COVID vaccination from in two words:
                 '''
              }]
 
