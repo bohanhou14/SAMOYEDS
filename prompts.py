@@ -151,6 +151,7 @@ def query_openai(prompt):
 def query_openai_messages(messages):
   while True:
     try:
+      print(messages)
       response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=messages,
