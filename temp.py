@@ -9,5 +9,5 @@ agents = []
 for p in profiles:
     agents.append(Agent(profile=p))
 engine = Engine(agents = agents, num_gpus=1, num_days=3, save_dir="run_cache/debug/")
-# engine.run_all_policies()
-engine.init_agents(openai=True)
+engine.run_all_policies()
+# engine.init_agents(openai=True)
