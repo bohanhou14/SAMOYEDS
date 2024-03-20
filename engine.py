@@ -117,7 +117,7 @@ class Engine:
                 pickle.dump(self.messages_list, f)
                 f.close()
 
-    def init_agents(self, max_iter = 30, cache_path = None, openai = False):
+    def init_agents(self, max_iter = 10, cache_path = None, openai = False):
         if cache_path != None:
             if os.path.exists(cache_path):
                 with open(cache_path, "rb") as f:
@@ -134,14 +134,20 @@ class Engine:
 
         if openai:
             responses = []
+            attitudes = []
             for i in trange(len(self.messages_list)):
-                responses.append(query_openai_messages(self.messages_list[i]))
-                print(responses[i]) 
+                attitude = ""
+                attempts = 0
+                while attitude == "" or attempts > max_iter:
+                    response = query_openai_messages(self.messages_list[i], model = "gpt-4")
+                    attitude = parse_attitude(response)[0]
+                    attempts += 1
+                responses.append(response)
+                attitudes.append(attitude)
         else:
             # greedy decoding to get the most dominant attitude
             responses = self.batch_generate(self.messages_list, sampling=False, max_tokens=200)
         
-        attitudes = [parse_attitude(r)[0] for r in responses]
         # update the message lists
         for j in range(self.num_agents):
             self.agents[j].attitudes.append(attitudes[j])

@@ -148,11 +148,11 @@ def query_openai(prompt):
   return response.choices[0].message.content
 
 @backoff.on_exception(backoff.expo, openai.RateLimitError)
-def query_openai_messages(messages):
+def query_openai_messages(messages, model="gpt-3.5-turbo"):
   while True:
     try:
       response = openai.chat.completions.create(
-        model="gpt-4",
+        model=model,
         messages=messages,
         temperature=1,
         max_tokens=256,
