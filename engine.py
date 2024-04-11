@@ -12,12 +12,14 @@ from recommender import Recommender
 import numpy as np
 from prompts import *
 import pickle
+
 class Engine:
     def __init__(
         self, 
         agents: list = None, 
         num_gpus = 1,
         num_days = 30,
+        model_type = "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO",
         save_dir = None
     ):
         # a list of agents
@@ -37,8 +39,8 @@ class Engine:
         # directed graph TBD
         self.social_network = {}
 
-        self.tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen1.5-7B-Chat")
-        self.model = LLM("Qwen/Qwen1.5-7B-Chat", tensor_parallel_size=num_gpus)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_type)
+        self.model = LLM(model_type, tensor_parallel_size=num_gpus)
 
         self.save_dir = f"./run_cache/default" if save_dir == None else save_dir
 
@@ -157,11 +159,11 @@ class Engine:
         self.stage = f"init_agents_day={self.day}"
         self.save()
 
-    def feed_tweets(self, top_k=3, num_recommendations = 10):
+    def feed_tweets(self, top_k=3, num_recommendations = 5):
         tweets_list = self.recommender.recommend(self.tweets_pool, current_day=self.day, agents=self.agents, num_recommendations=num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
         for k in range(self.num_agents):
             self.messages_list[k].append(tweets_prompt(tweets_list[k], top_k))
-        responses = self.batch_generate(self.messages_list, max_tokens = 120)
+        responses = self.batch_generate(self.messages_list, max_tokens = 300)
         cleaned = [clean_response(r) for r in responses]
         # lessons = [parse_enumerated_items(c) for c in cleaned]
         self.update_message_lists(cleaned)
@@ -281,8 +283,14 @@ class Engine:
     def run(self, id, policy):
         self.init_agents(openai=True)
         for t in trange(self.num_days, desc=f"Running simulations of policy={id}"):
+            # only generated tweets? or tweet for ICL and RAG
+            # label tweets with attitudes and sample consistent tweets
+            # still randomize RAG
             self.feed_tweets()
+            # news as environmental variables
+            # policy as system prompt
             self.feed_news_and_policies(policy=policy)
+            # news: 1) real-world news + 2) news within the sandbox
             self.prompt_actions()
             self.poll_attitude()
             self.prompt_reflections()
