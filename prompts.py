@@ -4,13 +4,8 @@ from utils import parse_reasons, REASONS
 
 ATTITUDE_PROMPT = {
             "role": "user",
-            "content": '''Based on the lessons you learned and your previous attitude towards COVID vaccinations, choose your current attitude towards COVID vaccinations from {definitely no, probably no, probably yes, and definitely yes}.
-                Choice A: definitely no.
-                Choice B: probably no.
-                Choice C: probably yes.
-                Choice D: definitely yes.
-                What's your current attitude towards COVID vaccinations from {definitely no, probably no, probably yes, and definitely yes} ?
-                Your answer:
+            "content": '''Based on the lessons you learned and your previous attitude towards COVID vaccinations, what's your current attitude towards COVID vaccinations?
+                Attitude: [definitely no, probably no, probably yes, and definitely yes]
             '''
         }
 
@@ -23,8 +18,7 @@ def profile_prompt(profile_str):
                 - Occupation:  small business owner 
                 - Political belief:  moderate democrat 
                 - Religion:  Buddhist. 
-                Attitude towards COVID vaccination from [definitely yes, probably yes, probably no, definitely no] in two words: 
-                    probably yes.
+                Attitude towards COVID vaccination: probably yes.
 
                 - Gender:  female
                 - Age:  27 years old
@@ -32,11 +26,10 @@ def profile_prompt(profile_str):
                 - Occupation:  stay-at-home mom
                 - Political belief:  Republican
                 - Religion:  Baptist
-                Attitude towards COVID vaccination from [definitely yes, probably yes, probably no, definitely no] in two words: 
-                    probably no.
+                Attitude towards COVID vaccination: probably no
 
                 {profile_str}
-                Attitude towards COVID vaccination from in two words:
+                Attitude towards COVID vaccination [definitely yes, definitely no, probably yes, probably no]:
                 '''
              }]
 
@@ -56,7 +49,7 @@ def news_policies_prompt(news, policies = None, top_k=5):
 def tweets_prompt(tweets, k=5):
     TWEETS_PROMPT = {
         "role": "user",
-        "content": f"You read following tweets about COVID:\n {tweets}\n What have you learned? Summarize {k} lessons you have learned: "
+        "content": f"You read following tweets about COVID:\n {tweets}\n What have you learned? Summarize {k} lessons you have learned that are relevant to your attitude on COVID vaccinations: "
     }
     return TWEETS_PROMPT
 
@@ -102,7 +95,6 @@ def categorize_reasons(responses):
                 Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {REASONS}
                 
                 Reason: distrust_vaccines
-            
             
             Response: {response}
             
