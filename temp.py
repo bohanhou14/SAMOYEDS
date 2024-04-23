@@ -3,7 +3,7 @@ import pickle
 from agent import Agent
 import torch
 import argparse
-with open('/home/bhou4/SAMOYEDS/profiles/profilesa-num=500.pkl', "rb") as f:
+with open('/home/bhou4/SAMOYEDS/profiles/profiles-num=10.pkl', "rb") as f:
     # a list of dictionaries
     profiles = list(pickle.load(f))
 
@@ -25,4 +25,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     engine = Engine(model_type=args.model_type, port=args.port, agents = agents, num_gpus=num_gpus, num_days=args.num_days, save_dir="run_cache/debug/")
     # engine.run_all_policies()
-    engine.run(0, engine.policies[0])
+    engine.warmup()
+    # engine.run(0, engine.policies[0])
