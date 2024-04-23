@@ -57,8 +57,6 @@ class Engine:
                 base_url=openai_api_base,
                 api_key=openai_api_key
             )
-
-
         self.save_dir = f"./run_cache/default" if save_dir == None else save_dir
         self.attitude_dist = []
         self.day = 1
@@ -77,9 +75,9 @@ class Engine:
             self.policies = pickle.load(f)
             f.close()
 
-    def request_generate(self, prompt, max_tokens = 80, sampling=True):
-        top_p = self.sampling_params.top_p
-        temperature = self.sampling_params.temperature
+    def request_generate(self, prompt, max_tokens = 80, sampling=True, top_p=None, temperature=None):
+        top_p = self.sampling_params.top_p if top_p == None else top_p
+        temperature = self.sampling_params.temperature if temperature == None else temperature
         completion = self.client.chat.completions.create(
             model=self.model_type,
             messages=prompt,
@@ -87,7 +85,6 @@ class Engine:
             top_p=top_p,
             temperature=temperature
         )
-        # breakpoint()
         return completion.choices[0].message.content
 
     # parallel inference on local model
@@ -220,9 +217,9 @@ class Engine:
 
     def feed_news_and_policies(self, policy = None, num_news = 5):
         news = self.news[(self.day-1): (self.day-1 + num_news)]
+        news = [" ".join(n.split(" ")[:100]) for n in news]
         if type(news) == list:
             news = compile_enumerate(news)
-        news = [" ".join(n.split(" ")[:100]) for n in news]
         for k in range(self.num_agents):
             profile = self.agents[k].get_profile_str()
             self.messages_list[k].append(
@@ -245,19 +242,51 @@ class Engine:
         self.stage = f"feed_news_and_policies_day={self.day}"
         self.save()
 
+    def feed_news(self, num_news = 5):
+        news = self.news[(self.day-1): (self.day-1 + num_news)]
+        news = [" ".join(n.split(" ")[:100]) for n in news]
+        # breakpoint()
+        if type(news) == list:
+            news_str = compile_enumerate(news)
+        
+        for k in range(self.num_agents):
+            profile = self.agents[k].get_profile_str()
+            self.messages_list[k].append(
+                {
+                    "role": "system",
+                    "content": f"Pretend you are a person with this profile: {profile}, "
+                }
+            )
+            self.messages_list[k].append(news_prompt(news_str))
+
+        
+        if self.req_server:
+            responses = []
+            for i in trange(self.num_agents, desc="Feeding news"):
+                response = self.request_generate(self.messages_list[i], max_tokens=120)
+                responses.append(response)
+        else:
+            responses = self.batch_generate(self.messages_list, max_tokens = 120)
+        cleaned = [clean_response(r) for r in responses]
+        # lessons = [parse_enumerated_items(c) for c in cleaned]
+        self.update_message_lists(cleaned)
+        self.stage = f"feed_news_day={self.day}"
+        self.save()
+
     def prompt_actions(self):
         # self.update_message_lists(ACTION_PROMPT)
         self.add_prompt(ACTION_PROMPT)
         if self.req_server:
             responses = []
             for i in trange(self.num_agents, desc="Prompting actions"):
-                response = self.request_generate(self.messages_list[i], max_tokens=100)
+                response = self.request_generate(self.messages_list[i], max_tokens=100, temperature=1, top_p=1)
                 responses.append(response)
         else:
             responses = self.batch_generate(self.messages_list)
         cleaned = [clean_response(r) for r in responses]
-        # print(cleaned)
+        print(cleaned)
         actions = [parse_actions(c) for c in cleaned]
+        print(actions)
         actions_tweets = [Tweet(a, time=self.day) for a in actions]
         self.stage = f"prompt_actions_day={self.day}"
         self.update_message_lists(actions)
@@ -265,7 +294,6 @@ class Engine:
             self.agents[k].tweets.append(actions_tweets[k])
         self.tweets_pool.extend(actions_tweets)
         self.save()
-        print([t.text for t in actions_tweets])
         return actions
 
     def poll_attitude(self):
@@ -375,8 +403,8 @@ class Engine:
         with open("data/combined_posts_texts_covid.pkl", "rb") as f:
             self.tweets_pool = pickle.load(f)
 
+
     def run(self, id, policy):
-        self.init_agents()
         for t in trange(self.num_days, desc=f"Running simulations of policy={id}"):
             # only generated tweets? or tweet for ICL and RAG
             # label tweets with attitudes and sample consistent tweets
@@ -393,10 +421,25 @@ class Engine:
             self.prompt_reflections()
             self.day += 1
         self.finish_simulation(id, policy)
+    
+    def warmup(self):
+        self.init_agents()
+        for t in trange(min(self.num_days, 2), desc="Warmup"):
+            if t > 0:
+                self.feed_tweets()
+            # news as environmental variables
+            # policy as system prompt
+            self.feed_news()
+            # news: 1) real-world news + 2) news within the sandbox
+            self.prompt_actions()
+            self.poll_attitude()
+            self.prompt_reflections()
+            self.day += 1
 
     def run_all_policies(self):
         for i in range(len(self.policies)):
             policy = self.policies[i]
+            self.warmup()
             self.run(i, policy)
     # TO-DO
     def validate_message(messages):

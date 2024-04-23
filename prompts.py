@@ -51,8 +51,14 @@ def news_policies_prompt(profile, news, policies = None, top_k=5):
         prompt['content'] += policy_prompt
     question = f"What have you learned? Summarize {top_k} lessons you have learned: "
     prompt['content'] += question
-
     return prompt
+
+def news_prompt(news, k=5):
+    NEWS_PROMPT = {
+        "role": "user",
+        "content": f"You read following news today about COVID:\n {news}\n What have you learned? Summarize {k} lessons you have learned: "
+    }
+    return NEWS_PROMPT
 
 def tweets_prompt(tweets, k=5):
     TWEETS_PROMPT = {
@@ -75,8 +81,21 @@ REFLECTION_PROMPT = {
 
 ACTION_PROMPT = {
             "role": "user",
-            "content": '''Based on your attitude towards COVID vaccinations and your background, write a tweet about COVID vaccinations expressing your opinions or attitudes; make it start with *: 
-                '''
+            "content": '''
+                Example tweets: 
+                * "Hey everyone, just a heads up—the COVID vaccine is literally our best shot to get things back to normal. Tons of studies confirm it knocks down the risk of getting seriously sick. Let’s not waste any time. Protect yourself and the folks around you. We can do this together! #GetVaccinated #CommunityHealth"
+                * "Honestly, I’m just not ready to jump on this COVID vaccine bandwagon. Feels like they skipped a bunch of steps to rush it out. Shouldn’t we know more about the long-term effects before we line up? It's our right to ask these questions, you know? #InformedConsentRequired"
+                * "You know, seeing everyone lining up to get their vaccines is just heartwarming. It’s like watching a whole community pulling together to beat this. Every jab is helping not just one person, but all of us. Let’s keep this up, folks! We’re all in this together and making a difference. #TogetherStronger"
+                * "Can we talk about how fast this vaccine was thrown at us? It’s like, slow down, we’re not guinea pigs here! Safety should always come first, not just getting it out the door fast. I’m sitting this one out till I see what really happens. #SafetyOverSpeed"
+                * "Just got my vaccine today! Feeling super good about it, not just for me but for everyone I care about. This is how we stop this virus in its tracks and save lives. If you haven’t gotten yours yet, what are you waiting for? Let’s end this pandemic! #VaxxedAndProud"
+                * "Honestly, I’m just not ready to jump on this COVID vaccine bandwagon. Feels like they skipped a bunch of steps to rush it out. Shouldn’t we know more about the long-term effects before we line up? It's our right to ask these questions, you know? #InformedConsentRequired"
+                * "I’m not getting the vaccine. I don’t trust the government or the pharmaceutical companies. I don’t trust the vaccine. I don’t trust the media. I don’t trust the doctors. I don’t trust the science. I don’t trust the people who are getting the vaccine. I don’t trust the people who are telling me to get the vaccine. I don’t trust the people who are telling me not to get the vaccine. I don’t trust anyone. #TrustNoOne"
+                * "So many doctors and health experts globally are backing the COVID vaccine because it works, guys. They wouldn’t recommend something that wasn’t safe or effective. Let’s trust the real experts, get our shots, and move past this pandemic with confidence. Science has got our back! #TrustScience #VaccineSavesLives"
+                * "We've gotta push back on this narrative that just brushes aside the possible risks of these vaccines. Transparency isn't just nice to have—it's a must. Why are we rushing into this without proper scrutiny? Seems like we’re trading real safety checks for convenience. #CriticalThinkingNeeded"
+                * "Vaccines are like humanity’s superpower against diseases, and this COVID jab is no different. Getting vaccinated is us fighting back, showing what we can achieve when we come together. Don’t sit this one out—be a hero in your own way and help us kick this virus out! #StandTogether"
+                
+                Write a tweet [start with *] about COVID vaccinations expressing your opinions on this topic, and make the writing style and sentence structure more varied [start with *]:
+                '''       
         }
 
 def categorize_reasons(responses):

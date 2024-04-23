@@ -67,7 +67,7 @@ def profile_gen():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("num_profiles", type=int)
-    parser.add_argument("--output", type=str, default="profiles.pkl")
+    parser.add_argument("--output", type=str, default="profiles/profiles.pkl")
     args = parser.parse_args()
     profiles = []
     for i in range(args.num_profiles):
