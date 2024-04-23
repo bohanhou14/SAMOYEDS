@@ -22,14 +22,9 @@ class Agent:
         self.tweets.append(Tweet(tweet_text, tweet_time))
 
     def get_profile_str(self):
-        profile_str = f'''
-            - Gender: {self.gender}
-            - Age: {self.age}
-            - Education: {self.education}
-            - Occupation: {self.occupation}
-            - Political belief: {self.pb}
-            - Religion: {self.religion}
-        '''
+        profile_str = f'''Gender: {self.gender}\tAge: {self.age}\tEducation: {self.education}\tOccupation: {self.occupation}\tPolitical belief: {self.pb}\tReligion: {self.religion}'''
+        if len(self.attitudes) > 0:
+            profile_str += f"\tAttitude towards COVID Vaccination: {self.attitudes[-1]}"
         return profile_str
 
     def get_json(self):
