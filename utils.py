@@ -112,7 +112,7 @@ def parse_profile(text):
     profile = {}
     # remove the instruction
     x = clean_response(text)
-    x = x.split("\n")
+    x = x.split("\t")
     for l in x:
         l = l.strip()
         # if finds the first is a bullet

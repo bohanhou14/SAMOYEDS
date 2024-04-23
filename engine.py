@@ -10,7 +10,9 @@ import os
 from tweet import Tweet
 from recommender import Recommender
 import numpy as np
+from openai import OpenAI
 from prompts import *
+from utils import ATTITUDES
 import pickle
 
 class Engine:
@@ -20,6 +22,9 @@ class Engine:
         num_gpus = 1,
         num_days = 30,
         model_type = "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO",
+        req_server = True,
+        port = 8000,
+        max_iter = 10,
         save_dir = None
     ):
         # a list of agents
@@ -27,6 +32,8 @@ class Engine:
         self.num_days = num_days
         self.agents_copy = agents
         self.num_agents = len(agents)
+        self.model_type = model_type
+        self.port = port
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.sampling_params = SamplingParams(
             top_p = 0.96,
@@ -35,23 +42,34 @@ class Engine:
         # keep track of all the conversations, shape=(num_agents X (dynamic) num_conversation_turns)
         # more turns there is, the longer messages_list will become
         self.messages_list = None
-
+        self.req_server = req_server
         # directed graph TBD
         self.social_network = {}
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_type)
-        self.model = LLM(model_type, tensor_parallel_size=num_gpus)
+        # if not inference by submitting request to servers, then we start the local model
+        if not req_server:
+            self.model = LLM(model_type, tensor_parallel_size=num_gpus)
+        else:
+            openai_api_base = f"http://0.0.0.0:{self.port}/v1"
+            openai_api_key = os.getenv("OPENAI_API_KEY")
+            self.client = OpenAI(
+                base_url=openai_api_base,
+                api_key=openai_api_key
+            )
+
 
         self.save_dir = f"./run_cache/default" if save_dir == None else save_dir
-
         self.attitude_dist = []
         self.day = 1
-        self.recommender = Recommender()
+        self.max_iter = max_iter
+        self.recommender = Recommender(device = self.device)
 
-        with open("data/combined_posts_texts_covid.pkl", "rb") as f:
-            self.tweets_pool = pickle.load(f)
-            f.close()
-        self.tweets_pool = [Tweet(text, time=self.day) for text in self.tweets_pool]
+        # with open("data/combined_posts_texts_covid.pkl", "rb") as f:
+        #     self.tweets_pool = pickle.load(f)
+        #     f.close()
+        # self.tweets_pool = [Tweet(text, time=self.day) for text in self.tweets_pool]
+        self.tweets_pool = []
         with open("data/news.pkl", "rb") as f:
             self.news = pickle.load(f)
             f.close()
@@ -59,15 +77,26 @@ class Engine:
             self.policies = pickle.load(f)
             f.close()
 
+    def request_generate(self, prompt, max_tokens = 80, sampling=True):
+        top_p = self.sampling_params.top_p
+        temperature = self.sampling_params.temperature
+        completion = self.client.chat.completions.create(
+            model=self.model_type,
+            messages=prompt,
+            max_tokens=max_tokens,
+            top_p=top_p,
+            temperature=temperature
+        )
+        # breakpoint()
+        return completion.choices[0].message.content
 
-    # ready to parallel run this
+    # parallel inference on local model
     def batch_generate(self, messages_list=None, max_tokens = 80, sampling=True):
         if messages_list != None and type(messages_list) != list:
             raise TypeError("Invalid format")
         
         def convert_mistral(msg):
             return self.tokenizer.apply_chat_template(msg, tokenize=False)
-        
         def convert_qwen(msg):
             if type(msg) != list:
                 msg = [msg]
@@ -98,15 +127,24 @@ class Engine:
         # different prompt for each agent
         if type(new_prompts) == list:
             for k in range(self.num_agents):
+                profile = self.agents[k].get_profile_str()
+                self.messages_list[k].append(
+                    {"role": "system", "content": f"Pretend are a person with this profile: {profile}"}
+                )
                 self.messages_list[k].append(
                     new_prompts[k]
                 )
         # same prompt
         else:
             for k in range(self.num_agents):
+                profile = self.agents[k].get_profile_str()
+                self.messages_list[k].append(
+                    {"role": "system", "content": f"Pretend are a person with this profile: {profile}"}
+                )
                 self.messages_list[k].append(
                     new_prompts
                 )
+
     def load(self, path):
         if os.path.exists(path):
             with open(path, "rb") as f:
@@ -119,7 +157,7 @@ class Engine:
                 pickle.dump(self.messages_list, f)
                 f.close()
 
-    def init_agents(self, max_iter = 10, cache_path = None, openai = False):
+    def init_agents(self, cache_path = None):
         if cache_path != None:
             if os.path.exists(cache_path):
                 with open(cache_path, "rb") as f:
@@ -129,27 +167,31 @@ class Engine:
                 raise RuntimeError("Cache dir not exist")
             
         self.messages_list = []
+        responses = []; attitudes = []
         for i in range(self.num_agents):
             agent = self.agents[i]
             # self.messages_list.append([{"role": "system", "content": f"You are a person with this profile: {agent.get_profile_str()}"}])
             self.messages_list.append([{"role": "user", "content": f"{profile_prompt(agent.get_profile_str())}"}])
-
-        if openai:
-            responses = []
-            attitudes = []
-            for i in trange(len(self.messages_list)):
-                attitude = ""
-                attempts = 0
-                while attitude == "" or attempts > max_iter:
-                    response = query_openai_messages(self.messages_list[i], model = "gpt-4")
+        if self.req_server:
+            for i in trange(self.num_agents, desc="Initializing agents"):
+                attitude = None; num_iter = 0
+                while attitude not in ATTITUDES and num_iter < self.max_iter:
+                    response = self.request_generate(self.messages_list[i], max_tokens=40)
                     attitude = parse_attitude(response)[0]
-                    attempts += 1
-                responses.append(response)
-                attitudes.append(attitude)
+                    if attitude in ATTITUDES:
+                        responses.append(response)
+                        attitudes.append(attitude)
+                        break
+                    else:
+                        num_iter += 1
+                if num_iter >= self.max_iter and attitude not in ATTITUDES:
+                    attitudes.append("probably no") # default assignment
         else:
             # greedy decoding to get the most dominant attitude
-            responses = self.batch_generate(self.messages_list, sampling=False, max_tokens=200)
-        
+            responses = self.batch_generate(self.messages_list, sampling=False, max_tokens=40)
+            attitudes = [parse_attitude(r)[0] for r in responses]
+        print(Counter(attitudes))
+
         # update the message lists
         for j in range(self.num_agents):
             self.agents[j].attitudes.append(attitudes[j])
@@ -163,22 +205,40 @@ class Engine:
         tweets_list = self.recommender.recommend(self.tweets_pool, current_day=self.day, agents=self.agents, num_recommendations=num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
         for k in range(self.num_agents):
             self.messages_list[k].append(tweets_prompt(tweets_list[k], top_k))
-        responses = self.batch_generate(self.messages_list, max_tokens = 300)
+        responses = []
+        if self.req_server:
+            for i in trange(self.num_agents, desc="Feeding tweets"):
+                response = self.request_generate(self.messages_list[i], max_tokens=100)
+                responses.append(response)
+        else:
+            responses = self.batch_generate(self.messages_list, max_tokens = 100)
         cleaned = [clean_response(r) for r in responses]
         # lessons = [parse_enumerated_items(c) for c in cleaned]
         self.update_message_lists(cleaned)
         self.stage = f"feed_tweets_day={self.day}"
         self.save()
 
-    def feed_news_and_policies(self, policy = None, top_k=3, num_news = 5):
-        # print(self.news)
+    def feed_news_and_policies(self, policy = None, num_news = 5):
         news = self.news[(self.day-1): (self.day-1 + num_news)]
-        top_k = min(top_k, len(news))
         if type(news) == list:
             news = compile_enumerate(news)
+        news = [" ".join(n.split(" ")[:100]) for n in news]
         for k in range(self.num_agents):
+            profile = self.agents[k].get_profile_str()
+            self.messages_list[k].append(
+                {
+                    "role": "system",
+                    "content": f"Pretend you are a person with this profile: {profile}, "
+                }
+            )
             self.messages_list[k].append(news_policies_prompt(news, policy, top_k=5))
-        responses = self.batch_generate(self.messages_list, max_tokens = 120)
+        if self.req_server:
+            responses = []
+            for i in trange(self.num_agents, desc="Feeding news and policies"):
+                response = self.request_generate(self.messages_list[i], max_tokens=120)
+                responses.append(response)
+        else:
+            responses = self.batch_generate(self.messages_list, max_tokens = 120)
         cleaned = [clean_response(r) for r in responses]
         # lessons = [parse_enumerated_items(c) for c in cleaned]
         self.update_message_lists(cleaned)
@@ -188,7 +248,13 @@ class Engine:
     def prompt_actions(self):
         # self.update_message_lists(ACTION_PROMPT)
         self.add_prompt(ACTION_PROMPT)
-        responses = self.batch_generate(self.messages_list)
+        if self.req_server:
+            responses = []
+            for i in trange(self.num_agents, desc="Prompting actions"):
+                response = self.request_generate(self.messages_list[i], max_tokens=100)
+                responses.append(response)
+        else:
+            responses = self.batch_generate(self.messages_list)
         cleaned = [clean_response(r) for r in responses]
         # print(cleaned)
         actions = [parse_actions(c) for c in cleaned]
@@ -199,13 +265,30 @@ class Engine:
             self.agents[k].tweets.append(actions_tweets[k])
         self.tweets_pool.extend(actions_tweets)
         self.save()
+        print([t.text for t in actions_tweets])
         return actions
 
     def poll_attitude(self):
         self.add_prompt(ATTITUDE_PROMPT)
-        responses = self.batch_generate(self.messages_list)
-        attitudes = [parse_attitude(r)[0] for r in responses]
-        print("attitudes: ", attitudes)
+        responses = []; attitudes = []
+        if self.req_server:
+            for i in trange(self.num_agents, desc="Polling attitudes"):
+                attitude = None; num_iter = 0
+                while attitude not in ATTITUDES and num_iter < self.max_iter:
+                    response = self.request_generate(self.messages_list[i], max_tokens=100)
+                    attitude = parse_attitude(response)[0]
+                    if attitude in ATTITUDES:
+                        responses.append(response)
+                        attitudes.append(attitude)
+                        break
+                    else:
+                        num_iter += 1
+                if num_iter >= self.max_iter and attitude not in ATTITUDES:
+                    attitudes.append("probably no") # default assignment
+        else:
+            responses = self.batch_generate(self.messages_list)
+            attitudes = [parse_attitude(r)[0] for r in responses]
+        print(f"attitudes polled on day {self.day}: ", attitudes)
         for k in range(self.num_agents):
             self.agents[k].attitudes.append(attitudes[k])
             self.messages_list[k].append(
@@ -223,7 +306,13 @@ class Engine:
     def prompt_reflections(self):
         # self.update_message_lists(REFLECTION_PROMPT)
         self.add_prompt(REFLECTION_PROMPT)
-        responses = self.batch_generate(self.messages_list, max_tokens=50)
+        if self.req_server:
+            responses = []
+            for i in trange(self.num_agents, desc="Prompting reflections"):
+                response = self.request_generate(self.messages_list[i], max_tokens=50)
+                responses.append(response)
+        else:
+            responses = self.batch_generate(self.messages_list, max_tokens=50)
         reflections = [clean_response(r) for r in responses]
         for k in range(len(reflections)):
             reflection = reflections[k]
@@ -237,7 +326,13 @@ class Engine:
 
     def endturn_reflection(self, top_k = 5):
         self.add_prompt(ENDTURN_REFLECTION_PROMPT)
-        responses = self.batch_generate(self.messages_list)
+        if self.req_server:
+            responses = []
+            for i in trange(self.num_agents, desc="Prompting endturn reflections"):
+                response = self.request_generate(self.messages_list[i], max_tokens=50)
+                responses.append(response)
+        else:
+            responses = self.batch_generate(self.messages_list)
         cleaned = [clean_response(r) for r in responses]
         reasons = categorize_reasons(cleaned)
         rejection_reasons = []
@@ -281,12 +376,14 @@ class Engine:
             self.tweets_pool = pickle.load(f)
 
     def run(self, id, policy):
-        self.init_agents(openai=True)
+        self.init_agents()
         for t in trange(self.num_days, desc=f"Running simulations of policy={id}"):
             # only generated tweets? or tweet for ICL and RAG
             # label tweets with attitudes and sample consistent tweets
             # still randomize RAG
-            self.feed_tweets()
+            # skip first day of tweets
+            if t > 0:
+                self.feed_tweets()
             # news as environmental variables
             # policy as system prompt
             self.feed_news_and_policies(policy=policy)

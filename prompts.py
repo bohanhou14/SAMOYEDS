@@ -4,36 +4,44 @@ from utils import parse_reasons, REASONS
 
 ATTITUDE_PROMPT = {
             "role": "user",
-            "content": '''Based on the lessons you learned and your previous attitude towards COVID vaccinations, what's your current attitude towards COVID vaccinations?
-                Attitude: [definitely no, probably no, probably yes, and definitely yes]
+            "content": '''Based on the lessons you learned and your previous attitude towards COVID vaccinations, do you want to change your attitude towards COVID vaccination? If so, what is your new attitude? [definitely no, probably no, probably yes, definitely yes]:
             '''
         }
 
 def profile_prompt(profile_str):
     return [{"role": "user",
              "content":f'''
-                - Gender:  female 
-                - Age:  50 years old
-                - Education:  College graduate 
-                - Occupation:  small business owner 
-                - Political belief:  moderate democrat 
-                - Religion:  Buddhist. 
-                Attitude towards COVID vaccination: probably yes.
-
-                - Gender:  female
-                - Age:  27 years old
-                - Education:  college degree in science
-                - Occupation:  stay-at-home mom
-                - Political belief:  Republican
-                - Religion:  Baptist
-                Attitude towards COVID vaccination: probably no
-
-                {profile_str}
-                Attitude towards COVID vaccination [definitely yes, definitely no, probably yes, probably no]:
+                Pretend you are: {profile_str}
+                Infer your attitude towards COVID vaccination based on your background, choose from one of [definitely no, probably no, probably yes, definitely yes].
+                Attitude towards COVID vaccination: [definitely no, probably no, probably yes, definitely yes]
                 '''
              }]
 
-def news_policies_prompt(news, policies = None, top_k=5):
+# def profile_prompt(profile_str):
+#     return [{"role": "user",
+#              "content":f'''
+#                 - Gender:  female 
+#                 - Age:  50 years old
+#                 - Education:  College graduate 
+#                 - Occupation:  small business owner 
+#                 - Political belief:  moderate democrat 
+#                 - Religion:  Buddhist. 
+#                 Attitude towards COVID vaccination: probably yes.
+
+#                 - Gender:  female
+#                 - Age:  27 years old
+#                 - Education:  college degree in science
+#                 - Occupation:  stay-at-home mom
+#                 - Political belief:  Republican
+#                 - Religion:  Baptist
+#                 Attitude towards COVID vaccination: probably no
+
+#                 {profile_str}
+#                 Attitude towards COVID vaccination [definitely yes, definitely no, probably yes, probably no]:
+#                 '''
+#              }]
+
+def news_policies_prompt(profile, news, policies = None, top_k=5):
     prompt = {
         "role": "user",
         "content": f"You read following news today about COVID:\n {news}\n "
@@ -67,15 +75,7 @@ REFLECTION_PROMPT = {
 
 ACTION_PROMPT = {
             "role": "user",
-            "content": '''Based on your attitude towards COVID vaccinations and your background, make a new tweet that responds to an old tweet or start an entirely new tweet on COVID vaccination:
-                
-                Example A:
-                * COVID vaccination is a debated topic. I hope that people can have more awareness and critical thinking and make their informed decisions based on facts and evidences than emotions.
-                
-                Example B:
-                * I'd like to respond to this tweet I read today. I feel like this tweet is trying to gaslight people into believing that the government is harming people.
-
-                Write a tweet about COVID vaccinations expressing your opinions or attitudes; make it start with *: 
+            "content": '''Based on your attitude towards COVID vaccinations and your background, write a tweet about COVID vaccinations expressing your opinions or attitudes; make it start with *: 
                 '''
         }
 

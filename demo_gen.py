@@ -27,8 +27,8 @@ if __name__=='__main__':
     messages = [
         {"role": "user",
          "content":
-             f'''Generate a demographic profile of someone from 
-                {state} that will say {attitude} to COVID vaccination.
+             f'''Randomly generate a demographic profile of someone from 
+                {state}.
 
                 Example: 
                     - Gender: male
