@@ -64,15 +64,37 @@ def profile_gen():
     profile["Political belief"] = np.random.choice(pol_labels, p=pol_dist/np.sum(pol_dist))
     return profile
 
+def demo_resample(profiles, inclination="neutral"):
+    new_profiles = []
+    sample_map = {}
+    if inclination == "no":
+        sample_map["Race"] = {"white","White"}
+        sample_map["Political belief"] = {"Republican"}
+    elif inclination == "yes":
+        sample_map["Race"] = {"Black", "Hispanic", "Asian"}
+        # sample_map["Religion"] = {"Protestant", "Christian (non-specific)", "Jewish", "Other religion (Buddist, Muslim, etc)", "Atheist"}
+        sample_map["Political belief"] = {"Democrats", "Independents"}
+    else:
+        return profiles
+
+    for p in profiles:
+        for key in sample_map.keys():
+            if p[key] in sample_map[key]:
+                new_profiles.append(p)
+                break
+    return new_profiles
+    
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("num_profiles", type=int)
     parser.add_argument("--output", type=str, default="profiles/profiles.pkl")
+    parser.add_argument("--incl", type=str, default="neutral")
     args = parser.parse_args()
     profiles = []
     for i in range(args.num_profiles):
         profiles.append(profile_gen())
-    output = args.output.split(".pkl")[0] + f"-num={args.num_profiles}.pkl" 
+    profiles = demo_resample(profiles, inclination=args.incl)
+    output = args.output.split(".pkl")[0] + f"-num={args.num_profiles}-incl={args.incl}.pkl" 
     with open(output, "wb") as f:
         pickle.dump(profiles, f)
         f.close()

@@ -13,7 +13,6 @@ if __name__ == "__main__":
         f.close()
     attitudes = [a[-1]['content'].split("Your answer:")[1] for a in d]
     attitudes = [ast.literal_eval(a) for a in attitudes]
-
     
     day_0 = [a[0] for a in attitudes]
     day_1 = [a[1] for a in attitudes]
@@ -52,9 +51,6 @@ if __name__ == "__main__":
     # axs[2].bar(day_2_counter.keys(), day_2_counter.values())
     # axs[2].set_title("Day 2")
     # plt.savefig("attitude_distribution.png")
-
-    
-
     convert = 0
     polarize = 0
 

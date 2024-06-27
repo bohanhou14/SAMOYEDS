@@ -1,6 +1,10 @@
-# data/*
+data/*
+profiles/*
+outputs/*
+brtx602/*
 fig/*
 __pycache__/
 mistralai/*
 google/*
+*.slurm
 Qwen/*

@@ -11,6 +11,7 @@ class Agent:
         self.changes = []
         self.reflections = []
         self.tweets = []
+        self.vaccine = None
     def custom_init(self, name, gender, age, occupation, education, pb, religion):
         self.gender = gender
         self.age = age
@@ -23,8 +24,12 @@ class Agent:
 
     def get_profile_str(self):
         profile_str = f'''Gender: {self.gender}\tAge: {self.age}\tEducation: {self.education}\tOccupation: {self.occupation}\tPolitical belief: {self.pb}\tReligion: {self.religion}'''
+        # profile_str = f'''Gender: {self.gender}\tAge: {self.age}\tEducation: {self.education}\tOccupation: {self.occupation}'''
+        
         if len(self.attitudes) > 0:
             profile_str += f"\tAttitude towards COVID Vaccination: {self.attitudes[-1]}"
+        if self.vaccine != None:
+            profile_str += f"\tVaccinated or not: {self.vaccine}"
         return profile_str
 
     def get_json(self):
