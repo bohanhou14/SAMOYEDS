@@ -1,0 +1,4 @@
+day=0, hesitancy_percentage=0.2
+attitudes=Counter({'definitely yes': 6, 'probably no': 2, 'probably yes': 2})
+day=1, hesitancy_percentage=0.1
+attitudes=Counter({'definitely yes': 6, 'probably yes': 3, 'probably no': 1})

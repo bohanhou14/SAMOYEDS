@@ -69,8 +69,7 @@ def tweets_prompt(tweets, k=5):
 
 ENDTURN_REFLECTION_PROMPT = {
             "role": "user",
-            "content": '''Based on your background and the lessons you have learned, 
-                elaborate on why you are hesitant towards getting vaccinations: '''
+            "content": "Based on your background and the lessons you have learned, elaborate on why you are hesitant towards getting vaccinations: "
         }
 
 REFLECTION_PROMPT = {
@@ -78,6 +77,20 @@ REFLECTION_PROMPT = {
             "content": '''Based on your background and the lessons you have learned, 
                 reflect upon the most significant reasons that cause your attitude towards COVID vaccination to change or stay unchanged: '''
         }
+
+VACCINE_PROMPT = {
+            "role": "user",
+            "content": '''Based on your background and the lessons you have learned, 
+                do you want to get vaccinated? [yes, no]: '''
+}
+
+def parse_yes_or_no(response):
+    if ("yes" in response) or ("Yes" in response):
+        return True
+    elif ("no" in response) or ("No" in response):
+        return False
+    else:
+        return None
 
 ACTION_PROMPT = {
             "role": "user",
@@ -98,33 +111,31 @@ ACTION_PROMPT = {
                 '''       
         }
 
-def categorize_reasons(responses):
-    def get_prompt(response):
-        prompt = f'''
-            Example A:
-                Response: I've been watching news lately, I don't think vaccines are effective. People still get COVID after vaccinations, so I won't get one.
-                
-                Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {REASONS}
-                
-                Reason: ineffective
-            
-            Example B:
-                Response: Because I don't trust vaccines and I don't trust English medicines. And I've been avurveda medicines for a long time. So I think I will be cured naturally.
-                
-                Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {REASONS}
-                
-                Reason: distrust_vaccines
-            
-            Response: {response}
+def get_categorization_prompt(response):
+    prompt = f'''
+        Example A:
+            Response: I've been watching news lately, I don't think vaccines are effective. People still get COVID after vaccinations, so I won't get one.
             
             Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {REASONS}
             
-            Reason: 
-        '''
-        return prompt
-    
-    prompts = [get_prompt(response) for response in responses]
-    print(prompts)
+            Reason: ineffective
+        
+        Example B:
+            Response: Because I don't trust vaccines and I don't trust English medicines. And I've been avurveda medicines for a long time. So I think I will be cured naturally.
+            
+            Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {REASONS}
+            
+            Reason: distrust_vaccines
+        
+        Response: {response}
+        
+        Analyze this person's reason for not getting a vaccine based on the response. 
+        
+        Reason [{REASONS}]: 
+    '''
+    return prompt
+def categorize_reasons(responses):
+    prompts = [get_categorization_prompt(response) for response in responses]
     reasons = [query_openai(p) for p in prompts]
     # for p in prompts:
     #     if p != "":

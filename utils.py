@@ -71,14 +71,30 @@ SHORT_SIGNALS = np.array(["sideeffects",
 
 
 # Fields and methods for profile information
+# PROFILE_ATTRIBUTES_LOWER = [
+#                             "gender:",
+#                             "race:",
+#                             "age:",
+#                             "occupation:",
+#                             "education:",
+#                             "religion:",
+#                             "political belief:"]
 PROFILE_ATTRIBUTES_LOWER = [
                             "gender:",
                             "race:",
                             "age:",
                             "occupation:",
-                            "education:",
-                            "religion:",
-                            "political belief:"]
+                            "education:"
+                            ]
+
+# PROFILE_ATTRIBUTES = [
+#                       'Gender',
+#                       'Race',
+#                       'Age',
+#                       'Occupation',
+#                       'Education',
+#                       'Religion',
+#                       'Political belief']
 
 PROFILE_ATTRIBUTES = [
                       'Gender',
@@ -86,8 +102,7 @@ PROFILE_ATTRIBUTES = [
                       'Age',
                       'Occupation',
                       'Education',
-                      'Religion',
-                      'Political belief']
+                      ]
 
 ATTRIBUTES_MAP = {
     PROFILE_ATTRIBUTES_LOWER[0]: PROFILE_ATTRIBUTES[0],
@@ -95,8 +110,8 @@ ATTRIBUTES_MAP = {
     PROFILE_ATTRIBUTES_LOWER[2]: PROFILE_ATTRIBUTES[2],
     PROFILE_ATTRIBUTES_LOWER[3]: PROFILE_ATTRIBUTES[3],
     PROFILE_ATTRIBUTES_LOWER[4]: PROFILE_ATTRIBUTES[4],
-    PROFILE_ATTRIBUTES_LOWER[5]: PROFILE_ATTRIBUTES[5],
-    PROFILE_ATTRIBUTES_LOWER[6]: PROFILE_ATTRIBUTES[6]
+    # PROFILE_ATTRIBUTES_LOWER[5]: PROFILE_ATTRIBUTES[5],
+    # PROFILE_ATTRIBUTES_LOWER[6]: PROFILE_ATTRIBUTES[6]
 }
 
 def parse_profile(text):
@@ -131,8 +146,8 @@ def parse_profile(text):
 # read a profile and return a string describing the profile
 def read_profile(profile):
     gender = profile['Gender']
-    religion = profile['Religion']
-    pb = profile['Political belief']
+    # religion = profile['Religion']
+    # pb = profile['Political belief']
     age = profile['Age']
     oc = profile['Occupation']
     ed = profile['Education']
@@ -141,9 +156,9 @@ def read_profile(profile):
         - Age: {age}
         - Education: {ed}
         - Occupation: {oc}
-        - Political belief: {pb}
-        - Religion: {religion}
     '''
+        # - Political belief: {pb}
+        # - Religion: {religion}
     return str
 
 
@@ -221,8 +236,8 @@ if __name__ == '__main__':
                 - Race: Hispanic
                 - Age: 45 years old
                 - Occupation: farm owner
-                - Religion: atheist
-                - Political belief: neutral
+                # - Religion: atheist
+                # - Political belief: neutral
             
             Generate profile:
          [/INST] Based on your request, here is a demographic profile of someone from MD who feels hesitant about COVID vaccination:

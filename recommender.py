@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 from utils import compile_enumerate
+from tweet import Tweet
 
 
 class Recommender:
@@ -11,7 +12,7 @@ class Recommender:
 
     def encode_items(self, items, is_tweet=False):
         if is_tweet:
-            return [self.model.encode(tweet.text) for tweet in items]
+            res = [self.model.encode(tweet.text) for tweet in items]
         else:
             return [self.model.encode(item) for item in items]
 
@@ -25,7 +26,7 @@ class Recommender:
         return weighted_scores
 
     def recommend(self, tweet_objects, current_day, agents, num_recommendations=10):
-        tweet_embeddings = self.encode_items(tweet_objects, is_tweet=True)
+        tweet_embeddings = self.encode_items(tweet_objects, is_tweet=(type(tweet_objects[0]) == Tweet))
         tweet_times = [tweet.time for tweet in tweet_objects]  # Extracting time from each tweet
         all_recommendations = []
 

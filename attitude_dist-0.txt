@@ -1,0 +1,18 @@
+day=1, hesitancy_percentage=0.3
+attitudes=Counter({'definitely yes': 4, 'probably no': 3, 'probably yes': 3})
+day=1, hesitancy_percentage=0.2
+attitudes=Counter({'probably yes': 6, 'probably no': 2, 'definitely yes': 2})
+day=1, hesitancy_percentage=0.3
+attitudes=Counter({'probably yes': 6, 'probably no': 3, 'definitely yes': 1})
+day=1, hesitancy_percentage=0.3
+attitudes=Counter({'probably yes': 5, 'probably no': 3, 'definitely yes': 2})
+day=1, hesitancy_percentage=0.3
+attitudes=Counter({'probably yes': 5, 'probably no': 3, 'definitely yes': 2})
+day=1, hesitancy_percentage=0.3
+attitudes=Counter({'definitely yes': 4, 'probably yes': 3, 'probably no': 3})
+day=1, hesitancy_percentage=0.3
+attitudes=Counter({'probably yes': 5, 'probably no': 3, 'definitely yes': 2})
+day=1, hesitancy_percentage=0.3
+attitudes=Counter({'probably yes': 4, 'definitely yes': 3, 'probably no': 3})
+day=1, hesitancy_percentage=0.3
+attitudes=Counter({'probably yes': 4, 'definitely yes': 3, 'probably no': 3})
