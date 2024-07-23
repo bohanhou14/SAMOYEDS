@@ -1,4 +1,5 @@
 from tweet import Tweet
+import hashlib
 class Agent:
     def __init__(self, profile):
         self.gender = profile['Gender']
@@ -12,6 +13,8 @@ class Agent:
         self.reflections = []
         self.tweets = []
         self.vaccine = None
+        self.following = []
+    
     def custom_init(self, name, gender, age, occupation, education, pb, religion):
         self.gender = gender
         self.age = age

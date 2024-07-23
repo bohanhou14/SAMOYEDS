@@ -8,3 +8,4 @@ mistralai/*
 google/*
 *.slurm
 Qwen/*
+*.txt

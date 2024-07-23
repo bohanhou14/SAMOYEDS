@@ -1,4 +1,0 @@
-day=2, hesitancy_percentage=0.1
-attitudes=Counter({'probably yes': 7, 'definitely yes': 2, 'probably no': 1})
-day=3, hesitancy_percentage=0.1
-attitudes=Counter({'probably yes': 7, 'definitely yes': 2, 'probably no': 1})
