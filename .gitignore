@@ -9,3 +9,4 @@ google/*
 *.slurm
 Qwen/*
 *.txt
+archive/*
