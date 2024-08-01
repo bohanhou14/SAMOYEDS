@@ -58,7 +58,7 @@ class DataParallelEngine(Engine):
         num_iter = 0
         while attitude not in ATTITUDES and num_iter < self.max_iter:
             response = self.request_generate(prompt, port, max_tokens=max_tokens)
-            # print("response", response)
+            print("response", response)
             attitude = parse_attitude(response)[0]
             if attitude in ATTITUDES:
                 return attitude

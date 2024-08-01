@@ -84,7 +84,7 @@ class BackboneEngine:
         with open(self.news_path, "rb") as f:
             self.news = pickle.load(f)
             f.close()
-        self.news_recommender = NewsRecommender(news=self.news) 
+        self.news_recommender = NewsRecommender() 
 
     def load_policies(self):
         with open(self.policies_path, "r") as f:

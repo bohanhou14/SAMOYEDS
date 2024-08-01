@@ -26,11 +26,29 @@ class Recommender:
             self.indices = [[] for _ in range(len(self.agents))]  # Build an index for each agent 
         # Index dimension should be (num_agents, num_tweets, embedding_dim)
         recent_tweets = [a.get_most_recent_tweets() for a in self.agents]  # List of tweets
-        if recent_tweets[0] != None: # make sure that there are tweets already
+        
+        # If there are no tweets, we use the profile index
+        # If there are tweets, we append the tweet embeddings to the profile index
+        # and use it as the main new index
+        # and then set the profile index to None because it is already used in the main index
+        if recent_tweets[0] == None: # If there are no tweets
+            self.build_profile_index()
+            self.indices = self.profile_indices
+        else:
             tweet_embeddings = self.encode_items(recent_tweets, is_tweet=True)
+
             # Append new tweet embeddings to each agent's index
             for i in range(len(self.indices)):
                 self.indices[i].append(tweet_embeddings[i])
+
+            if self.profile_indices is not None:
+                self.profile_indices = None
+            
+            
+
+        
+        
+
 
     def encode_items(self, items, is_tweet=False):
         if is_tweet:

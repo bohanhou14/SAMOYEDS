@@ -6,7 +6,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_type", type=str, default="NousResearch/Hermes-2-Pro-Mistral-7B")
     parser.add_argument("--port", type=int, default=7000)
-    parser.add_argument("--news_path", type=str, default="/home/bhou4/SAMOYEDS/data/news-k=400.pkl")
+    parser.add_argument("--news_path", type=str, default="/home/bhou4/SAMOYEDS/data/news-mixed-k=400.pkl")
     parser.add_argument("--num_days", type=int, default=3)
     parser.add_argument("--warmup_days", type=int, default=1)
     parser.add_argument("--profile_path", type=str, default="/home/bhou4/SAMOYEDS/profiles/profiles-num=50.pkl")

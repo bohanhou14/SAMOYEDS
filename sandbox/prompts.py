@@ -6,7 +6,7 @@ BASED_ON = "Based on the news and tweets you read, the lessons you learned, the 
 
 ATTITUDE_PROMPT = {
             "role": "user",
-            "content": f'''{BASED_ON}, what's your new attitude towards FD vaccination? Answer from [definitely no, probably no, probably yes, definitely yes]:
+            "content": f'''{BASED_ON}, what's your new attitude towards FD vaccination? Answer from [definitely no, probably no, probably yes, definitely yes]. Attitude towards FD vaccination:
             '''
         }
 
@@ -22,13 +22,17 @@ def system_prompt(profile_str):
              }]
 
 def profile_prompt(profile_str):
-    return {"role": "user",
-             "content":f'''
-                Pretend you are: {profile_str}. 
-                Infer your attitude towards FD vaccination based on your background, choose from one of [definitely no, probably no, probably yes, definitely yes].
-                Attitude towards FD vaccination [definitely no, probably no, probably yes, definitely yes]:
-                '''
-             }
+    return {
+        "role": "user",
+        "content": f'''
+            Pretend you are: {profile_str}.
+            Based on your background, infer your attitude towards FD vaccination.
+            Please choose from one of the following options: [definitely no, probably no, probably yes, definitely yes].
+            Only provide the chosen option without adding any additional information or explanations.
+            Your response should be a single sentence starting with "Attitude towards FD vaccination: ".
+            Attitude towards FD vaccination:
+          '''
+    }
 
 def news_policies_prompt(news, policies = None, k=5):
     prompt = {

@@ -14,9 +14,9 @@ class Agent:
         self.reflections = []
         self.tweets = []
         self.vaccine = None
-        self.following = []
+        self.following = {} # should be a list of tuple (id, weight)
     
-    def custom_init(self, name, gender, age, occupation, education, pb, religion):
+    def custom_init(self, gender, age, occupation, education, pb, religion):
         self.gender = gender
         self.age = age
         self.occupation = occupation

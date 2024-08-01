@@ -67,12 +67,17 @@ class Engine(BackboneEngine):
         self.save()
     
     def feed_news_data(self, num_news=5):
-        # return []
-        recommendations = self.news_recommender.recommend(agents=self.agents, num_recommendations=num_news)
+        search_space = num_news * num_news
+        news_data = self.news[self.day * search_space: (self.day + 1) * search_space]
+        recommendations = self.news_recommender.recommend(agents=self.agents, num_recommendations=num_news, news_data=news_data)
         all_news = []
         for k in range(self.num_agents):
-            news_list = [self.news[n[0]] for n in recommendations if n[0]==k]
-            news = compile_enumerate(news_list)
+            news_text, news_stance, news_sim = recommendations[k]
+            news = compile_enumerate(news_text)
+            print(f"Agent {k} past tweets:")
+            print(self.agents[k].get_all_tweets_str())
+            print(f"Recommendations:")
+            print(news_text, news_stance, news_sim)
             all_news.append(news)
         return all_news
     

@@ -4,8 +4,10 @@ from utils.logging_utils import log_info
 import numpy as np
 
 class TweetRecommender(Recommender):
-    def __init__(self, model_name = 'paraphrase-MiniLM-L6-v2', time_decay_rate=0.95, *args, **kwargs):
+    def __init__(self, model_name = 'paraphrase-MiniLM-L6-v2', time_decay_rate=0.95, alpha=0.1, *args, **kwargs):
         super().__init__(model_name, time_decay_rate, *args, **kwargs)
+        self.alpha = alpha # weight of following relation
+
     
     def build_or_update_similarity_matrix(self):
         """
@@ -34,19 +36,24 @@ class TweetRecommender(Recommender):
             for i in range(self.num_agents):
                 for j in range(self.num_agents):
                     if i != j:  # Skip self-similarity if not needed
-                        sim_i_to_j = cosine_similarity([new_embeddings[i]], self.indices[j])
-                        sim_j_to_i = cosine_similarity([new_embeddings[j]], self.indices[i])
+                        sim_i_to_j = cosine_similarity([new_embeddings[i]], [self.indices[j][-1]])
+                        sim_j_to_i = cosine_similarity([new_embeddings[j]], [self.indices[i][-1]])
 
                         # decay the old similarities
                         extended_similarity_matrix_3d[i, j] *= self.time_decay_rate
                         extended_similarity_matrix_3d[j, i] *= self.time_decay_rate
 
                         # Update similarity matrix with new similarities and decay factor
+                        # breakpoint()
                         extended_similarity_matrix_3d[i, j, -1, :-1] = sim_i_to_j * self.time_decay_rate
                         extended_similarity_matrix_3d[j, i, :-1, -1] = sim_j_to_i.T * self.time_decay_rate
             
             # don't compute self-similarity
             self.similarity_matrix_3d = extended_similarity_matrix_3d
+        
+        # Apply following relation
+        self.build_following_similarity_graph()
+        self.similarity_matrix_3d += self.following_graph
 
     def sample_top_k_sim_of_an_agent_new_tweets(self, agent_index, k):
         """
@@ -77,6 +84,20 @@ class TweetRecommender(Recommender):
         
         return top_k_values
     
+    def build_following_similarity_graph(self):
+        """
+        Build a following similairty graph from the agents' following lists.
+        :return: list of lists - the following graph
+        """
+        self.following_graph = np.zeros(self.similarity_matrix_3d.shape)
+        for i in range(self.num_agents):
+            for j in range(self.num_agents):
+                if i != j:
+                    # if agent i follows agent j, add a similarity score
+                    if j in self.agents[i].following:
+                        follow_score = self.agents[i].following[j]
+                        self.following_graph[i, j, :, :] = np.full(self.following_graph[i, j, :, :].shape, self.alpha * follow_score)
+
     def update_recommender(self, agents):
         self.agents = agents
         self.num_agents = len(agents)

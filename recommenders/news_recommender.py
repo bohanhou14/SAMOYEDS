@@ -3,11 +3,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 class NewsRecommender(Recommender):
-    def __init__(self, news, model_name = "paraphrase-MiniLM-L6-v2", time_decay_rate=0.95, *args, **kwargs):
+    def __init__(self, model_name = "paraphrase-MiniLM-L6-v2", time_decay_rate=0.95, *args, **kwargs):
         super().__init__(model_name, time_decay_rate=time_decay_rate, *args, **kwargs)
-        self.news_text = [n[0] for n in news] # News is a list of news articles, (str, date)
-        self.news_date = [n[1] for n in news]
-        self.num_news = len(news)
         self.news_indices = None
     
     def build_news_index(self):
@@ -22,25 +19,24 @@ class NewsRecommender(Recommender):
         :param news_embedding: numpy array of shape (N2, D) - news embeddings for N2 articles.
         :return: updated_similarity_matrix - numpy array of shape (k, N, N2) - updated similarity scores.
         """
-        # breakpoint()
-        indices = self.profile_indices if self.indices is None or len(self.indices[0]) == 0 else self.indices
 
-        k, N = len(indices), len(indices[0])
+        k, N = len(self.indices), len(self.indices[0])
         N2 = len(self.news_indices)
         
         # Existing similarity matrix is None if we're starting fresh
         if self.similarity_matrix_3d is None:
             self.similarity_matrix_3d = np.zeros((k, N, N2))
             for i in range(k):
-                self.similarity_matrix_3d[i] = cosine_similarity(indices[i], self.news_indices)
+                self.similarity_matrix_3d[i] = cosine_similarity(self.indices[i], self.news_indices)
         else:
             old_N = self.similarity_matrix_3d.shape[1]
-            assert N - 1 == old_N, "Number of tweets should have increased by 1"        
+            # breakpoint()
+            assert N - 1 == old_N, f"Number of tweets should have increased by 1, print(similarity_matrix_3d.shape) {self.similarity_matrix_3d.shape}"        
 
             existing_similarity_matrix = self.similarity_matrix_3d    
             updated_similarity_matrix = np.zeros((k, N, N2))
             updated_similarity_matrix[:, :-1, :] = existing_similarity_matrix
-            new_tweet_embeddings = np.array([indices[i][-1] for i in range(k)])
+            new_tweet_embeddings = np.array([self.indices[i][-1] for i in range(k)])
             updated_similarity_matrix[:, -1, :] = cosine_similarity(new_tweet_embeddings, self.news_indices)
             self.similarity_matrix_3d = updated_similarity_matrix
     
@@ -59,23 +55,27 @@ class NewsRecommender(Recommender):
         top_k_indices = np.argpartition(similarities, -k, axis=None)[-k:]
         top_k_indices = np.unravel_index(top_k_indices, similarities.shape)
         top_k_similarities = similarities[top_k_indices]
-        top_k_news = [(i, s) for i, s in zip(top_k_indices[1], top_k_similarities)]
-        return top_k_news
+        
+        top_k_news_text = [self.news_text[i] for i in top_k_indices[1]]
+        top_k_news_stance = [self.news_stance[i] for i in top_k_indices[1]]
+        top_k_news_sim = [s for s in top_k_similarities]
+        return top_k_news_text, top_k_news_stance, top_k_news_sim
     
-    def update_recommender(self, agents):
+    def update_recommender(self, agents, news_data):
         self.agents = agents
         self.num_agents = len(agents)
         self.build_or_update_tweets_index()
-        if self.news_indices is None:
-            self.build_news_index()
-        if self.profile_indices is None:
-            self.build_profile_index()
+        self.news_text = [n.text for n in news_data] # News is a list of news articles, (str, date)
+        self.news_stance = [n.stance for n in news_data]
+        self.num_news = len(news_data)
+        self.build_news_index()
         self.update_similarity_matrix()
+        self.news_indices = None # update to None so next time it recommends new news article
 
-    def recommend(self, agents, num_recommendations=10):
-        self.update_recommender(agents)
+    def recommend(self, news_data, agents, num_recommendations=10):
+        self.update_recommender(agents, news_data)
         recommendations = []
         for i in range(self.num_agents):
             top_news = self.sample_top_k_news_for_agent(i, num_recommendations)
-            recommendations.append(top_news) # (index of news article, similarity score)
+            recommendations.append(top_news) # (news_text, news_stance, similarity score)
         return recommendations
