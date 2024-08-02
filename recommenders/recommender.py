@@ -40,15 +40,8 @@ class Recommender:
             # Append new tweet embeddings to each agent's index
             for i in range(len(self.indices)):
                 self.indices[i].append(tweet_embeddings[i])
-
             if self.profile_indices is not None:
                 self.profile_indices = None
-            
-            
-
-        
-        
-
 
     def encode_items(self, items, is_tweet=False):
         if is_tweet:

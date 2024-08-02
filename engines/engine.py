@@ -71,14 +71,23 @@ class Engine(BackboneEngine):
         news_data = self.news[self.day * search_space: (self.day + 1) * search_space]
         recommendations = self.news_recommender.recommend(agents=self.agents, num_recommendations=num_news, news_data=news_data)
         all_news = []
+        purities = []
+        stances = []
+        similarities = []
         for k in range(self.num_agents):
             news_text, news_stance, news_sim = recommendations[k]
             news = compile_enumerate(news_text)
-            print(f"Agent {k} past tweets:")
-            print(self.agents[k].get_all_tweets_str())
-            print(f"Recommendations:")
-            print(news_text, news_stance, news_sim)
+
+            binary_stance = [1 if s == "positive" else 0 for s in news_stance]
+            purity = sum(binary_stance) / len(binary_stance) if sum(binary_stance) > len(binary_stance) / 2 else 1 - sum(binary_stance) / len(binary_stance)
+            purities.append(purity)
+            stances.append(sum(binary_stance) / num_news)
+            similarities.append(sum(news_sim) / num_news)
             all_news.append(news)
+
+        print(f"Average Purity: {sum(purities) / len(purities)}")
+        print(f"Average Stance: {sum(stances) / len(stances)}")
+        print(f"Average Similarity: {sum(similarities) / len(similarities)}")
         return all_news
     
     def feed_news_and_policies(self, policy = None, num_news = 5):
