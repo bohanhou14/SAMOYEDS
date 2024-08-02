@@ -10,3 +10,4 @@ google/*
 Qwen/*
 *.txt
 archive/*
+run_cache/debug/*
