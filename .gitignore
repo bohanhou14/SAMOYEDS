@@ -9,5 +9,6 @@ google/*
 *.slurm
 Qwen/*
 *.txt
+*.out
 archive/*
 run_cache/debug/*
