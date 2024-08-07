@@ -3,6 +3,7 @@ API_KEY = '7fa6fe05da148'
 import datetime
 import os
 import re
+from sandbox.lesson import Lesson
 
 # General methods
 # clean the instructions in the response
@@ -177,11 +178,31 @@ HESITANCY = [
 
 REASONS = ["sideeffects", "allergic", "ineffective",
            "unnecessary", "dislike_vaccines_generally",
-           "dislike_vaccines", "not_recommended",
+           "not_recommended",
            "wait_safety", "low_priority", "cost",
-           "distrust_vaccines", "distrust_gov",
+           "distrust_gov",
            "health_condition", "pregnant",
            "religious", "other"]
+
+REASONS_EXPLAINED = {
+    "sideeffects": "concerns about potential side effects of FD vaccine",
+    "allergic": "allergic to the vaccine",
+    "ineffective": "belief that the FD vaccine is ineffective",
+    "unnecessary": "belief that the FD vaccine is unnecessary",
+    "dislike_vaccines_generally": "general dislike of any vaccines",
+    "dislike_vaccines": "dislike of the FD vaccine",
+    "not_recommended": "vaccine not recommended by a healthcare provider",
+    "wait_safety": "waiting for more information on the safety of the vaccine",
+    "low_priority": "considered low priority for vaccination",
+    "cost": "concerns about the cost of the vaccine",
+    "distrust_gov": "distrust in the government",
+    "health_condition": "underlying health condition",
+    "pregnant": "pregnancy, which may affect the decision to get vaccinated",
+    "religious": "religious beliefs that conflict with vaccination",
+    "other": "other reasons"
+}
+
+
 # parse attitude based on response
 def parse_attitude(response):
     x = clean_response(response)
@@ -223,6 +244,18 @@ def parse_enumerated_items(text):
     # Find all matches
     matches = re.findall(pattern, text)
     return matches
+
+def parse_lessons(text, day, debug=False):
+    pattern = r'(\d+)\.\s+\(\"([^"]*)\"\s*,\s*([+-]?\d*\.?\d+)\)'
+    tuples = []
+    matches = re.findall(pattern, text)
+    for m in matches:
+        tuples.append((m[1], float(m[2])))
+        if debug:
+            print(f"m: {m}")
+            print("Extracted: ", m[1], m[2])
+    lessons = [Lesson(t[0], day, t[1]) for t in tuples]
+    return lessons
 
 def parse_actions(text):
     output = text.split('*', 1)[1] if '*' in text else ''

@@ -5,7 +5,7 @@
 
 from engines.backbone_engine import BackboneEngine
 import json
-from utils.utils import compile_enumerate, counter_to_ordered_list, HESITANCY
+from utils.utils import compile_enumerate, counter_to_ordered_list, HESITANCY, parse_lessons
 from collections import Counter
 import os
 from sandbox.tweet import Tweet
@@ -15,7 +15,7 @@ from tqdm import trange
 SHORT_TOKEN_LIMIT = 50
 TWEET_TOKEN_LIMIT = 100
 MED_TOKEN_LIMIT = 150
-LONG_TOKEN_LIMIT = 300
+LONG_TOKEN_LIMIT = 250
 FULL_TOKEN_LIMIT = 1000
 
 class Engine(BackboneEngine):
@@ -24,22 +24,16 @@ class Engine(BackboneEngine):
 
     def init_agents(self):
         self.stage = f"init_agents_day={self.day}"
-        self.messages_list = [system_prompt(agent.get_profile_str()) for agent in self.agents]
         # breakpoint()
-        for k in range(self.num_agents):
-            self.messages_list[k].append(
-                profile_prompt(self.agents[k].get_profile_str())
-            )
+        profile_prompts = [profile_prompt(self.agents[i].get_profile_str()) for i in range(self.num_agents)]
+        self.add_prompt(profile_prompts)
         # breakpoint()
         attitudes = self.generate_attitude(max_tokens=MED_TOKEN_LIMIT)
         # update the message lists
         for j in range(self.num_agents):
-            self.agents[j].attitudes.append(attitudes[j])
-            self.messages_list[j].append(
-                {"role": "assistant", "content": f"Attitude towards FD vaccination: {self.agents[j].attitudes[-1]}"}
-            )          
+            self.agents[j].attitudes.append(attitudes[j])      
         self.update_attitude_dist(attitudes)  
-        self.save()
+        self.save(attitudes)
 
     def generate_attitude(self, max_tokens):
         pass
@@ -47,24 +41,6 @@ class Engine(BackboneEngine):
         pass
     def generate_actions(self, max_tokens):
         pass
-
-    def feed_tweets(self, top_k=3, num_recommendations = 5):
-        self.stage = f"feed_tweets_day={self.day}"
-        recommendations = self.tweet_recommender.recommend(agents=self.agents, num_recommendations=num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
-        print("Recommendations generated")
-        # for k in range(self.num_agents):
-        #     print("Agent past tweet:")
-        #     print(self.agents[k].get_all_tweets_str())
-        #     print("Recommendations:")
-        #     print([r[1] for r in recommendations if r[0]==k ])
-        for k in range(self.num_agents):
-            tweets_list = [r[1] for r in recommendations if r[0]==k]
-            self.messages_list[k].append(tweets_prompt(tweets_list, top_k))
-        self.save()
-        self.stage = f"write_tweets_lesson_day={self.day}"
-        cleaned_responses = self.generate(max_tokens=MED_TOKEN_LIMIT)
-        self.update_message_lists(cleaned_responses)
-        self.save()
     
     def feed_news_data(self, num_news=5):
         search_space = num_news * num_news
@@ -77,7 +53,6 @@ class Engine(BackboneEngine):
         for k in range(self.num_agents):
             news_text, news_stance, news_sim = recommendations[k]
             news = compile_enumerate(news_text)
-
             binary_stance = [1 if s == "positive" else 0 for s in news_stance]
             purity = sum(binary_stance) / len(binary_stance) if sum(binary_stance) > len(binary_stance) / 2 else 1 - sum(binary_stance) / len(binary_stance)
             purities.append(purity)
@@ -93,34 +68,43 @@ class Engine(BackboneEngine):
     def feed_news_and_policies(self, policy = None, num_news = 5):
         self.stage = f"feed_news_and_policies_day={self.day}"
         news = self.feed_news_data(num_news)
-        for k in range(self.num_agents):
-            self.messages_list[k].append(news_policies_prompt(news[k], policy, k=num_news))
-        
-        cleaned_responses = self.generate(max_tokens=MED_TOKEN_LIMIT)
-        # lessons = [parse_enumerated_items(c) for c in cleaned]
-        self.update_message_lists(cleaned_responses)
-        self.save()
+        prompts = [news_policies_prompt(news[k], policy, k=num_news) for k in range(self.num_agents)]
+        self.add_prompt(prompts)
+        cleaned_responses = self.generate(max_tokens=LONG_TOKEN_LIMIT)
+        self.add_all_lessons(cleaned_responses)
+        self.save(cleaned_responses)
     
     def feed_news(self, num_news = 5):
         self.stage = f"feed_news_day={self.day}"
         news = self.feed_news_data(num_news)
+        prompts = [news_prompt(news[k], k=num_news) for k in range(self.num_agents)]
+        self.add_prompt(prompts)
+        cleaned_responses = self.generate(max_tokens=LONG_TOKEN_LIMIT)
+        lessons = [parse_lessons(c, day=self.day) for c in cleaned_responses]
         for k in range(self.num_agents):
-            self.messages_list[k].append(news_prompt(news[k], k=num_news))
-
-        cleaned_responses = self.generate(max_tokens=MED_TOKEN_LIMIT)
-        self.update_message_lists(cleaned_responses)
+            self.agents[k].add_lessons(lessons[k])
         self.save()
+    
+    def feed_tweets(self, top_k=3, num_recommendations = 5):
+        self.stage = f"feed_tweets_day={self.day}"
+        recommendations = self.tweet_recommender.recommend(agents=self.agents, num_recommendations=num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
+        print("Recommendations generated")
+        prompts = [tweets_prompt([r[1] for r in recommendations if r[0]==k], top_k) for k in range(self.num_agents)]
+        print(f"Prompts generated, example: {prompts[0]}")
+        self.add_prompt(prompts)
+        self.stage = f"write_tweets_lesson_day={self.day}"
+        cleaned_responses = self.generate(max_tokens=MED_TOKEN_LIMIT)
+        self.add_all_lessons(cleaned_responses)
+        self.save(cleaned_responses)
 
     def prompt_actions(self):
         self.stage = f"prompt_actions_day={self.day}"
         self.add_prompt(ACTION_PROMPT)
         actions = self.generate(max_tokens=TWEET_TOKEN_LIMIT)
         actions_tweets = [Tweet(text=actions[i], time=self.day, author_id=i) for i in range(len(actions))]
-        self.update_message_lists(actions)
         for k in range(self.num_agents):
             self.agents[k].tweets.append(actions_tweets[k])
-        self.tweets_pool.extend(actions_tweets)
-        self.save()
+        self.save(actions)
         return actions
     
     def update_attitude_dist(self, attitudes):
@@ -139,31 +123,8 @@ class Engine(BackboneEngine):
         attitudes = self.generate_attitude(max_tokens=MED_TOKEN_LIMIT)
         for k in range(self.num_agents):
             self.agents[k].attitudes.append(attitudes[k])
-            self.messages_list[k].append(
-                {"role": "assistant", "content": f"Your answer: {self.agents[k].attitudes[-1]}"}
-            )
         self.update_attitude_dist(attitudes)
-        self.save()
-        return attitudes
-    
-    def get_vaccines(self):
-        self.add_prompt(VACCINE_PROMPT)
-        self.stage = f"get_vaccines_day={self.day}"
-        responses = []
-        for i in trange(self.num_agents, desc="Getting vaccines"):
-            response = None
-            while response == None:
-                if self.agents[i].vaccine:
-                    responses.append("I have already gotten the vaccine.")
-                else:
-                    response = self.request_generate(self.messages_list[i], max_tokens=MED_TOKEN_LIMIT)
-                    # print(response)
-                    response = str(parse_yes_or_no(response))
-            responses.append(response)
-            self.agents[i].vaccine = response
-        self.update_message_lists(responses)
-        self.save()
-        return responses
+        self.save(attitudes)
     
     def prompt_reflections(self):
         self.add_prompt(REFLECTION_PROMPT)
@@ -172,22 +133,20 @@ class Engine(BackboneEngine):
         for k in range(len(reflections)):
             reflection = reflections[k]
             if (len(self.agents[k].attitudes) >= 2) and (self.agents[k].attitudes[-1] != self.agents[k].attitudes[-2]):
-                self.agents[k].changes.append(reflection)
-            self.agents[k].reflections.append(reflection)
-        
-        self.update_message_lists(reflections)
-        self.save()
+                self.agents[k].changes.append(parse_lessons(reflection, day=self.day))
+        self.add_all_lessons(reflections)
+        self.save(reflections)
         return reflections
     
     def endturn_reflection(self, top_k = 5):
         self.stage = f"endturn_reflection_day={self.day}"
-        self.add_prompt(ENDTURN_REFLECTION_PROMPT)
+        self.add_prompt(REFLECTION_PROMPT)
         reasons = []
         all_cleaned = self.generate(max_tokens=MED_TOKEN_LIMIT)
         prompts = [get_categorization_prompt(cleaned) for cleaned in all_cleaned]
         self.add_prompt(prompts)
         self.stage = f"analyze_reasons_day={self.day}"
-        reasons = self.generate(max_tokens=MED_TOKEN_LIMIT)
+        reasons = self.generate(max_tokens=LONG_TOKEN_LIMIT)
         
         rejection_reasons = []
         for k in range(self.num_agents):

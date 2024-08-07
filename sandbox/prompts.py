@@ -1,6 +1,6 @@
 import openai
 import backoff
-from utils.utils import parse_reasons, REASONS
+from utils.utils import parse_reasons, REASONS, REASONS_EXPLAINED
 
 BASED_ON = "Based on the news and tweets you read, the lessons you learned, the tweets you posted, and your previous attitude towards FD vaccinations"
 
@@ -25,24 +25,22 @@ def system_prompt(profile_str):
     }]
 
 def profile_prompt(profile_str):
-    return {
-        "role": "user",
-        "content": f'''
+    return f'''
 Pretend you are: {profile_str}.
 Based on your background, infer your attitude towards FD vaccination.
 Choose one of [definitely no, probably no, probably yes, definitely yes].
 Provide only the chosen option starting with "Attitude towards FD vaccination: ".
 Attitude towards FD vaccination:
 '''
-    }
 
 def news_policies_prompt(news, policies=None, k=5):
-    prompt = {
-        "role": "user",
-        "content": f'''
-You read the following news about FD: {news}.
+    prompt = f'''
+You read the following news and policies about FD: {news}. 
+Summarize {k} lessons you have learned that are relevant to your attitude on FD vaccinations and rate them with importance on a scale of 0-1.
+Output the lesson in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}).
+For example, 1. ("The FD-24 vaccine has been linked to a potential association with heart inflammation", 0.4).
+Now output the lessons in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}):
 '''
-    }
     if policies:
         policy_prompt = f"The government has also issued the following policies: {policies}."
         prompt['content'] += policy_prompt
@@ -52,52 +50,34 @@ You read the following news about FD: {news}.
     return prompt
 
 def news_prompt(news, k=5):
-    return {
-        "role": "user",
-        "content": f'''
+    return f'''
 You read the following news about FD: {news}.
 Summarize {k} lessons you have learned that are relevant to your attitude on FD vaccinations and rate them with importance on a scale of 0-1.
 Output the lesson in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}).
 For example, 1. ("The FD-24 vaccine has been linked to a potential association with heart inflammation", 0.4).
 Now output the lessons in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}):
 '''
-    }
 
 def tweets_prompt(tweets, k=5):
-    return {
-        "role": "user",
-        "content": f'''
+    return f'''
 You read the following tweets about FD: {tweets}.
 Summarize {k} short lessons you have learned that are relevant to your attitude on FD vaccinations, and rate them with importance on a scale of 0-1.
 Output the lesson in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}).
 For example, 1. ("I learned the importance of transparency and informed consent because several tweets mentioned it", 0.2).
 Now output the lessons in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}): 
 '''
-    }
 
-ENDTURN_REFLECTION_PROMPT = {
-    "role": "user",
-    "content": f'''
-{BASED_ON}, elaborate on why you are hesitant towards getting vaccinated:
-'''
-}
-
-REFLECTION_PROMPT = {
-    "role": "user",
-    "content": f'''
-{BASED_ON}, reflect on the most significant reasons causing your attitude towards FD vaccination to change or stay unchanged and rate them with importance on a scale of 0-1.
+REFLECTION_PROMPT = f'''{BASED_ON}, reflect on the most significant reasons causing your attitude towards FD vaccination to change or stay unchanged and rate them with importance on a scale of 0-1. Choose the reasons from {REASONS}. The reasons are explained below:
+{REASONS_EXPLAINED}.
 Output the reasons in the format of 1. (reason_1, importance_1), 2. (reason_2, importance_2), ...
 For example, 1. (I don't trust the vaccine, 0.6), 2. (I don't trust the government, 0.2).
 Now output the reasons in the format of 1. (reason_1, importance_1), 2. (reason_2, importance_2), ...:
 '''
-}
 
-VACCINE_PROMPT = {
-    "role": "user",
-    "content": f'''
+
+VACCINE_PROMPT = f'''
 Based on your background and the lessons you have learned, do you want to get vaccinated? Choose [yes, no]: 
 '''
-}
 
 def parse_yes_or_no(response):
     if "yes" in response.lower():
@@ -106,9 +86,7 @@ def parse_yes_or_no(response):
         return False
     return None
 
-ACTION_PROMPT = {
-    "role": "user",
-    "content": f'''
+ACTION_PROMPT = f'''
 Example tweets:
 * "Hey everyone, just a heads up—the FD vaccine is literally our best shot to get things back to normal. Tons of studies confirm it knocks down the risk of getting seriously sick. Let’s not waste any time. Protect yourself and the folks around you. We can do this together! #GetVaccinated #CommunityHealth"
 * "Honestly, I’m just not ready to jump on this FD vaccine bandwagon. Feels like they skipped a bunch of steps to rush it out. Shouldn’t we know more about the long-term effects before we line up? It's our right to ask these questions, you know? #InformedConsentRequired"
@@ -122,7 +100,6 @@ Example tweets:
 * "Vaccines are like humanity’s superpower against diseases, and this FD jab is no different. Getting vaccinated is us fighting back, showing what we can achieve when we come together. Don’t sit this one out—be a hero in your own way and help us kick this virus out! #StandTogether"
 Write a tweet [start with *] about FD vaccinations expressing your opinions on this topic, and vary the writing style and sentence structure:
 '''
-}
 
 def get_categorization_prompt(response):
     return f'''
@@ -135,8 +112,8 @@ Response: "Because I don't trust vaccines and I don't trust English medicines. A
 Analyze this person's reason for not getting a vaccine based on the response. Choose one or more reasons from {REASONS}
 Reason: distrust_vaccines
 Response: {response}
-Analyze this person's reason for not getting a vaccine based on the response.
-Reason [{REASONS}]:
+Analyze this person's reason for not getting a vaccine based on the response. Choose from {REASONS} and the explanations are as follows:
+{REASONS_EXPLAINED}. Now analyze this person's reason for not getting a vaccine based on the response:
 '''
 
 def categorize_reasons(responses):

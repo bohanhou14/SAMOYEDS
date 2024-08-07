@@ -73,6 +73,8 @@ class NewsRecommender(Recommender):
         self.news_indices = None # update to None so next time it recommends new news article
 
     def recommend(self, news_data, agents, num_recommendations=10):
+        if agents[0].get_most_recent_tweets() == None:
+            return news_data[:num_recommendations]
         self.update_recommender(agents, news_data)
         recommendations = []
         for i in range(self.num_agents):

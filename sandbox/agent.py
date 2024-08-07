@@ -1,8 +1,9 @@
 from sandbox.tweet import Tweet
 import hashlib
+from queue import PriorityQueue 
 from utils.utils import compile_enumerate
 class Agent:
-    def __init__(self, profile):
+    def __init__(self, profile, k=10):
         self.gender = profile['Gender']
         self.age = profile['Age']
         self.occupation = profile['Occupation']
@@ -10,8 +11,10 @@ class Agent:
         self.pb = profile['Political belief']
         self.religion = profile['Religion']
         self.attitudes = []
+        self.max_reflections = k
         self.changes = []
-        self.reflections = [] # a list of triples (reflection, time, importance)
+        self.lessons = [] # a queue of triples (reflection, time, importance)
+        self.reflections = [] # the top k reflections with highest scores (lesson, score)
         self.tweets = []
         self.vaccine = None
         self.following = {} # should be a list of tuple (id, weight)
@@ -23,6 +26,23 @@ class Agent:
         self.education = education
         self.pb = pb
         self.religion = religion
+    
+    def add_lessons(self, lessons):
+        self.reflections.extend(lessons)
+
+    def retrieve_reflections(self, current_time):
+        reflections = [(lesson.text, lesson.score(current_time)) for lesson in self.lessons]
+        reflections.sort(key=lambda x: x[1], reverse=True)
+        self.reflections = reflections[:self.max_reflections]
+        return reflections[:self.max_reflections]
+    
+    def get_reflections(self):
+        if len(self.reflections) == 0:
+            return ""
+        ret_str = "Below are the most influential lessons to your opinions, shown in ascending order:\n"
+        ret_str += compile_enumerate([reflection[0] for reflection in self.reflections[::-1]])
+        ret_str += "\n Please consider these lessons carefully when you make your decisions.\n"
+        return ret_str
 
     def update_tweets(self, tweet_text, tweet_time):
         self.tweets.append(Tweet(tweet_text, tweet_time))

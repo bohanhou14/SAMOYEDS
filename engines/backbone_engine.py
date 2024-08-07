@@ -7,11 +7,13 @@ import torch
 from datetime import datetime
 from vllm import LLM, SamplingParams
 from tqdm import trange
+from sandbox.prompts import system_prompt, profile_prompt
 import os
 import pickle
 from recommenders.tweet_recommender import TweetRecommender
 from recommenders.news_recommender import NewsRecommender
 from sandbox.agent import Agent
+from utils.utils import parse_lessons
 
 
 class BackboneEngine:
@@ -39,7 +41,7 @@ class BackboneEngine:
         )
         # keep track of all the conversations, shape=(num_agents X (dynamic) num_conversation_turns)
         # more turns there is, the longer messages_list will become
-        self.messages_list = None
+        self.context = None
         self.run_id = 0
         self.profile_str = profile_str
         self.tokenizer = AutoTokenizer.from_pretrained(model_type)
@@ -47,7 +49,6 @@ class BackboneEngine:
         self.attitude_dist = []
         self.day = 1
         self.max_iter = max_iter
-        self.tweets_pool = []
         self.news_path = news_path
         self.network_str = network_str
         self.policies_path = policies_path
@@ -75,10 +76,11 @@ class BackboneEngine:
         self.agents = [Agent(p) for p in profiles]
         self.num_agents = len(self.agents)
         ids = list(range(len(self.agents)))
+        self.system_prompts = []
         for i in range(len(self.agents)):
             self.agents[i].id = ids[i]
+            self.system_prompts.append(system_prompt(self.agents[i].get_profile_str()))
         self.load_network()
-        
 
     def load_news(self):
         with open(self.news_path, "rb") as f:
@@ -92,7 +94,7 @@ class BackboneEngine:
             f.close
     
     def reset(self):
-        self.messages_list = []
+        self.context = []
         self.load_agents()
         self.load_news()
         self.load_policies()
@@ -100,36 +102,40 @@ class BackboneEngine:
         self.tweet_recommender = TweetRecommender() 
         self.day = 1
 
-    def update_message_lists(self, new_messages):
-        for k in range(self.num_agents):
-            self.messages_list[k].append(
-                {
-                    "role": "assistant",
-                    "content": new_messages[k]
-                }
-            )
-
+    def reset_context(self):
+        self.context = [self.system_prompts[k] for k in range(self.num_agents)]
+        self.response = []
+        
     def add_prompt(self, new_prompts):
+        self.reset_context()
         # different prompt for each agent
         if type(new_prompts) == list:
             for k in range(self.num_agents):
-                self.messages_list[k].append(
-                    {"role": "user", "content": new_prompts[k]}
+                # add reflections
+                self.context[k].append({
+                    "role": "user", 
+                    "content": self.agents[k].get_reflections() + new_prompts[k]}
                 )
         # same prompt
         else:
             for k in range(self.num_agents):
-                self.messages_list[k].append(
-                    new_prompts
+                self.context[k].append({
+                    "role": "user", 
+                    "content": self.agents[k].get_reflections() + new_prompts}
                 )
+    
+    def add_all_lessons(self, cleaned_responses):
+        for k in range(self.num_agents):
+            self.agents[k].add_lessons(parse_lessons(cleaned_responses[k], day=self.day))
+
 
     def load(self, path):
         if os.path.exists(path):
             with open(path, "rb") as f:
-                self.messages_list = pickle.load(f)
+                self.context = pickle.load(f)
                 f.close()
 
-    def save(self):
+    def save(self, cleaned_responses):
         if self.save_dir != None:
             file_path = os.path.join(self.save_dir, f"id={self.run_id}.txt")
             if not os.path.exists(file_path):
@@ -139,7 +145,8 @@ class BackboneEngine:
             print(f"Saving to {file_path}")
             with open(file_path, "a") as f:
                 f.write(f"stage: {self.stage}\n")
-                f.write(str([i[-1] for i in self.messages_list]))
+                for r in cleaned_responses:
+                    f.write(f"\t{r}\n")
                 f.write("\n")
             print("-" * 50)
 

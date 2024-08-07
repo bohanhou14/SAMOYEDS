@@ -111,12 +111,9 @@ class TweetRecommender(Recommender):
         self.update_recommender(agents)
         recommendations = []
         all_tweets = [a.get_all_tweets() for a in self.agents]
-        # breakpoint()
         for i in range(self.num_agents):
             top_k_values = self.sample_top_k_sim_of_an_agent_new_tweets(i, num_recommendations)
             for j in range(num_recommendations):
                 agent_index, tweet_index, similarity = top_k_values[j]
                 recommendations.append((i, all_tweets[agent_index][tweet_index].text, similarity))
-                # breakpoint()
-        # breakpoint()
         return recommendations
