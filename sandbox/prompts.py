@@ -56,7 +56,10 @@ def news_prompt(news, k=5):
         "role": "user",
         "content": f'''
 You read the following news about FD: {news}.
-Summarize {k} lessons you have learned.
+Summarize {k} lessons you have learned that are relevant to your attitude on FD vaccinations and rate them with importance on a scale of 0-1.
+Output the lesson in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}).
+For example, 1. ("The FD-24 vaccine has been linked to a potential association with heart inflammation", 0.4).
+Now output the lessons in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}):
 '''
     }
 
@@ -65,7 +68,10 @@ def tweets_prompt(tweets, k=5):
         "role": "user",
         "content": f'''
 You read the following tweets about FD: {tweets}.
-Summarize {k} lessons you have learned that are relevant to your attitude on FD vaccinations.
+Summarize {k} short lessons you have learned that are relevant to your attitude on FD vaccinations, and rate them with importance on a scale of 0-1.
+Output the lesson in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}).
+For example, 1. ("I learned the importance of transparency and informed consent because several tweets mentioned it", 0.2).
+Now output the lessons in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}): 
 '''
     }
 
@@ -79,7 +85,10 @@ ENDTURN_REFLECTION_PROMPT = {
 REFLECTION_PROMPT = {
     "role": "user",
     "content": f'''
-{BASED_ON}, reflect on the most significant reasons causing your attitude towards FD vaccination to change or stay unchanged:
+{BASED_ON}, reflect on the most significant reasons causing your attitude towards FD vaccination to change or stay unchanged and rate them with importance on a scale of 0-1.
+Output the reasons in the format of 1. (reason_1, importance_1), 2. (reason_2, importance_2), ...
+For example, 1. (I don't trust the vaccine, 0.6), 2. (I don't trust the government, 0.2).
+Now output the reasons in the format of 1. (reason_1, importance_1), 2. (reason_2, importance_2), ...:
 '''
 }
 

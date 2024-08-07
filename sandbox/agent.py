@@ -11,7 +11,7 @@ class Agent:
         self.religion = profile['Religion']
         self.attitudes = []
         self.changes = []
-        self.reflections = []
+        self.reflections = [] # a list of triples (reflection, time, importance)
         self.tweets = []
         self.vaccine = None
         self.following = {} # should be a list of tuple (id, weight)

@@ -52,7 +52,7 @@ class TweetRecommender(Recommender):
             self.similarity_matrix_3d = extended_similarity_matrix_3d
         
         # Apply following relation
-        self.build_following_similarity_graph()
+        self.extend_following_similarity_graph()
         self.similarity_matrix_3d += self.following_graph
 
     def sample_top_k_sim_of_an_agent_new_tweets(self, agent_index, k):
@@ -84,9 +84,10 @@ class TweetRecommender(Recommender):
         
         return top_k_values
     
-    def build_following_similarity_graph(self):
+    def extend_following_similarity_graph(self):
         """
         Build a following similairty graph from the agents' following lists.
+        It's not to build new following graph, but to extend the existing one with a new shape
         :return: list of lists - the following graph
         """
         self.following_graph = np.zeros(self.similarity_matrix_3d.shape)
