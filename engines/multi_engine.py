@@ -51,7 +51,7 @@ class DataParallelEngine(Engine):
             )
             return completion.choices[0].message.content
         except Exception as e:
-            print(prompt)
+            # print(prompt)
             return f"Error: {e}"
 
     def request_generate_attitude(self, prompt, port, max_tokens=80):

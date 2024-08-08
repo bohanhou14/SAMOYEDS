@@ -6,18 +6,22 @@ BASED_ON = "Based on the news and tweets you read, the lessons you learned, the 
 
 ATTITUDE_PROMPT = f'''
       {BASED_ON}, what's your new attitude towards FD vaccination? Choose one of [definitely no, probably no, probably yes, definitely yes]. Provide only the chosen option starting with "Attitude towards FD vaccination: ".
+      Please be aware that humans change their attitudes gradually and DO NOT change their attitudes frequently!
       Attitude towards FD vaccination:
-      '''
+'''
 
 FD_DESCRIPTION = "FD-24 is a novel and contagious disease caused by the FD virus which we have incomplete information about. Breathing in FD virus particles and touching surfaces contaminated by the FD virus may also cause infection. FD often results in mild symptoms such as fever, fatigue, and cough, but some patients also develop moderate and even critical symptoms and result in deaths."
 
-def system_prompt(profile_str):
+def system_prompt(agent, current_time):
     return [{
         "role": "system",
         "content": f'''
-          Pretend you are: {profile_str}.
+          Pretend you are a person with the following profile: {agent.get_profile_str()}.
           Here's a description of FD-24: {FD_DESCRIPTION}.
           There is a new vaccine for FD-24, and it might be both beneficial and risky to get vaccinated. You do not know much about the vaccine and will learn more about it through news and social media.
+          This is day {current_time} of the simulation. Every day, in the morning, you will be presented with news about FD-24. In the afternoon, you will read tweets from other agents on FD vaccines and have the opportunity to post tweets expressing your opinions on FD vaccinations. In the evening, you will be polled with your new attitude and asked to reflect on the most significant reasons causing your attitude towards FD vaccination to change or stay unchanged.
+          Please be aware that humans change their attitudes gradually and DO NOT change their attitudes frequently!
+          {agent.get_reflections(current_time)}
           '''
     }]
 
@@ -27,6 +31,7 @@ Pretend you are: {profile_str}.
 Based on your background, infer your attitude towards FD vaccination.
 Choose one of [definitely no, probably no, probably yes, definitely yes].
 Provide only the chosen option starting with "Attitude towards FD vaccination: ".
+Please be aware that humans change their attitudes gradually and DO NOT change their attitudes frequently!
 Attitude towards FD vaccination:
 '''
 

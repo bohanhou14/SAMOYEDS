@@ -91,7 +91,7 @@ class Engine(BackboneEngine):
         recommendations = self.tweet_recommender.recommend(agents=self.agents, num_recommendations=num_recommendations) # e.g. 500 (num_agents) * 10 (num_tweets)
         print("Recommendations generated")
         prompts = [tweets_prompt([r[1] for r in recommendations if r[0]==k], top_k) for k in range(self.num_agents)]
-        print(f"Prompts generated, example: {prompts[0]}")
+        # print(f"Prompts generated, example: {prompts[0]}")
         self.add_prompt(prompts)
         self.stage = f"write_tweets_lesson_day={self.day}"
         cleaned_responses = self.generate(max_tokens=MED_TOKEN_LIMIT)
@@ -101,7 +101,7 @@ class Engine(BackboneEngine):
     def prompt_actions(self):
         self.stage = f"prompt_actions_day={self.day}"
         self.add_prompt(ACTION_PROMPT)
-        breakpoint()
+        # breakpoint()
         actions = self.generate(max_tokens=TWEET_TOKEN_LIMIT)
         actions_tweets = [Tweet(text=actions[i], time=self.day, author_id=i) for i in range(len(actions))]
         for k in range(self.num_agents):

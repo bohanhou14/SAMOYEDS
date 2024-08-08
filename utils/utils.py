@@ -245,7 +245,7 @@ def parse_enumerated_items(text):
     matches = re.findall(pattern, text)
     return matches
 
-def parse_lessons(text, day, debug=True):
+def parse_lessons(text, day, debug=False):
     # Define the pattern to match the required format
     pattern = r'\(([^)]+)\s*,\s*([+-]?\d*\.?\d+)\)'
     tuples = []

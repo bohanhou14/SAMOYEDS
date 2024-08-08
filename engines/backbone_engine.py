@@ -79,7 +79,7 @@ class BackboneEngine:
         self.system_prompts = []
         for i in range(len(self.agents)):
             self.agents[i].id = ids[i]
-            self.system_prompts.append(system_prompt(self.agents[i].get_profile_str()))
+            self.system_prompts.append(system_prompt(self.agents[i], self.day))
         self.load_network()
 
     def load_news(self):
@@ -103,7 +103,7 @@ class BackboneEngine:
         self.day = 1
 
     def reset_context(self):
-        self.context = [system_prompt(self.agents[i].get_profile_str()) for i in range(self.num_agents)]
+        self.context = [system_prompt(self.agents[i], self.day) for i in range(self.num_agents)]
         
     def add_prompt(self, new_prompts):
         self.reset_context()
@@ -113,14 +113,14 @@ class BackboneEngine:
                 # add reflections
                 self.context[k].append({
                     "role": "user", 
-                    "content": self.agents[k].get_reflections() + new_prompts[k]}
+                    "content": new_prompts[k]}
                 )
         # same prompt
         else:
             for k in range(self.num_agents):
                 self.context[k].append({
                     "role": "user", 
-                    "content": self.agents[k].get_reflections() + new_prompts}
+                    "content": new_prompts}
                 )
     
     def add_all_lessons(self, cleaned_responses):

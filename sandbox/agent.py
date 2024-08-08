@@ -34,12 +34,12 @@ class Agent:
         reflections = [(lesson.text, lesson.score(current_time)) for lesson in self.lessons]
         reflections.sort(key=lambda x: x[1], reverse=True)
         self.reflections = reflections[:self.max_reflections]
-        return reflections[:self.max_reflections]
     
-    def get_reflections(self):
+    def get_reflections(self, current_time):
         if len(self.reflections) == 0:
             return ""
-        ret_str = "Below are the most influential lessons to your opinions, shown in ascending order:\n"
+        self.retrieve_reflections(current_time)
+        ret_str = "Below are the most influential lessons to your opinions, shown in ascending order of their importance (a float on a scale of 0-1):\n"
         ret_str += compile_enumerate([reflection.text for reflection in self.reflections[::-1]])
         ret_str += "\n Please consider these lessons carefully when you make your decisions.\n"
         return ret_str
