@@ -51,6 +51,7 @@ class Engine(BackboneEngine):
         stances = []
         similarities = []
         for k in range(self.num_agents):
+            # breakpoint()
             news_text, news_stance, news_sim = recommendations[k]
             news = compile_enumerate(news_text)
             binary_stance = [1 if s == "positive" else 0 for s in news_stance]
@@ -83,7 +84,7 @@ class Engine(BackboneEngine):
         lessons = [parse_lessons(c, day=self.day) for c in cleaned_responses]
         for k in range(self.num_agents):
             self.agents[k].add_lessons(lessons[k])
-        self.save()
+        self.save(cleaned_responses)
     
     def feed_tweets(self, top_k=3, num_recommendations = 5):
         self.stage = f"feed_tweets_day={self.day}"
@@ -100,6 +101,7 @@ class Engine(BackboneEngine):
     def prompt_actions(self):
         self.stage = f"prompt_actions_day={self.day}"
         self.add_prompt(ACTION_PROMPT)
+        breakpoint()
         actions = self.generate(max_tokens=TWEET_TOKEN_LIMIT)
         actions_tweets = [Tweet(text=actions[i], time=self.day, author_id=i) for i in range(len(actions))]
         for k in range(self.num_agents):

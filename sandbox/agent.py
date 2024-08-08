@@ -40,7 +40,7 @@ class Agent:
         if len(self.reflections) == 0:
             return ""
         ret_str = "Below are the most influential lessons to your opinions, shown in ascending order:\n"
-        ret_str += compile_enumerate([reflection[0] for reflection in self.reflections[::-1]])
+        ret_str += compile_enumerate([reflection.text for reflection in self.reflections[::-1]])
         ret_str += "\n Please consider these lessons carefully when you make your decisions.\n"
         return ret_str
 

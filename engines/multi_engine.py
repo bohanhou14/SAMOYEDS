@@ -51,6 +51,7 @@ class DataParallelEngine(Engine):
             )
             return completion.choices[0].message.content
         except Exception as e:
+            print(prompt)
             return f"Error: {e}"
 
     def request_generate_attitude(self, prompt, port, max_tokens=80):
@@ -81,7 +82,7 @@ class DataParallelEngine(Engine):
     def generate(self, max_tokens):
         print(f"Stage: {self.stage}, pool map started")
         start = time.time()
-        batches = list(self.chunkify(self.messages_list, self.batch_size))
+        batches = list(self.chunkify(self.context, self.batch_size))
         results = []
 
         with mp.get_context('spawn').Pool(processes=self.num_processes) as pool:
@@ -99,7 +100,7 @@ class DataParallelEngine(Engine):
     def generate_attitude(self, max_tokens):
         print(f"Stage: {self.stage}, pool map started")
         start = time.time()
-        batches = list(self.chunkify(self.messages_list, self.batch_size))
+        batches = list(self.chunkify(self.context, self.batch_size))
         results = []
 
         with mp.get_context('spawn').Pool(processes=self.num_processes) as pool:
@@ -116,7 +117,7 @@ class DataParallelEngine(Engine):
     def generate_actions(self, max_tokens):
         print(f"Stage: {self.stage}, pool map started")
         start = time.time()
-        batches = list(self.chunkify(self.messages_list, self.batch_size))
+        batches = list(self.chunkify(self.context, self.batch_size))
         results = []
 
         with mp.get_context('spawn').Pool(processes=self.num_processes) as pool:

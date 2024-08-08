@@ -74,7 +74,12 @@ class NewsRecommender(Recommender):
 
     def recommend(self, news_data, agents, num_recommendations=10):
         if agents[0].get_most_recent_tweets() == None:
-            return news_data[:num_recommendations]
+            recommendations = []
+            for i in range(len(agents)):
+                ret = news_data[:num_recommendations]
+                rec = [n.text for n in ret], [n.stance for n in ret], [0 for n in ret]
+                recommendations.append(rec)
+            return recommendations
         self.update_recommender(agents, news_data)
         recommendations = []
         for i in range(self.num_agents):

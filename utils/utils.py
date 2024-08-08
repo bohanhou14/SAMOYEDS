@@ -245,15 +245,16 @@ def parse_enumerated_items(text):
     matches = re.findall(pattern, text)
     return matches
 
-def parse_lessons(text, day, debug=False):
-    pattern = r'(\d+)\.\s+\(\"([^"]*)\"\s*,\s*([+-]?\d*\.?\d+)\)'
+def parse_lessons(text, day, debug=True):
+    # Define the pattern to match the required format
+    pattern = r'\(([^)]+)\s*,\s*([+-]?\d*\.?\d+)\)'
     tuples = []
     matches = re.findall(pattern, text)
     for m in matches:
-        tuples.append((m[1], float(m[2])))
+        tuples.append((m[0], float(m[1])))
         if debug:
             print(f"m: {m}")
-            print("Extracted: ", m[1], m[2])
+            print("Extracted: ", m[0], m[1])
     lessons = [Lesson(t[0], day, t[1]) for t in tuples]
     return lessons
 

@@ -103,8 +103,7 @@ class BackboneEngine:
         self.day = 1
 
     def reset_context(self):
-        self.context = [self.system_prompts[k] for k in range(self.num_agents)]
-        self.response = []
+        self.context = [system_prompt(self.agents[i].get_profile_str()) for i in range(self.num_agents)]
         
     def add_prompt(self, new_prompts):
         self.reset_context()
@@ -190,11 +189,16 @@ class BackboneEngine:
                 self.feed_tweets()
             # news as environmental variables
             # policy as system prompt
+            # breakpoint()
             self.feed_news()
+            # breakpoint()
             # news: 1) real-world news + 2) news within the sandbox
             self.prompt_actions()
+            # breakpoint()
             self.poll_attitude()
+            # breakpoint()
             self.prompt_reflections()
+            # breakpoint()
             self.day += 1
         print("**WARM-UP FINISHED**")
         print("-"*50)

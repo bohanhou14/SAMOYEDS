@@ -4,13 +4,10 @@ from utils.utils import parse_reasons, REASONS, REASONS_EXPLAINED
 
 BASED_ON = "Based on the news and tweets you read, the lessons you learned, the tweets you posted, and your previous attitude towards FD vaccinations"
 
-ATTITUDE_PROMPT = {
-    "role": "user",
-    "content": f'''
+ATTITUDE_PROMPT = f'''
       {BASED_ON}, what's your new attitude towards FD vaccination? Choose one of [definitely no, probably no, probably yes, definitely yes]. Provide only the chosen option starting with "Attitude towards FD vaccination: ".
       Attitude towards FD vaccination:
       '''
-    }
 
 FD_DESCRIPTION = "FD-24 is a novel and contagious disease caused by the FD virus which we have incomplete information about. Breathing in FD virus particles and touching surfaces contaminated by the FD virus may also cause infection. FD often results in mild symptoms such as fever, fatigue, and cough, but some patients also develop moderate and even critical symptoms and result in deaths."
 
@@ -37,10 +34,10 @@ def news_policies_prompt(news, policies=None, k=5):
     prompt = f'''
 You read the following news and policies about FD: {news}. 
 Summarize {k} lessons you have learned that are relevant to your attitude on FD vaccinations and rate them with importance on a scale of 0-1.
-Output the lesson in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}).
-For example, 1. ("The FD-24 vaccine has been linked to a potential association with heart inflammation", 0.4).
-Now output the lessons in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}):
-'''
+Output the lesson in the format of (lesson, importance).
+For example, ("The FD-24 vaccine has been linked to a potential association with heart inflammation", 0.4).
+Now output the lessons in the format of multiple (lesson, importance). Do not provide any other information:
+''' 
     if policies:
         policy_prompt = f"The government has also issued the following policies: {policies}."
         prompt['content'] += policy_prompt
@@ -52,26 +49,26 @@ Now output the lessons in the format of 1. (lesson_1, importance_1), 2. (lesson_
 def news_prompt(news, k=5):
     return f'''
 You read the following news about FD: {news}.
-Summarize {k} lessons you have learned that are relevant to your attitude on FD vaccinations and rate them with importance on a scale of 0-1.
-Output the lesson in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}).
-For example, 1. ("The FD-24 vaccine has been linked to a potential association with heart inflammation", 0.4).
-Now output the lessons in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}):
+Summarize {k} lessons you have learned that are relevant to your attitude on FD vaccinations and rate their importance on a scale of 0-1.
+Output the lesson in the format of (lesson, importance).
+For example, ("The FD-24 vaccine has been linked to a potential association with heart inflammation", 0.4).
+Now output the lessons in the format of multiple (lesson, importance). Do not provide any other information:
 '''
 
 def tweets_prompt(tweets, k=5):
     return f'''
 You read the following tweets about FD: {tweets}.
 Summarize {k} short lessons you have learned that are relevant to your attitude on FD vaccinations, and rate them with importance on a scale of 0-1.
-Output the lesson in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}).
-For example, 1. ("I learned the importance of transparency and informed consent because several tweets mentioned it", 0.2).
-Now output the lessons in the format of 1. (lesson_1, importance_1), 2. (lesson_2, importance_2), ... {k}. (lesson_{k}, importance_{k}): 
+Output the lesson in the format of (lesson, importance).
+For example, ("The FD-24 vaccine has been linked to a potential association with heart inflammation", 0.4).
+Now output the lessons in the format of multiple (lesson, importance). Do not provide any other information:
 '''
 
 REFLECTION_PROMPT = f'''{BASED_ON}, reflect on the most significant reasons causing your attitude towards FD vaccination to change or stay unchanged and rate them with importance on a scale of 0-1. Choose the reasons from {REASONS}. The reasons are explained below:
 {REASONS_EXPLAINED}.
 Output the reasons in the format of 1. (reason_1, importance_1), 2. (reason_2, importance_2), ...
 For example, 1. (I don't trust the vaccine, 0.6), 2. (I don't trust the government, 0.2).
-Now output the reasons in the format of 1. (reason_1, importance_1), 2. (reason_2, importance_2), ...:
+Now output the reasons in the format of 1. (reason_1, importance_1), 2. (reason_2, importance_2), ... Do not provide any other information:
 '''
 
 
